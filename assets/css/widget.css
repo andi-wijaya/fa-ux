@@ -1,0 +1,105 @@
+@media screen{
+
+  .widget{
+
+    display: inline-block;
+    background: #fff;
+    width: 100%;
+    overflow: hidden;
+
+  }
+
+  .widget-cont{
+
+    display: block;
+    text-align: left;
+    padding-top: 5px;
+    padding-left: 5px;
+
+  }
+
+  .widget-cont>*{
+
+    position: relative;
+    display: inline-block;
+    background: #fff;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .2);
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 0;
+    overflow: hidden;
+    vertical-align: top;
+
+  }
+
+  .widget11{
+
+    width: calc(33% - 6px);
+    height: 140px;
+
+  }
+
+  .widget12{
+
+    width: calc(33% - 6px);
+    height: 280px;
+
+  }
+
+  .widget13{
+
+    width: calc(33% - 6px);
+    height: 420px;
+
+  }
+
+  .widget21{
+
+    width: calc(66% - 6px);
+    height: 140px;
+
+  }
+
+  .widget22{
+
+    width: calc(66% - 6px);
+    height: 280px;
+
+  }
+
+  .widget23{
+
+    width: calc(66% - 6px);
+    height: 420px;
+
+  }
+
+  .widget31{
+
+    width: calc(100% - 17px);
+    height: 140px;
+
+  }
+
+  .widget32{
+
+    width: calc(100% - 17px);
+    height: 280px;
+
+  }
+
+  .widget33{
+
+    width: calc(100% - 17px);
+    height: 420px;
+
+  }
+
+  .widget-head td{
+    white-space: nowrap;
+  }
+  .widget-head td *{
+    vertical-align: middle;
+  }
+
+}

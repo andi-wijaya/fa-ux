@@ -1,0 +1,32 @@
+@media screen{
+
+  .datepicker{
+    display: inline-flex;
+    vertical-align: middle;
+    position: relative;
+    border: solid 1px #eee;
+    white-space: nowrap;
+    align-items: center;
+  }
+  .datepicker:hover{
+    border-color: #aaa;
+  }
+  .datepicker input{
+    border: none;
+    padding: 8px;
+    flex: 1 1 auto;
+  }
+  .datepicker .icon{
+    padding: 8px;
+    cursor: pointer;
+  }
+
+  /* READONLY */
+  .datepicker.readonly, .datepicker.readonly:hover{
+    border-color: transparent;
+  }
+  .datepicker.readonly .icon{
+    display: none;
+  }
+
+}

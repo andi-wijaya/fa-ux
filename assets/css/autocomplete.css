@@ -1,0 +1,52 @@
+@media screen{
+
+  .autocomplete{
+
+    border: solid 1px #eee;
+    display: inline-flex;
+    background: #fff;
+    position: relative;
+    white-space: nowrap;
+    width: 100%;
+    vertical-align: middle;
+
+  }
+
+  .autocomplete input{
+
+    border: none;
+    padding: 8px;
+    background: transparent;
+    vertical-align: middle;
+    flex: 1 1 100%;
+
+  }
+
+  .autocomplete .icon{
+
+    color: #aaa;
+    cursor: pointer;
+    background: transparent;
+    vertical-align: middle;
+    padding: 8px;
+    flex: 0 0 20px;
+    text-align: center;
+
+  }
+
+  .autocomplete .popup .item{
+
+    padding: 8px;
+    text-align: left;
+
+  }
+
+  .autocomplete.no-border{
+    border-color: transparent;
+  }
+
+  .autocomplete.readonly .fa{
+    display: none;
+  }
+
+}

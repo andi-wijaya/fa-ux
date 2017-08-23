@@ -1,0 +1,29 @@
+@media screen{
+
+  .codeeditor, .codeeditor *{
+
+    font-size: 13px;
+    font-family: Monospace;
+
+  }
+  
+  .codeeditor{
+
+    display: inline-block;
+    position: relative;
+    border: solid 1px #eee;
+    
+  }
+
+  .codeeditor textarea{
+
+    border: none;
+    resize: none;
+    outline: none;
+    appearance: none;
+    padding: 8px;
+
+  }
+
+
+}

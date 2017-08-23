@@ -1,0 +1,61 @@
+@media screen{
+
+  .gridhead{
+    display: block;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  .gridhead *{
+    font-size: 13px;
+  }
+  .grid-head{
+    border-top: solid 1px #eee;
+    border-bottom: solid 1px #eee;
+  }
+  .gridhead>table{
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .gridhead td{
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+  }
+  .gridhead td.label{
+    padding: 8px;
+    font-weight: 600;
+    border: solid 1px #eee;
+    cursor: pointer;
+    -moz-transition: background-color 300ms ease-in;
+    -webkit-transition: background-color 300ms ease-in;
+    position: relative;
+  }
+  .gridhead td.label:first-child{
+    border-left: none;
+  }
+  .gridhead td.label:last-child{
+    border-right: none;
+  }
+  .gridhead td.inactive{
+    width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none 0px !important;
+  }
+  .gridhead td.label:hover{
+    background-color: rgba(0, 0, 0, .05);
+  }
+  .grid-head td.label .separator{
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    width: 13px;
+    background: transparent;
+    cursor: e-resize;
+    display: inline-block;
+  }
+
+}

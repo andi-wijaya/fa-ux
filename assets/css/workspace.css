@@ -1,0 +1,34 @@
+@media screen{
+
+  .workspace{
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .workspace>*{
+    -webkit-transition:200ms ease-out all;
+    -moz-transition:200ms ease-out all;
+    -ms-transition:200ms ease-out all;
+    transition:200ms ease-out all;
+  }
+
+  .workspace>*:nth-child(1){
+    background: #fff;
+    overflow-x: hidden;
+    border-right: solid 1px #eee;
+  }
+
+  .workspace>*:nth-child(2){
+    background: #fff;
+    overflow-x: hidden;
+  }
+
+  .workspace>*:nth-child(3){
+    background: #fff;
+    overflow-x: hidden;
+    border-left: solid 1px #eee;
+
+
+  }
+
+}

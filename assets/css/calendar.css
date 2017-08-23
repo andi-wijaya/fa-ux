@@ -1,0 +1,16 @@
+@media screen{
+
+  #calendar table{
+    display: inline-block;
+    vertical-align: top;
+  }
+  #calendar td{
+    padding: 5px;
+    text-align: center;
+    cursor: pointer;
+  }
+  #calendar td.active{
+    background: #eee;
+  }
+
+}

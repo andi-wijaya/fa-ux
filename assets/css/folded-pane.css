@@ -1,0 +1,22 @@
+@media screen{
+
+  .folded-pane{
+
+  }
+  .folded-pane .toggler{
+    min-height: 3px;
+    border-bottom: solid 1px #f5f5f5;
+    text-align: center;
+    margin-top: 2px;
+    cursor: pointer;
+  }
+  .folded-pane.folded{
+  }
+  .folded-pane.folded>*{
+    display: none;
+  }
+  .folded-pane.folded .toggler{
+    display: block;
+  }
+
+}

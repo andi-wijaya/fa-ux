@@ -1,0 +1,35 @@
+@media screen{
+
+  .modal{
+    background: #fff;
+    border: solid 1px #ccc;
+    display: none;
+    position: fixed;
+    z-index: 11;
+  }
+  .modal.on{
+    display: block;
+  }
+  .modal-body{
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  .modal-foot{
+    border-top: solid 1px #eee;
+    text-align: right;
+  }
+  .modal-bg{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, .7);
+    z-index: 10;
+  }
+  .modal-bg.on{
+    display: block;
+  }
+
+}

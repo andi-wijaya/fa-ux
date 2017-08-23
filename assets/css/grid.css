@@ -1,0 +1,58 @@
+@media screen{
+
+  .grid{
+    display: block;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  .grid *{
+    font-size: 13px;
+  }
+  .grid>table{
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .grid td{
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    border: solid 1px transparent;
+  }
+  .grid td:first-child{
+    border-left: none;
+  }
+  .grid td:last-child{
+    border-right: none;
+  }
+  .grid td.label{
+    padding: 8px;
+  }
+
+  .grid-body tr:hover{
+
+  }
+  .grid-body tr.active{
+    background: #f5f5f5;
+  }
+  .grid-body tr.active td{
+  }
+
+  .grid .grid-size-label{
+    padding: 0 8px;
+  }
+  .grid .grid-size-label.inactive{
+    width: 0 !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  .grid-more{
+    text-align: center;
+    border: none;
+    padding: 10px 20px 10px 20px;
+  }
+
+}

@@ -1,0 +1,13 @@
+@media screen{
+
+  .code{
+
+    font-family: Monospace;
+    padding: 10px;
+    display: inline-block;
+    background: #eee;
+    white-space: pre-wrap;
+
+  }
+
+}

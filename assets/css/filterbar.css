@@ -1,0 +1,48 @@
+@media screen{
+
+  .filterbar{
+    display: inline-block;
+  }
+  .filterbar .add-btn{
+    padding: 8px;
+    background: #ccc;
+    cursor: pointer;
+  }
+
+  .flt-key{
+    display: inline-block;
+    padding: 5px;
+    background: #3BAFDA;
+    color: #fff;
+    margin-right: 2px;
+  }
+  .flt-opr{
+    display: inline-block;
+    padding: 5px;
+    background: #E9573F;
+    color: #fff;
+    margin-right: 2px;
+  }
+  .flt-val{
+    display: inline-block;
+    padding: 5px;
+    background: #8CC152;
+    color: #fff;
+    margin-right: 2px;
+  }
+  .flt-bracket-start{
+    padding: 5px;
+    display: inline-block;
+    background: #37BC9B;
+    color: #fff;
+    margin-right: 2px;
+  }
+  .flt-bracket-end{
+    padding: 5px;
+    display: inline-block;
+    background: #37BC9B;
+    color: #fff;
+    margin-right: 2px;
+  }
+
+}

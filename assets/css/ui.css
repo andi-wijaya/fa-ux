@@ -1,0 +1,93 @@
+@media screen{
+  
+  *{
+    font-family: 'PT Sans', sans-serif;
+    font-size: 13px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "liga", "kern";
+    font-synthesis: none;
+    text-rendering: optimizelegibility;
+    color: rgb(77, 77, 77);
+  }
+
+  a{
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  label{
+    display: inline-block;
+  }
+
+  h1, h2, h3, h4, h5{
+    display: inline-block;
+    font-weight: 300;
+    margin: 0;
+    padding: 0;
+  }
+  h1{
+    font-size: 32px;
+  }
+  h2{
+    font-size: 24px;
+  }
+  h3{
+    font-size: 21px;
+  }
+  h4{
+    font-size: 18px;
+  }
+  h5{
+    font-size: 14px;
+    text-transform: uppercase;
+  }
+
+  ul{
+    margin: 0;
+    padding: 0;
+  }
+  li{
+    list-style-type: none;
+    margin: 0 0 0 10px;
+    padding: 0;
+  }
+  
+  body{
+    background: #fff;
+    overflow-x: hidden;
+  }
+
+  input[type="text"]{
+    outline: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+  }
+
+  b{
+    font-weight: 700;
+  }
+
+  .pane{
+    border-bottom: solid 1px #eee;
+    background: #fff;
+  }
+  
+  .off{
+    display: none;
+  }
+
+  .hoverable{
+    color: #ccc;
+  }
+  .hoverable:hover{
+    color: #333;
+  }
+
+}

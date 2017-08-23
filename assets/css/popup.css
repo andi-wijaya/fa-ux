@@ -1,0 +1,21 @@
+@media screen{
+
+  .popup{
+
+    position: fixed;
+    z-index: 1;
+    display: none;
+    background: #fff;
+    border: solid 1px #eee;
+
+  }
+
+  .popup.on{
+
+    display: block;
+
+  }
+
+
+
+}

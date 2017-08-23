@@ -1,0 +1,23 @@
+@media screen{
+
+  .tab{
+    display: inline-block;
+  }
+  .tab *{
+    font-size: 13px;
+  }
+  .tab li{
+    cursor: pointer;
+    display: inline-block;
+    list-style-type: none;
+    text-decoration: none;
+    padding: 4px 8px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+  }
+  .tab li.active{
+    background: #eee;
+  }
+
+}

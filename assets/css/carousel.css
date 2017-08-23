@@ -1,0 +1,9 @@
+@media screen{
+
+  .carousel{
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: top;
+  }
+
+}

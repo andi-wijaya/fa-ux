@@ -1,0 +1,31 @@
+@media screen{
+
+  .textarea{
+    border: solid 1px #eee;
+    display: inline-flex;
+    background: #fff;
+    position: relative;
+    white-space: nowrap;
+    width: 100%;
+    vertical-align: middle;
+    overflow: hidden;
+  }
+  .textarea textarea{
+    border: none;
+    padding: 8px;
+    background: transparent;
+    vertical-align: middle;
+    width: 100%;
+    background: transparent;
+    flex-grow: 1;
+    resize: none;
+    appearance: none;
+    outline: none;
+  }
+
+  .textarea.no-border{
+    border-color: transparent;
+    background: transparent;
+  }
+
+}

@@ -1,0 +1,39 @@
+@media screen{
+
+  .commentlist{
+
+
+
+  }
+
+  .commentlist-write{
+
+    display: flex;
+
+  }
+  .commentlist-write input[type='text']{
+
+    flex: 1 1 100%;
+    padding: 8px;
+    border: solid 1px #eee;
+
+  }
+
+  .commentlist-item{
+
+    padding: 8px;
+
+  }
+
+  .commentlist-item-footer{
+
+    color: #aaa;
+    font-size: .9em;
+    margin-top: 5px;
+
+  }
+  .commentlist-item-footer *{
+    color: #aaa;
+  }
+
+}

@@ -1,0 +1,9 @@
+@media screen{
+
+  .ease-in{
+
+    transition: all 300ms ease-in;
+
+  }
+
+}

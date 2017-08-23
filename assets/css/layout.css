@@ -1,0 +1,90 @@
+@media screen and (min-width:1366px){
+
+  .layout{
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+  .layout-sidebar{
+
+    /*background: #ffffcc;*/
+    flex: 0 0 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+  }
+  
+  .layout-main{
+
+    /*background: #cceeff;*/
+    flex: 0 0 calc(30% - 150px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    
+  }
+  
+  .layout-ext{
+
+    /*background: #cceecc;*/
+    flex: 0 0 calc(70% - 150px);
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    
+  }
+
+  .layout.ext-hidden .layout-main{
+    flex: 0 0 calc(100% - 100px);
+  }
+  .layout.ext-hidden .layout-ext{
+    flex: 0 0 0 !important;;
+  }
+
+
+}
+
+@media screen and (min-width:800px) and (max-width:1365px){
+
+  .layout{
+    display: flex;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .layout-sidebar{
+
+    /*background: #ffffcc;*/
+    flex: 0 0 300px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+  }
+
+  .layout-main{
+
+    /*background: #cceeff;*/
+    flex: 0 0 calc(40% - 150px);
+    overflow-x: hidden;
+    overflow-y: auto;
+
+  }
+
+  .layout-ext{
+
+    /*background: #cceecc;*/
+    flex: 0 0 calc(60% - 150px);
+    overflow-x: hidden;
+    overflow-y: auto;
+
+  }
+
+  .layout.ext-hidden .layout-main{
+    flex: 0 0 calc(100% - 300px);
+  }
+  .layout.ext-hidden .layout-ext{
+    flex: 0 0 0  !important;
+  }
+
+
+}

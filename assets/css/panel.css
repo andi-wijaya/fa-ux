@@ -1,0 +1,13 @@
+@media screen{
+
+  .panel{
+
+    background: #fff;
+    border-bottom: solid 1px #eee;
+
+  }
+
+  .panel.green{
+  }
+
+}

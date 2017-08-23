@@ -1,0 +1,21 @@
+@media screen{
+
+  .form{
+
+  }
+
+  .form th{
+
+    white-space: nowrap;
+    font-weight: normal;
+    text-align: left;
+
+  }
+
+  .form th, .form td{
+
+    vertical-align: top;
+
+  }
+
+}

@@ -1,0 +1,36 @@
+@media screen{
+
+  .checklist{
+    display: block;
+    padding: 10px;
+  }
+
+  .checklist-item{
+    border-bottom: solid 1px #eee;
+    display: flex;
+    align-items: center;
+  }
+
+  .checklist-item input[type='checkbox']{
+
+    flex: 0 0 auto;
+
+  }
+  .checklist-item input[type='text']{
+    border: none;
+    outline: none;
+    resize: none;
+    appearance: none;
+    padding: 8px;
+    flex: 1 1 auto;
+  }
+  .checklist-item .iconbar{
+    flex: 0 0 auto;
+  }
+  
+  .checklist-foot{
+    padding: 5px;
+    text-align: center;
+  }
+
+}

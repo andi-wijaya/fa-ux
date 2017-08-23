@@ -1,0 +1,61 @@
+@media screen{
+
+  .textbox{
+    border: solid 1px #eee;
+    display: inline-flex;
+    background: #fff;
+    position: relative;
+    white-space: nowrap;
+    width: 100%;
+    vertical-align: middle;
+    overflow: hidden;
+  }
+  .textbox input{
+    border: none;
+    padding: 8px;
+    background: transparent;
+    vertical-align: middle;
+    width: 100%;
+    background: transparent;
+    flex-grow: 1;
+  }
+  .textbox .icon{
+    cursor: pointer;
+    background: transparent;
+    vertical-align: middle;
+    flex-basis: 24px;
+    padding: 8px;
+    text-align: center;
+  }
+  .textbox .icon.hidden{
+    visibility: hidden;
+  }
+
+  /* DARK TEXTBOX */
+  .textbox.theme-dark{
+    background: rgba(0, 0, 0, .2);
+  }
+  .textbox.theme-dark *{
+    color: #eee;
+  }
+  
+  /* READONLY */
+  .textbox.readonly{
+    background: transparent;
+    border-color: transparent;
+  }
+  .textbox.readonly .icon{
+    display: none;
+  }
+  
+  .textbox.error{
+    border-color: #E9573F;
+  }
+
+  .textbox.no-border{
+    background: transparent;
+    border-color: transparent;
+  }
+
+
+}

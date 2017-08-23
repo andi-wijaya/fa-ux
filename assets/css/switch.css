@@ -1,0 +1,59 @@
+@media screen{
+
+  .switch{
+    display: inline-block;
+    border: solid 1px #eee;
+    background-color: #fff;
+    padding: 2px;
+    position: relative;
+    width: 4em;
+    text-align: left;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 16px;
+    transition: padding-left 300ms ease;
+    vertical-align: middle;
+    font-size: 13px;
+  }
+  .switch.on{
+    padding-left: 24px;
+    background: #AAA;
+    border: solid 1px rgba(0, 0, 0, .2);
+  }
+  .switch.green.on{
+    background: #A0D468;
+  }
+  .switch.blue.on{
+    background: #3BAFDA;
+  }
+  .switch.yellow.on{
+    background: #FFCE54;
+  }
+  .switch.red.on{
+    background: #E9573F;
+  }
+  .switch>.main-switch{
+
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    background-color: #fff;
+    padding: 8px;
+    border: solid 1px rgba(0, 0, 0, .2);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
+    
+  }
+  .switch.on>.main-switch{
+    border: solid 1px rgba(0, 0, 0, .5);
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+  }
+  .switch>.main-switch.on{
+
+    left: inherit;
+    right: 0;
+  }
+
+}

@@ -1,0 +1,18 @@
+@media screen{
+
+  .contf{
+    display: flex;
+    align-items: flex-start;
+  }
+  .contf .col-300{
+    flex-basis: 300px;
+  }
+  .contf .col-400{
+    flex-basis: 400px;
+  }
+  .contf .col-s{
+    flex-grow: 1;
+    flex-basis: 100%;
+  }
+
+}

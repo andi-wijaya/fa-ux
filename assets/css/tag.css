@@ -1,0 +1,13 @@
+@media screen{
+
+  .tag{
+
+    font-size: .8em;
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    border-radius: .5em;
+    padding: 3px 6px;
+
+  }
+
+}

@@ -1,0 +1,39 @@
+@media screen{
+
+  .image{
+
+    display: inline-block;
+    position:relative; 
+    overflow:hidden;
+    background: #eee;
+    border: solid 2px #eee;
+    
+  }
+  .image.obj-hover{
+    border-color: #ccc;
+  }
+
+  .image input[type="file"]{
+
+    position:absolute;
+    z-index: 1;
+    opacity: 0;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    cursor:pointer;
+
+  }
+  .image img{
+
+    display: block;
+    width: auto;
+    height: auto;
+
+  }
+  .image canvas{
+    display: none;
+  }
+
+}
