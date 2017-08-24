@@ -13,6 +13,29 @@ $properties = [
     'type'=>'string',
     'description'=>'Set the value of textbox'
   ],
+  'width'=>[
+    'type'=>'string',
+    'description'=>'Set the width of textbox. (use css width; px, %, em)',
+    'istodo'=>1
+  ],
+  'class'=>[
+    'type'=>'string',
+    'description'=>'Add custom class of textbox.'
+  ],
+  'onchange'=>[
+    'type'=>'callable',
+    'description'=>'Attach textbox onchange event'
+  ],
+  'required'=>[
+    'type'=>'bool',
+    'description'=>'Set whether textbox require a value or not, default: 0',
+    'istodo'=>1
+  ],
+  'validation'=>[
+    'type'=>'string',
+    'description'=>'Set textbox validation rule. supported value: "number", "(regex)"',
+    'istodo'=>1
+  ],
 ];
 ksort($properties);
 
@@ -22,7 +45,7 @@ ksort($properties);
 <table class="proptable">
   <?php foreach($properties as $key=>$property){ ?>
   <tr>
-    <td><?=$key?></td>
+    <td class="<?=isset($property['istodo']) && $property['istodo'] ? 'cl-red' : ''?>"><?=$key?></td>
     <td><?=$property['type']?></td>
     <td><?=$property['description']?></td>
   </tr>
@@ -40,6 +63,15 @@ $methods = [
     'return'=>'string',
     'description'=>'Get/Set textbox value'
   ],
+  'textbox_placeholder'=>[
+    'return'=>'string',
+    'description'=>'Get/Set textbox placeholder'
+  ],
+  'textbox_width'=>[
+    'return'=>'string',
+    'description'=>'Get/Set textbox width. (use css width; px, %, em)',
+    'istodo'=>1
+  ],
 ];
 ksort($methods);
 
@@ -49,7 +81,7 @@ ksort($methods);
 <table class="proptable">
   <?php foreach($methods as $key=>$method){ ?>
     <tr>
-      <td><?=$key?></td>
+      <td class="<?=isset($method['istodo']) && $method['istodo'] ? 'cl-red' : ''?>"><?=$key?></td>
       <td><?=$method['return']?></td>
       <td><?=$method['description']?></td>
     </tr>
