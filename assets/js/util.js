@@ -1267,6 +1267,25 @@ $.extend({
 
 });
 
+var oldVal = $.fn.val;
+$.fn.val = function(value) {
+
+  var type = $(this).attr('data-type');
+  if(type != null && typeof $(this)[type + '_val'] != 'undefined')
+    return $(this)[type + '_val'].apply(this, arguments);
+  else
+    return oldVal.apply(this, arguments);
+
+};
+
+$.fn.placeholder = function(){
+
+  var type = $(this).attr('data-type');
+  if(type != null && typeof $(this)[type + '_placeholder'] != 'undefined')
+    return $(this)[type + '_placeholder'].apply(this, arguments);
+
+}
+
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 }

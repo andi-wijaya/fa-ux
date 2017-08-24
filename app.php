@@ -1,4 +1,4 @@
-<?php
+  <?php
 
 include __DIR__ . '/data/whitelist.php';
 include __DIR__ . '/assets/php/util.php';

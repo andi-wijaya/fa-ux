@@ -26,10 +26,12 @@ $.fn.extend({
 
       var el = this;
 
+      // Initialize html content
       var html = [];
       html.push($.p('<input type="$1" placeholder="$1"/>', [ mode, placeholder ]));
       html.push("<span class='icon fa hidden'></span>");
 
+      // Default attributes
       $(el).addClass('textbox');
       $(el).addClass(className);
       $(el).css(css);
@@ -38,8 +40,8 @@ $.fn.extend({
       $(el).attr('data-name', name);
       $(el).data('options', options);
       $('input', el).val(value);
-      if(readonly) $(el).textbox_attr('readonly', readonly);
 
+      // Event handler
       $('input', el)
       .focus(function(e){
         $(el).data('temp', this.value);
@@ -61,53 +63,45 @@ $.fn.extend({
 
   },
 
-  textbox_get:function(){
+  textbox_val:function(value){
 
-    var value = [];
-    this.each(function(){
+    // Getter
+    if(typeof value == 'undefined'){
+      var result = [];
+      $(this).each(function(){
+        result.push($('input', this).val());
+      })
+      return result.length > 1 ? result : (result.length == 1 ? result[0] : '');
+    }
 
-      var val = $('input', this).val();
-      value.push(val);
-
-    });
-    return value.length > 1 ? value : (value.length == 1 ? value[0] : '');
-
-  },
-
-  textbox_set:function(value){
-
-    $(this).textbox_attr({ value:value });
-
-  },
-
-  textbox_attr:function(obj){
-
-    this.each(function(){
-
-      if($.type(obj) == 'object'){
-        for(var key in obj){
-          var value = obj[key];
-          switch(key){
-            case 'readonly':
-              if(value){
-                $(this).addClass('readonly');
-                $('input', this).attr('readonly', true);
-              }
-              else{
-                $(this).removeClass('readonly');
-                $('input', this).attr('readonly', false);
-              }
-              break;
-            case 'value':
-              $('input', this).val(value);
-              break;
-          }
-        }
-      }
-
-    })
+    // Setter
+    else{
+      $(this).each(function(){
+        $('input', this).val(value);
+      })
+    }
 
   },
+
+  textbox_placeholder:function(value){
+
+    // Getter
+    if(typeof value == 'undefined'){
+      var result = [];
+      $(this).each(function(){
+        result.push($('input', this).attr('placeholder'));
+      })
+      return result.length > 1 ? result : (result.length == 1 ? result[0] : '');
+    }
+
+    // Setter
+    else{
+      $(this).each(function(){
+        $('input', this).attr('placeholder', value);
+      })
+    }
+
+  }
 
 });
 
