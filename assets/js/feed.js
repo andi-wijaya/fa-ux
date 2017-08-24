@@ -49,7 +49,7 @@ $.fn.extend({
       $(instance).html('');
       $(data).each(function(){
         var item_el = document.createElement('div');
-        html.push($.invoke_callback(html_callback, [ this, instance ], item_el));
+        html.push($.fire_event(html_callback, [ this, instance ], item_el));
         $(instance).append(item_el);
       })
 

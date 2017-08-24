@@ -36,7 +36,7 @@ $.fn.extend({
       $(this).grid_attr(options);
 
       $(el).html(html.join(''));
-      $.invoke_callback(footer, [], $('.grid-footer', el));
+      $.fire_event(footer, [], $('.grid-footer', el));
 
       $(this).grid_set_columns(columns);
       if(value != null) $(el).grid_set(value);
@@ -127,7 +127,7 @@ $.fn.extend({
         var j = parseInt(coord[1]);
         var column = columns[j];
         var column_html = $.val('html', column, { d:'' });
-        $.invoke_callback(column_html, [ obj, column ], this);
+        $.fire_event(column_html, [ obj, column ], this);
       });
 
     });
@@ -198,7 +198,7 @@ $.fn.extend({
         var obj = data[i];
         var column = columns[j];
         var column_html = $.val('html', column, { d:'' });
-        $.invoke_callback(column_html, [ obj, column ], this);
+        $.fire_event(column_html, [ obj, column ], this);
 
       });
 
@@ -209,7 +209,7 @@ $.fn.extend({
         $(this).addClass('active');
         var idx = $(this).attr('data-idx');
         var obj = options.data[idx];
-        $.invoke_callback(onselect, [ e, obj, this ], el);
+        $.fire_event(onselect, [ e, obj, this ], el);
 
       });
 
@@ -223,7 +223,7 @@ $.fn.extend({
           if(src != ''){
             $(el).grid_load();
           }
-          $.invoke_callback(onloadmore, [ { page:page } ], el);
+          $.fire_event(onloadmore, [ { page:page } ], el);
         });
         $('.grid-more', el).appear(function(){
           var page = parseInt($(this).attr('data-page'));
@@ -232,7 +232,7 @@ $.fn.extend({
           if(src != ''){
             $(el).grid_load();
           }
-          $.invoke_callback(onloadmore, [ { page:page } ], el);
+          $.fire_event(onloadmore, [ { page:page } ], el);
         });
       }
 
@@ -320,7 +320,7 @@ $.fn.extend({
         var obj = data[i];
         var column = columns[j];
         var column_html = $.val('html', column, { d:'' });
-        $.invoke_callback(column_html, [ obj, column ], this);
+        $.fire_event(column_html, [ obj, column ], this);
 
       });
 
@@ -331,7 +331,7 @@ $.fn.extend({
         $(this).addClass('active');
         var idx = $(this).attr('data-idx');
         var obj = options.data[idx];
-        $.invoke_callback(onselect, [ obj ], el);
+        $.fire_event(onselect, [ obj ], el);
 
       });
 
@@ -345,7 +345,7 @@ $.fn.extend({
           if(src != ''){
             $(el).grid_load();
           }
-          $.invoke_callback(onloadmore, [ { page:page } ], el);
+          $.fire_event(onloadmore, [ { page:page } ], el);
         });
         $('.grid-more', el).appear(function(){
           var page = parseInt($(this).attr('data-page'));
@@ -354,7 +354,7 @@ $.fn.extend({
           if(src != ''){
             $(el).grid_load();
           }
-          $.invoke_callback(onloadmore, [ { page:page } ], el);
+          $.fire_event(onloadmore, [ { page:page } ], el);
         });
       }
 

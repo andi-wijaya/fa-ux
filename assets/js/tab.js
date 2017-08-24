@@ -21,7 +21,7 @@ $.fn.extend({
           var value = this.getAttribute("data-value");
           if(value == null) value = $.slug(text);
 
-          $.invoke_callback(onchange, [
+          $.fire_event(onchange, [
             {
               text:text,
               value:value
@@ -53,7 +53,7 @@ $.fn.extend({
       if(li_value == null) li_value = $.slug(li_text);
       if(li_value == value){
         $(this).addClass('active');
-        $.invoke_callback(onchange, [
+        $.fire_event(onchange, [
           {
             text:li_text,
             value:li_value

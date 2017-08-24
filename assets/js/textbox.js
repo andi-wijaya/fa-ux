@@ -2,6 +2,14 @@ $.fn.extend({
 
   textbox:function(options){
 
+    /* Properties:
+     * - onkeyup // raise on key up event
+     * - onchange // raise on change event, onchange has delay of 300ms
+     *
+     *
+     *
+     */
+
     var placeholder = $.val('placeholder', options, { d:'' });
     var name = $.val('name', options, { d:'' });
     var className = $.val('class', options, { d:'' });
@@ -32,14 +40,20 @@ $.fn.extend({
       $('input', el).val(value);
       if(readonly) $(el).textbox_attr('readonly', readonly);
 
-      $('input', el).focus(function(e){
-
+      $('input', el)
+      .focus(function(e){
         $(el).data('temp', this.value);
-
-      });
-      $('input', el).blur(function(e){
-
+      })
+      .blur(function(e){
         $.textbox_onblur.call(this, e);
+      })
+      .keyup(function(e){
+
+        $.fire_event($.val('onkeyup', options), [ this.value ]);
+        if($(this).data('last_value') != this.value){
+          $.fire_event($.val('onchange', options), [ this.value ]);
+        }
+        $(this).data('last_value', this.value);
 
       });
 
@@ -175,7 +189,7 @@ $.extend({
           $(".icon", el)[0].className = "icon fa fa-check cl-green";
 
           var onchange = $.val('onchange', options);
-          $.invoke_callback(onchange, [ value ], el);
+          $.fire_event(onchange, [ value ], el);
         }
 
       }

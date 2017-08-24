@@ -42,7 +42,7 @@ $.fn.extend({
 
         $(instance).append(row_el);
 
-        $.invoke_callback(html_callback, [ obj ], $('.vfields-col2', row_el));
+        $.fire_event(html_callback, [ obj ], $('.vfields-col2', row_el));
 
       });
 

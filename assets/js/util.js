@@ -1,6 +1,4 @@
 $.extend({
-
-
   date:function(format, timestamp){
 
     var that = this;
@@ -690,19 +688,19 @@ $.extend({
 
         if(error > 0){
           if(errcallback != null)
-            $.invoke_callback(errcallback, [ this.responseText ], xmlhttp);
+            $.fire_event(errcallback, [ this.responseText ], xmlhttp);
           else
             alert(error_message);
         }
         else{
-          $.invoke_callback(callback, [ obj ], xmlhttp);
+          $.fire_event(callback, [ obj ], xmlhttp);
         }
 
       }
     });
     xmlhttp.addEventListener('error', function(){
       if(typeof errcallback != 'undefined' || errcallback != null)
-        $.invoke_callback(errcallback);
+        $.fire_event(errcallback);
       else
         alert(this.responseText == '' ? 'Unknown error' : this.responseText);
     });
@@ -723,10 +721,10 @@ $.extend({
         var error_message = $.val('error_message', obj, { d:'' });
 
         if(parseInt(error) == 0)
-          $.invoke_callback(callback, [ obj ], xmlhttp);
+          $.fire_event(callback, [ obj ], xmlhttp);
         else{
           if(typeof errcallback != 'undefined' || errcallback != null)
-            $.invoke_callback(errcallback, [ { error:error, error_message:error_message } ]);
+            $.fire_event(errcallback, [ { error:error, error_message:error_message } ]);
           else{
             alert(JSON.stringify(obj, null, 2));
           }
@@ -735,7 +733,7 @@ $.extend({
     });
     xmlhttp.addEventListener('error', function(){
       if(typeof errcallback != 'undefined' || errcallback != null)
-        $.invoke_callback(errcallback);
+        $.fire_event(errcallback);
       else
         alert(this.responseText == '' ? 'Unknown error' : this.responseText);
     });
@@ -776,7 +774,7 @@ $.extend({
 
   },
 
-  invoke_callback:function(callback, params, thisArg){
+  fire_event:function(callback, params, thisArg){
 
     if(typeof thisArg == 'undefined') thisArg = null; // Parameter 3 is optional, default: null
     if($.type(callback) == 'string')

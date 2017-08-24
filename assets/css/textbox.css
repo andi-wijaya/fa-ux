@@ -38,6 +38,11 @@
   .textbox.theme-dark *{
     color: #eee;
   }
+
+  .textbox.style-underline{
+    border: none;
+    border-bottom: solid 1px #eee;
+  }
   
   /* READONLY */
   .textbox.readonly{

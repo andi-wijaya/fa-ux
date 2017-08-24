@@ -66,7 +66,7 @@ $.fn.extend({
 
       }
 
-      $.invoke_callback(onresize, [],  this);
+      $.fire_event(onresize, [],  this);
 
     });
 

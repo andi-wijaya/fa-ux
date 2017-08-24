@@ -1,0 +1,16 @@
+@media screen{
+
+  .sidebar{
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .content{
+    padding: 20px;
+  }
+
+}

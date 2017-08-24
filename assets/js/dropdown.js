@@ -158,7 +158,7 @@ $.fn.extend({
         $('.text', el).html(text);
         $(el).attr('data-value', value);
 
-        $.invoke_callback(onchange, [ e, obj ], el);
+        $.fire_event(onchange, [ e, obj ], el);
 
       });
 

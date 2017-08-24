@@ -27,7 +27,7 @@ $.fn.extend({
           }
           else{
             if(this.value != ''){
-              $.invoke_callback(onsubmit, [ this.value ], instance);
+              $.fire_event(onsubmit, [ this.value ], instance);
               this.value = '';
               $(this).blur();
             }
@@ -71,7 +71,7 @@ $.fn.extend({
 
       $('.comment-item-remove', $('.commentlist-list', this)).on('click', function(){
         var id = $(this).closest('.commentlist-item').attr('data-id');
-        $.invoke_callback(onremove, [ id ], this);
+        $.fire_event(onremove, [ id ], this);
       })
 
     })
@@ -116,7 +116,7 @@ $.fn.extend({
       $('.comment-item-remove', $('.commentlist-list', this)).on('click', function(){
 
         var id = $(this).closest('.commentlist-item').attr('data-id');
-        $.invoke_callback(onremove, [ id ], this);
+        $.fire_event(onremove, [ id ], this);
 
       })
 

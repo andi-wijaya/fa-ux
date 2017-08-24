@@ -166,7 +166,7 @@ $.fn.extend({
         var params = $(el).data('params');
         var active_idx = parseInt($.val('active_idx', params, { d:0 }));
         params['presets'][active_idx]['filters'] = filters;
-        $.invoke_callback(onchange, [ params ], el);
+        $.fire_event(onchange, [ params ], el);
         $(el).modal_close();
 
       });

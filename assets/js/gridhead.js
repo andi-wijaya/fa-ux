@@ -116,7 +116,7 @@ $.fn.extend({
 
             // On column resize
             var oncolumnresize = $.val('oncolumnresize', options);
-            $.invoke_callback(oncolumnresize, [ { index:index, width:$(td_prev).outerWidth() } ], el);
+            $.fire_event(oncolumnresize, [ { index:index, width:$(td_prev).outerWidth() } ], el);
 
           }
 
@@ -141,7 +141,7 @@ $.fn.extend({
         else if(sort_type == 'desc') sort_type = 'asc';
         else sort_type = 'asc';
         $(this).attr('data-sorttype', sort_type);
-        $.invoke_callback(oncolumnclick, [ [ { key:key, type:sort_type } ] ], el);
+        $.fire_event(oncolumnclick, [ [ { key:key, type:sort_type } ] ], el);
 
       })
 

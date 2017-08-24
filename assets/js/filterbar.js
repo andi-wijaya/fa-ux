@@ -99,7 +99,7 @@ $.extend({
       $('.apply-btn', modal).click(function(){
 
         var value = $('.filter-grid', modal).grid_value();
-        $.invoke_callback(onchange, [ value ], el);
+        $.fire_event(onchange, [ value ], el);
         $('#filter_modal').modal_close();
 
       });

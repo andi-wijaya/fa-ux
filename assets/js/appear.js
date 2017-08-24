@@ -20,13 +20,13 @@ $.fn.extend({
         if(!appeared && viewport_bottom > top + height){
 
           $(this).data('appeared', 1);
-          $.invoke_callback($(this).data('onappear'), [], this);
+          $.fire_event($(this).data('onappear'), [], this);
 
         }
         else if(appeared && viewport_bottom < top){
 
           $(this).data('appeared', 0);
-          $.invoke_callback($(this).data('ondisappear'), [], this);
+          $.fire_event($(this).data('ondisappear'), [], this);
 
         }
 

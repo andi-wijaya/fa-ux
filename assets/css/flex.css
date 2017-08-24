@@ -1,0 +1,21 @@
+@media screen{
+
+  .flex{
+    display: flex;
+  }
+
+  .flex-align-center{
+
+  }
+  .flex-valign-center{
+    align-items: center;
+  }
+
+  .flex-col{
+  }
+
+  .flex-col-stretch{
+    flex: 1 1 100%;
+  }
+
+}

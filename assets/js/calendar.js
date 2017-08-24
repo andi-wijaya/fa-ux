@@ -142,7 +142,7 @@ $.extend({
       var month = parseInt($.date('n', $.strtotime(month_year)));
       var year = $.date('Y', $.strtotime(month_year));
       var d = $.date('j M Y', $.mktime(0, 0, 0, month, date, year));
-      $.invoke_callback(onchange, [ d ], popup);
+      $.fire_event(onchange, [ d ], popup);
 
       $.popup_close(popup);
 
@@ -329,7 +329,7 @@ $.extend({
         var value = $.date('Ymd', $.strtotime(date0)) + '-' + $.date('Ymd', $.strtotime(date1));
 
         $.popup_close(popup);
-        $.invoke_callback(onchange, [ value ], popup);
+        $.fire_event(onchange, [ value ], popup);
       }
 
     });
