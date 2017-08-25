@@ -1,5 +1,8 @@
 <?php
 
+$post_data = json_decode(file_get_contents('php://input'), true);
+$page = isset($post_data['page']) ? $post_data['page'] : 1;
+
 $data = [
   [
     'code'=>'FA105303',
@@ -22,7 +25,10 @@ $data = [
 ];
 
 $result = [
-  'data'=>$data
+  'data'=>$data,
+  'page'=>$page,
+  'next_page'=>$page + 1,
+  'total_page'=>10
 ];
 
 header('Content-Type: application/json');
