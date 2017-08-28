@@ -26,6 +26,9 @@ $.fn.extend({
         $(document.body).append("<div class='modal-bg'></div>");
       $('.modal-bg').addClass('on');
 
+      var value = $.val('value', options, { d:null });
+      if(value != null) $(el).val(options['value']);
+
     })
 
   },

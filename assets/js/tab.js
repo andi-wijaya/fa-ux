@@ -66,19 +66,3 @@ $.fn.extend({
   }
 
 });
-
-$.extend({
-
-  tab_init:function(cont){
-
-    cont = typeof cont == 'undefined' || !(cont instanceof HTMLElement) ? document.body : cont;
-    $('.tab', cont).each(function(){
-
-      var options = $.options_from_html(this);
-      $(this).tab(options);
-
-    });
-
-  }
-
-})

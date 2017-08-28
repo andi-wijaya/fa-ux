@@ -15,7 +15,7 @@
         { text:"", name:"options", width:"130px", type:"html", html:"col0" },
         { text:"Code", name:"code", width:"100px" },
         { text:"Description", name:"description", width:"300px" },
-        { text:"Image", name:"image", width:"300px", type:"html", html:"col1" },
+        { text:"Image", name:"image", width:"80px", align:"center", type:"html", html:"col1" },
       ];
 
       $('#sample1').gridhead({
@@ -42,7 +42,7 @@
 
     function col1(obj){
 
-      $(this).html("<span class='image'></span>");
+      $(this).html("<div class='align-center'><span class='image'></span></div>");
       $('.image', this).image({
         value:obj['imageurl']
       })

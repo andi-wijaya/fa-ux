@@ -1263,6 +1263,25 @@ $.extend({
     a.click();
     document.body.removeChild(a);
 
+  },
+
+  ux_init:function(cont){
+
+    cont = typeof cont == 'undefined' || !(cont instanceof HTMLElement) ? document.body : cont;
+
+    // Init
+
+    // Handle data-action
+    $("*[data-action]", cont).each(function(){
+      switch(this.getAttribute("data-action")){
+        case "modal.close":
+          $(this).on('click.data-action', function(){
+            $(this).closest('.modal').modal_close();
+          })
+          break;
+      }
+    })
+
   }
 
 });
@@ -1273,6 +1292,8 @@ $.fn.val = function(value) {
   var type = $(this).attr('data-type');
   if(type != null && typeof $(this)[type + '_val'] != 'undefined')
     return $(this)[type + '_val'].apply(this, arguments);
+  else if($(this).hasClass('container'))
+    return $(this).container_val.apply(this, arguments);
   else
     return oldVal.apply(this, arguments);
 
@@ -1289,3 +1310,5 @@ $.fn.placeholder = function(){
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 }
+
+$($.ux_init);

@@ -31,8 +31,10 @@ echo 'oath_client_secret: ' . $oath_client_secret . "<br />";
 
 //$info = get_access_token();
 $info = get_balance_information('BCAAPI2016', '0063001004');
+//$info = get_foreign_exchange_rate('e-rate', 'usd');
 
 echo "<pre>" . print_r($info, 1) . "<pre>";
+
 
 
 
@@ -79,21 +81,69 @@ function get_access_token(){
 
 }
 
-function get_signature($access_token, $method, $url, $timestamp, $data = array()){
+function get_signature($access_token, $method, $url, $timestamp, $requestBody = ''){
 
   global $api_secret;
-  $encryptedData = (empty($data)) ? '' : strtolower(bin2hex(hash('sha256', $data)));
   $string_to_sign = [
     strtoupper($method),
     $url,
     $access_token,
-    $encryptedData,
+    strtolower(bin2hex(hash('sha256', $requestBody))),
     $timestamp
   ];
   $string_to_sign = implode(':', $string_to_sign);
+  echo 'url: ' . $url . "<br />";
   echo 'string_to_sign: ' . $string_to_sign . "<br />";
   $signature = hash_hmac('sha256', $string_to_sign, $api_secret);
   return $signature;
+
+}
+
+function get_foreign_exchange_rate($rate_type, $currency){
+
+  global $api_key;
+  $method = 'GET';
+  $url = "/general/rate/forex?RateType={$rate_type}&Currency={$currency}";
+  $credential = get_access_token();
+  $access_token = $credential['access_token'];
+  echo 'access_token: ' . $access_token . "<br />";
+  $token_type = $credential['token_type'];
+  $timestamp = date('o-m-d') . 'T' . date('H:i:s') . '.' . substr(date('u'), 0, 3) . date('P');
+
+  $signature = get_signature($access_token, $method, $url, $timestamp, '');
+  echo 'signature: ' . $signature . "<br />";
+
+  $headers = array();
+  $headers[] = "Content-Type: application/json";
+  $headers[] = "Authorization: $token_type $access_token";
+  $headers[] = "Origin: " . $_SERVER['SERVER_NAME'];
+  $headers[] = "X-BCA-Key: $api_key";
+  $headers[] = "X-BCA-Timestamp: $timestamp";
+  $headers[] = "X-BCA-Signature: $signature";
+
+  $ch = curl_init();
+  curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+  curl_setopt($ch, CURLOPT_URL, 'https://sandbox.bca.co.id' . $url);
+  curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+  curl_setopt($ch, CURLOPT_VERBOSE, 1);
+  curl_setopt($ch, CURLOPT_HEADER, 1);
+  curl_setopt($ch, CURLINFO_HEADER_OUT, true);
+  curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+  $response = curl_exec($ch);
+
+  $information = curl_getinfo($ch);
+  echo "<br /><br />";
+  echo "<pre>" . $information['request_header'] . "</pre>";
+
+
+  echo "<br /><br />";
+  echo "<pre>" . $response . "</pre>";
+
+  curl_close($ch);
+
+  $response = json_decode($response, true);
+  return $response;
 
 }
 
@@ -107,9 +157,9 @@ function get_balance_information($corporateid, $account_number){
   echo 'access_token: ' . $access_token . "<br />";
   $token_type = $credential['token_type'];
   $timestamp = date('o-m-d') . 'T' . date('H:i:s') . '.' . substr(date('u'), 0, 3) . date('P');
-  $data = [];
+  echo 'timestamp: ' . $timestamp . "<br />";
 
-  $signature = get_signature($access_token, $method, $url, $timestamp, $data);
+  $signature = get_signature($access_token, $method, $url, $timestamp, '');
   echo 'signature: ' . $signature . "<br />";
 
   $headers = array();

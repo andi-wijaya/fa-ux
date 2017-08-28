@@ -5,6 +5,7 @@ $.fn.extend({
     var className = $.val('class', options, { d:'' });
     var height = $.val('height', options, { d:'50px' });
     var name = $.val('name', options, { d:'' });
+    var value = $.val('value', options, { d:'' });
     var width = $.val('width', options, { d:'50px' });
 
     this.each(function(){
@@ -12,55 +13,40 @@ $.fn.extend({
       var el = this;
 
       var html = [];
-      html.push("<img />");
+      html.push("<img src=\"" + value + "\"/>");
 
       $(el).attr('data-type', 'image');
+      $(el).attr('data-name', name);
       $(el).addClass('image');
       $(el).addClass(className);
       $(el).html(html.join(''));
       $(el).data('options', options);
-      $(el).css({ width:width, height:height });
+      $('img', el).css({ width:width, height:height });
 
     });
 
   },
 
-  image_set:function(value){
+  image_val:function(value){
 
-    this.each(function(){
+    if(typeof value == 'undefined'){
 
-      var el = this;
-      $('img', el).attr('src', value);
+      var result = [];
+      this.each(function(){
+        result.push($('img', this).attr('src'));
+      })
+      return result.length > 1 ? result : (result.length == 1 ? result[0] : '');
 
-    })
+    }
+
+    else{
+
+      this.each(function(){
+        $('img', this).attr('src', value);
+      })
+
+    }
 
   },
-
-  image_get:function(){
-
-    var value = [];
-    this.each(function(){
-
-      var el = this;
-      var img = $('img', el)[0];
-      if(img.src != ''){
-        var canvas = $('canvas', el)[0];
-        var ctx = canvas.getContext('2d');
-        canvas.height = $('img', el).outerHeight();
-        canvas.width = $('img', el).outerWidth();
-        ctx.drawImage(img, 0, 0);
-        try{
-          var dataURL = canvas.toDataURL();
-          value.push(dataURL);
-        }
-        catch(e){
-          $.warn("[Image Exception] " + e.message);
-        }
-      }
-
-    })
-    return value.length == 1 ? value[0] : (value.length == 0 ? '' : value);
-
-  }
 
 })
