@@ -1,6 +1,6 @@
 $.extend({
 
-  popup_close:function(el, refEl, options){
+  popup_close:function(el){
 
     $(el).removeClass('on');
 

@@ -46,6 +46,12 @@ else{
     <li><a href="<?=base_url() . '/components/' . str_replace('.php', '', basename($file))?>"><?=ucwords(basename(str_replace('.php', '', $file)))?></a></li>
     <?php } ?>
   </ul>
+  <div class="height20"></div>
+  <ul class="nav width200">
+    <?php $files = glob(__DIR__ . '/workspaces/*.php'); foreach($files as $file){ ?>
+    <li><a href="<?=base_url() . '/workspaces/' . str_replace('.php', '', basename($file))?>"><?=ucwords(basename(str_replace('.php', '', $file)))?></a></li>
+    <?php } ?>
+  </ul>
 </div>
 
 <div class="content">

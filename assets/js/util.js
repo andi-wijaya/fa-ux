@@ -1270,6 +1270,15 @@ $.extend({
     cont = typeof cont == 'undefined' || !(cont instanceof HTMLElement) ? document.body : cont;
 
     // Init
+    $('*[data-type]', cont).each(function(){
+      var type = this.getAttribute("data-type");
+      if(typeof $(this)[type] == 'function'){
+        var options = $.options_from_html(this);
+        $(this)[type](options);
+      }
+      else
+        console.warn('Unknown ux ' + type);
+    })
 
     // Handle data-action
     $("*[data-action]", cont).each(function(){
@@ -1281,6 +1290,35 @@ $.extend({
           break;
       }
     })
+
+    // Handle popup close
+    $(window).on('click', $.popup_close_all).on('scroll', $.popup_close_all);
+
+    // Header, sidebar & content
+    // var headerHeight = $('.header').outerHeight();
+    // $('.content').css({ 'margin-top':headerHeight });
+    //
+    //
+    // $.tab_init();
+    // $.foldedpane_init();
+    // $.section_init();
+    // $.workspace_init();
+    // $.role_init();
+    //
+    // $.layout_resize();
+    // $(window).on('resize.layout', function(){ $.layout_resize(); });
+    //
+    // $('.header-bar-btn').click(function(){
+    //
+    //   $('.sidebar').toggleClass('on');
+    //   $('.header').toggleClass('sidebar-on');
+    //   $('.content').toggleClass('sidebar-on');
+    //
+    //   $.api_post('api/app/state/save', { 'sidebar-state':$('.sidebar').hasClass('on') ? 1: 0 });
+    //
+    // });
+    //
+    // $.ux();
 
   }
 
