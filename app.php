@@ -15,19 +15,18 @@ if(!isset($_SESSION['auth_email']) || !in_array($_SESSION['auth_email'], $allowe
   exit();
 }
 else{
-
   // Unauthorize
   if(isset($_GET['unauth'])){
     unset($_SESSION['auth_email']);
     header('Location: .');
   }
-
 }
 
 ?>
 <html>
 <head>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+  <link rel="stylesheet" href="<?=base_url() . '/assets/'?>glyphicons.css" />
   <?php $files = glob('assets/css/*.css'); foreach($files as $file){ ?>
     <link rel="stylesheet" href="<?=base_url() . '/' . $file?>" />
   <?php } ?>
@@ -36,7 +35,6 @@ else{
   <?php $files = glob('assets/js/*.js'); foreach($files as $file){ ?>
     <script type="text/javascript" src="<?=base_url() . '/' . $file?>"></script>
   <?php } ?>
-  <link rel="stylesheet" href="assets/app.css" />
 </head>
 <body>
 

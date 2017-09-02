@@ -4,30 +4,26 @@ $.fn.extend({
 
     this.each(function(){
 
-      var el = this;
-      $(el).addClass('on');
+      var instance = this;
+      $(instance).addClass('on');
 
       var width = parseInt($.val('width', options, { d:null }));
-      var height = parseInt($.val('height', options, { d:null }));
-      var modal_body_height = height - ($('.modal-head', el).outerHeight() + $('.modal-foot', el).outerHeight());
+      var height = parseInt($.val('height', options, { d:Math.round(window.innerHeight * .78) }));
+      var modal_body_height = height - ($('.modal-head', instance).outerHeight() + $('.modal-foot', instance).outerHeight());
 
-      var modal_height = $(el).outerHeight();
-      if(modal_height > window.innerHeight)
-        $('.modal-body', el).css({ 'max-height':window.innerHeight * .85, width:width });
+      if(!isNaN(width)) $('.modal-body', instance).css({ 'width':width });
+      if(!isNaN(modal_body_height)) $('.modal-body', instance).css({ 'height':modal_body_height });
 
-      if(!isNaN(width)) $('.modal-body', el).css({ 'width':width });
-      if(!isNaN(modal_body_height)) $('.modal-body', el).css({ 'height':modal_body_height });
-
-      var left = (window.innerWidth - el.clientWidth) / 2;
-      var top = (window.innerHeight - el.clientHeight) / 2;
-      $(el).css({ left:left, top:top });
+      var left = (window.innerWidth - instance.clientWidth) / 2;
+      var top = (window.innerHeight - instance.clientHeight) / 2;
+      $(instance).css({ left:left, top:top });
 
       if($('.modal-bg').length == 0)
         $(document.body).append("<div class='modal-bg'></div>");
       $('.modal-bg').addClass('on');
 
       var value = $.val('value', options, { d:null });
-      if(value != null) $(el).val(options['value']);
+      if(value != null) $(instance).val(options['value']);
 
     })
 
@@ -37,8 +33,8 @@ $.fn.extend({
 
     this.each(function(){
 
-      var el = this;
-      $(el).removeClass('on');
+      var instance = this;
+      $(instance).removeClass('on');
       $('.modal-bg').removeClass('on');
 
     });

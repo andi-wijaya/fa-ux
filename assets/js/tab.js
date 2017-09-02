@@ -2,38 +2,37 @@ $.fn.extend({
 
   tab:function(options){
 
+    var container = $.val('container', options, { d:'' });
+    var name = $.val('name', options, { d:'' });
     var onchange = $.val('onchange', options);
 
     this.each(function(){
 
-      var el = this;
+      var instance = this;
+
+      $(instance).attr('data-type', 'tab');
+      $(instance).attr('data-name', name);
+      $(instance).data('options', options);
 
       // Tab item click handler
-      $('li', this).click(function(){
-
+      $('li', instance).click(function(){
         if(this.classList.contains('active'));
         else{
-
           $('li', this.parentNode).removeClass('active');
           $(this).addClass('active');
-
           var text = this.innerHTML;
           var value = this.getAttribute("data-value");
           if(value == null) value = $.slug(text);
 
-          $.fire_event(onchange, [
-            {
-              text:text,
-              value:value
-            }
-          ], el);
+          var index = $(this).index();
+          if($(container).length > 0){
+            $(container + ">*").addClass('off');
+            $(container + ">*:eq(" + index + ")").removeClass('off');
+          }
 
+          $.fire_event(onchange, [ { text:text, value:value } ], instance);
         }
-
-
       });
-
-      $(el).data('options', options);
 
     });
 

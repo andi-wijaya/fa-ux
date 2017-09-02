@@ -89,13 +89,15 @@
   .width240{ width: 240px }
   .width300{ width: 300px }
   .width400{ width: 400px }
+  .width480{ width: 480px }
   .width600{ width: 600px }
   .width800{ width: 800px }
   .width-full{ width: 100%; }
 
   .relative{ position:relative; }
 
-  .selectable{ cursor: pointer; }
+  .selectable{ cursor: pointer;color:#bbb; }
+  .selectable:hover{ color:inherit; }
   .nowrap{ white-space: nowrap; }
   .overflow-hidden{ overflow: hidden; }
   .ellipsis{ text-overflow: ellipsis; }

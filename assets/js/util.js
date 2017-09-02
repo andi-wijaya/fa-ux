@@ -1294,6 +1294,13 @@ $.extend({
     // Handle popup close
     $(window).on('click', $.popup_close_all).on('scroll', $.popup_close_all);
 
+    // Global keyboard handle
+    $(window).on('keyup', function(e){
+      switch(e.keyCode){
+        case 27: $('.modal').modal_close(); break; // Esc button
+      }
+    })
+
     // Header, sidebar & content
     // var headerHeight = $('.header').outerHeight();
     // $('.content').css({ 'margin-top':headerHeight });

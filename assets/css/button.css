@@ -10,10 +10,15 @@
     -moz-appearance: none;
     appearance: none;
     background: #fff;
-    padding: 8px;
-    vertical-align: middle;
+    padding: 6px;
   }
-  button .fa{
+  button, button *{
+    vertical-align: sub !important;
+  }
+  button .glyphicons, button .fa{
+    padding: 0;
+    margin: 0;
+    margin-right: 6px;
   }
   button:hover{
     border-color: #aaa;
@@ -25,7 +30,7 @@
   }
   button.blue{
     background: #5D9CEC;
-    border: solid 1px rgba(0, 0, 0, .2);
+    border: solid 1px #5D9CEC;
   }
   button.blue, button.blue *{
     color: #fff;
@@ -35,7 +40,7 @@
   }
   button.red{
     background: #FC6E51;
-    border: solid 1px rgba(0, 0, 0, .2);
+    border: solid 1px #FC6E51;
   }
   button.red, button.red *{
     color: #fff;
@@ -46,7 +51,7 @@
   }
   button.green{
     background: #A0D468;
-    border: solid 1px rgba(0, 0, 0, .2);
+    border: solid 1px #A0D468;
   }
   button.green, button.green *{
     color: #fff;
@@ -57,14 +62,14 @@
   }
   button.gray{
     background: #58595b;
-    border: solid 1px rgba(0, 0, 0, .2);
+    border: solid 1px #58595b;
   }
   button.gray, button.gray *{
     color: #fff;
   }
   button.gray:hover{
-    background: #8CC152;
-    border-color: #8CC152;
+    background: rgba(0, 0, 0, .8);
+    border-color: transparent;
   }
   button.hollow{
     border: solid 1px #f5f5f5;

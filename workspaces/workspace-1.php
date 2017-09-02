@@ -1,7 +1,7 @@
 <span id="grid1head"></span>
 <span id="grid1"></span>
 
-<div id="modal1" class="modal width400 container">
+<div id="modal1" class="modal width480 container">
   <div class="modal-head padding10">
 
     <ul class="tab" data-type="tab" data-container="#modal1_tab1_cont">
@@ -45,7 +45,7 @@
     $(function(){
 
       var columns = [
-        { text:"", name:"options", width:"130px", type:"html", html:"mod_col0" },
+        { text:"", name:"options", width:"60px", type:"html", html:"mod_col0" },
         { text:"Code", name:"code", width:"100px" },
         { text:"Description", name:"description", width:"300px" },
         { text:"Image", name:"image", width:"80px", align:"center", type:"html", html:"mod_col1" },
@@ -68,23 +68,23 @@
 
   function mod_col0(obj){
 
+    var id = $.val('id', obj);
+
     var html = [];
-    html.push("<span class='glyphicons glyphicons-barcode padding5 selectable'></span>");
-    html.push("<span class='glyphicons glyphicons-alarm padding5 selectable'></span>");
-    html.push("<span class='glyphicons glyphicons-activity padding5 selectable'></span>");
+    html.push("<span class='glyphicons glyphicons-menu-hamburger padding5 selectable'></span>");
+    html.push("<span class='glyphicons glyphicons-remove padding5 selectable'></span>");
     $(this).html(html.join(''));
-    $('.glyphicons-barcode', this).on('click', function(){
-      mod_open(obj['id']);
-    });
+    $('.glyphicons-menu-hamburger', this).on('click', function(){ mod_open(id); });
+    $('.glyphicons-remove', this).on('click', function(){ if(confirm('Remove this?')); });
 
   }
 
   function mod_col1(obj){
 
     $(this).html("<div class='align-center'><span class='image'></span></div>");
-    $('.image', this).image({
-      value:obj['imageurl']
-    })
+//    $('.image', this).image({
+//      value:obj['imageurl']
+//    })
 
   }
   
