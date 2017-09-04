@@ -10,7 +10,8 @@
     -moz-appearance: none;
     appearance: none;
     background: #fff;
-    padding: 6px;
+    padding: 7px;
+    vertical-align: top;
   }
   button, button *{
     vertical-align: sub !important;

@@ -55,10 +55,10 @@ $.fn.extend({
 
   },
 
-  dropdown_val:function(value, append){
+  dropdown_val:function(val, append){
 
     // Getter
-    if(typeof value == 'undefined'){
+    if(typeof val == 'undefined'){
 
       var result = [];
       this.each(function(){
@@ -84,19 +84,19 @@ $.fn.extend({
 
         var text = '';
         var value = '';
-        if($.type(value) == 'object'){
-          text = $.val('text', value, { d:'' });
-          value = $.val('value', value);
+        if($.type(val) == 'object'){
+          value = $.val('value', val);
+          text = $.val('text', val, { d:value });
         }
         else if($.type(value) == 'string'){
-          value = value;
+          text = value = val;
         }
 
         if($.type(items) == 'array'){
           for(var i = 0 ; i < items.length ; i++){
             var item = items[i];
             if(item.value == value){
-              if(text == '') text = item.text;
+              text = item.text;
               value = item.value;
               break;
             }
@@ -221,6 +221,9 @@ $.fn.extend({
 
         options['items'] = items;
         $(el).data('options', options);
+
+        console.warn('set val');
+        $(el).dropdown_val('*');
 
       })
 

@@ -6,6 +6,7 @@ $.fn.extend({
     var name = $.val('name', options, { d:'' });
     var src = $.val('src', options, { d:'' });
     var width = $.val('width', options);
+    var placeholder = $.val('placeholder', options, { d:"" });
 
     var css = {};
     if(width != null) css['width'] = width;
@@ -15,7 +16,7 @@ $.fn.extend({
       var el = this;
 
       var html = [];
-      html.push("<input type='text' />");
+      html.push("<input type='text' placeholder=\"" + placeholder + "\"/>");
       html.push("<span class='icon fa fa-search hoverable selectable'></span>");
       html.push("<span class='popup'></span>");
 
@@ -25,8 +26,7 @@ $.fn.extend({
       $(el).css(css);
       $(el).attr('data-name', name);
       $(el).attr('data-type', 'autocomplete');
-
-      $(el).autocomplete_attr(options);
+      $(el).data('options', options);
 
       $("input[type='text']", el).on('keyup', function(e){
 
@@ -46,14 +46,15 @@ $.fn.extend({
             if($.type(data) == 'array')
               for(var i = 0 ; i < data.length ; i++){
                 var item = data[i];
-                var text = item['full_name'];
-                html.push("<div class='item'>");
+                var value = $.val('value', item, { d:'' });
+                var text = $.val('text', item, { d:value });
+                html.push("<div class='item' data-value=\"" + value + "\">");
                 html.push("<label>" + text + "</label>");
                 html.push("</div>");
               }
             $('.popup', el).html(html.join(''));
             $('.item', $('.popup', el)).on('click',function(){
-              $(el).autocomplete_set($('label', this).html());
+              $(el).autocomplete_val($('label', this).html());
             });
             $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
 
@@ -66,46 +67,65 @@ $.fn.extend({
 
   },
 
-  autocomplete_attr:function(attr){
+  autocomplete_val:function(val){
 
-    $(this).each(function(){
+    if(typeof val == 'undefined'){
 
-      if($.type(attr) == 'object')
-        for(var key in attr){
-          var value = attr[key];
-          switch(key){
-            case 'readonly':
-              if(value){
-                $(this).addClass('readonly');
-              }
-              else{
-                $(this).removeClass('readonly');
-              }
-              break;
-            case 'value':
-              $('input', this).val(value);
-              break;
-          }
+      var value = [];
+      $(this).each(function(){
+        var options = $(this).data('options');
+        var multiple = $.val('multiple', options, { d:false });
+
+        if(multiple){
+
+        }
+        else{
+          value.push($('input', this).val());
         }
 
-    })
+      })
+      return value.length == 1 ? value[0] : (value.length > 1 ? value : '');
+
+    }
+
+    else{
+
+      $(this).each(function(){
+
+        var options = $(this).data('options');
+        var multiple = $.val('multiple', options, { d:false });
+
+        if(multiple){
+
+          $("<span class='text'>" + val + "<span class='icon-remove glyphicons glyphicons-remove'></span></span>").insertBefore($('input', this));
+          $('input', this).val('');
+
+        }
+        else{
+          $('input', this).val(val);
+        }
+
+      })
+
+    }
 
   },
 
-  autocomplete_set:function(value){
+  autocomplete_readonly:function(val){
 
-    $(this).autocomplete_attr({ value:value });
+    if(typeof val == 'undefined'){
+
+      return $(this).hasClass('readonly') ? true : false;
+
+    }
+    else{
+      if(val)
+        $(this).addClass('readonly');
+      else
+        $(this).removeClass('readonly');
+    }
+
 
   },
-
-  autocomplete_get:function(){
-
-    var value = [];
-    $(this).each(function(){
-      value.push($('input', this).val());
-    })
-    return value.length == 1 ? value[0] : (value.length > 1 ? value : '');
-
-  }
 
 });

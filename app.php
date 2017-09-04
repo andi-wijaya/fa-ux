@@ -26,6 +26,7 @@ else{
 <html>
 <head>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+  <link rel="stylesheet" href="<?=base_url() . '/assets/'?>fontawesome.css" />
   <link rel="stylesheet" href="<?=base_url() . '/assets/'?>glyphicons.css" />
   <?php $files = glob('assets/css/*.css'); foreach($files as $file){ ?>
     <link rel="stylesheet" href="<?=base_url() . '/' . $file?>" />
@@ -64,7 +65,7 @@ else{
 
   $(function(){
 
-    $('.content').css({ 'margin-left':"250px" });
+    $('.content').css({ 'margin-left':$('.sidebar').outerWidth() + "px" });
 
   })
 

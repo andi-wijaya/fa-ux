@@ -4,6 +4,7 @@
     border: solid 1px #eee;
     white-space: nowrap;
     overflow: hidden;
+    vertical-align: top;
   }
   .dropdown:hover, .dropdown:active{
     border-color: #aaa;
@@ -13,6 +14,7 @@
     padding: 8px;
     vertical-align: middle;
     width: calc(100% - 28px);
+    cursor: pointer;
   }
   .dropdown .icon{
     color: #aaa;

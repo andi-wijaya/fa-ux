@@ -3,12 +3,12 @@
   .autocomplete{
 
     border: solid 1px #eee;
-    display: inline-flex;
     background: #fff;
     position: relative;
     white-space: nowrap;
     width: 100%;
     vertical-align: middle;
+    overflow: hidden;
 
   }
 
@@ -18,8 +18,28 @@
     padding: 8px;
     background: transparent;
     vertical-align: middle;
-    flex: 1 1 100%;
 
+  }
+
+  .autocomplete>.text{
+    padding: 8px;
+    background: #eee;
+    margin: 1px;
+    vertical-align: middle;
+    position: relative;
+  }
+  .autocomplete>.text .icon-remove{
+    position: absolute;
+    top: 6px;
+    right: 3px;
+    padding: 4px;
+    display: none;
+    background: rgba(0, 0, 0, .1);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .autocomplete>.text:hover .icon-remove{
+    display: block;
   }
 
   .autocomplete .icon{
@@ -29,8 +49,11 @@
     background: transparent;
     vertical-align: middle;
     padding: 8px;
-    flex: 0 0 20px;
     text-align: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: #fff;
 
   }
 
