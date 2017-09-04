@@ -13,12 +13,12 @@ $.extend({
     var css = {};
     var offset = $(refEl).offset();
     var max_width = offset.left + el.clientWidth;
-    var max_height = (offset.top - $(window).scrollTop()) + el.clientHeight;
 
-    var top = offset.top - $(window).scrollTop() + $(refEl).outerHeight();
+    var top = offset.top - $(window).scrollTop() + $(refEl).outerHeight() + 1;
+    var max_height = window.innerHeight - top - 10;
 
-    if(max_height > window.innerHeight) top = window.innerHeight - el.clientHeight;
     css['top'] = top;
+    css['max-height'] = max_height;
 
     if(max_width > window.innerWidth) offset.left = window.innerWidth - el.clientWidth;
     css['left'] = offset.left;

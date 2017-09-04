@@ -71,12 +71,5 @@
     background: rgba(0, 0, 0, .8);
     border-color: transparent;
   }
-  button.hollow{
-    border: solid 1px #f5f5f5;
-    border-radius: 10px;
-  }
-  button.hollow:hover{
-    border-color: #ccc;
-  }
   
 }

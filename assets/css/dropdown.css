@@ -5,6 +5,9 @@
     white-space: nowrap;
     overflow: hidden;
   }
+  .dropdown:hover, .dropdown:active{
+    border-color: #aaa;
+  }
   .dropdown>input{
     border: none;
     padding: 8px;

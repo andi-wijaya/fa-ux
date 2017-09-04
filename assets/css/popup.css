@@ -6,7 +6,9 @@
     z-index: 1;
     display: none;
     background: #fff;
-    border: solid 1px #eee;
+    border: solid 1px #aaa;
+    overflow-y: auto;
+    overflow-x: hidden;
 
   }
 
