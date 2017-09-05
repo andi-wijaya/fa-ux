@@ -69,7 +69,14 @@
     border-color: transparent;
   }
 
+  .autocomplete.readonly{
+    background: rgba(0, 0, 0, .1);
+  }
+
   .autocomplete.readonly .fa{
+    display: none;
+  }
+  .autocomplete.readonly>.text .icon-remove{
     display: none;
   }
 

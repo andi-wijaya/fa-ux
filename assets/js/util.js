@@ -1352,6 +1352,14 @@ $.fn.placeholder = function(){
 
 }
 
+$.fn.readonly = function(){
+
+  var type = $(this).attr('data-type');
+  if(type != null && typeof $(this)[type + '_readonly'] != 'undefined')
+    return $(this)[type + '_readonly'].apply(this, arguments);
+
+}
+
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 }

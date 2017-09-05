@@ -31,6 +31,7 @@ $.fn.extend({
       $("input[type='text']", el).on('keyup', function(e){
 
         var el = $(this).closest('.autocomplete');
+        if($(el).hasClass('readonly')) return;
         var options = $(el).data('options');
         var readonly = $.val('readonly', options);
 
@@ -121,15 +122,16 @@ $.fn.extend({
         if(multiple){
 
           var clear = typeof arg1 != 'undefined' && arg1 === true ? true : false;
+          if(clear) $('.text', this).remove();
 
           var current_val = $(this).val();
-          if(!$.in_array(value, current_val)){
-            if(clear) $('.text', this).remove();
+          if(!$.in_array(value, current_val) && value !== ''){
             $("<span class='text' data-value=\"" + value + "\">" + text + "<span class='icon-remove glyphicons glyphicons-remove'></span></span>").insertBefore($('input', this));
             $('.glyphicons-remove', $('input', this).prev()).on('click', function(){
               $(this).parent().remove();
             })
           }
+
           $('input', this).val('');
 
         }
@@ -152,10 +154,17 @@ $.fn.extend({
 
     }
     else{
-      if(val)
+      if(val){
         $(this).addClass('readonly');
-      else
+        $('input', this).attr('readonly', true);
+        $('input', this).data('placeholder', $('input', this).attr('placeholder'));
+        $('input', this).attr('placeholder', '');
+      }
+      else{
         $(this).removeClass('readonly');
+        $('input', this).attr('readonly', false);
+        $('input', this).attr('placeholder', $('input', this).data('placeholder'));
+      }
     }
 
 

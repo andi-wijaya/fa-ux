@@ -221,8 +221,6 @@ $.fn.extend({
 
         options['items'] = items;
         $(el).data('options', options);
-
-        console.warn('set val');
         $(el).dropdown_val('*');
 
       })
