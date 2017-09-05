@@ -5,7 +5,6 @@
     border: solid 1px #eee;
     background: #fff;
     position: relative;
-    white-space: nowrap;
     width: 100%;
     vertical-align: middle;
     overflow: hidden;
@@ -30,13 +29,15 @@
   }
   .autocomplete>.text .icon-remove{
     position: absolute;
-    top: 6px;
-    right: 3px;
-    padding: 4px;
+    top: 10px;
+    right: 5px;
+    padding: 2px;
     display: none;
-    background: rgba(0, 0, 0, .1);
+    background: red;
+    color: #fff;
     border-radius: 8px;
     cursor: pointer;
+    font-size: .8em;
   }
   .autocomplete>.text:hover .icon-remove{
     display: block;

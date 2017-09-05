@@ -54,7 +54,12 @@ $.fn.extend({
               }
             $('.popup', el).html(html.join(''));
             $('.item', $('.popup', el)).on('click',function(){
-              $(el).autocomplete_val($('label', this).html());
+
+              var value = this.getAttribute('data-value');
+              var text = $('label', this).text();
+              var obj = { value:value, text:text };
+
+              $(el).autocomplete_val(obj);
             });
             $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
 
@@ -67,7 +72,7 @@ $.fn.extend({
 
   },
 
-  autocomplete_val:function(val){
+  autocomplete_val:function(val, arg1){
 
     if(typeof val == 'undefined'){
 
@@ -78,9 +83,18 @@ $.fn.extend({
 
         if(multiple){
 
+          $('.text', this).each(function(){
+            value.push(this.getAttribute("data-value"));
+          })
+
         }
         else{
-          value.push($('input', this).val());
+
+          var t = $('input', this).val();
+          var v = $(this).data('value');
+          if(v == null) v = t;
+          value.push(v);
+
         }
 
       })
@@ -95,14 +109,33 @@ $.fn.extend({
         var options = $(this).data('options');
         var multiple = $.val('multiple', options, { d:false });
 
+        var text = value = '';
+        if($.type(val) == 'object'){
+          value = $.val('value', val, { d:'' });
+          text = $.val('text', val, { d:value });
+        }
+        else{
+          text = value = val;
+        }
+
         if(multiple){
 
-          $("<span class='text'>" + val + "<span class='icon-remove glyphicons glyphicons-remove'></span></span>").insertBefore($('input', this));
+          var clear = typeof arg1 != 'undefined' && arg1 === true ? true : false;
+
+          var current_val = $(this).val();
+          if(!$.in_array(value, current_val)){
+            if(clear) $('.text', this).remove();
+            $("<span class='text' data-value=\"" + value + "\">" + text + "<span class='icon-remove glyphicons glyphicons-remove'></span></span>").insertBefore($('input', this));
+            $('.glyphicons-remove', $('input', this).prev()).on('click', function(){
+              $(this).parent().remove();
+            })
+          }
           $('input', this).val('');
 
         }
         else{
-          $('input', this).val(val);
+          $('input', this).val(text);
+          $(this).data('value', value);
         }
 
       })
