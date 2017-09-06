@@ -1,7 +1,3 @@
-<?php
-
-
-?>
 <div>
   <button id="seo_new" class=""><span class="glyphicons glyphicons-plus"></span>New...</button>
   <span id="domain_filter"></span>
