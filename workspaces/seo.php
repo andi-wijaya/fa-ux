@@ -3,7 +3,7 @@
 
 ?>
 <div>
-  <button class=""><span class="glyphicons glyphicons-plus"></span>New...</button>
+  <button id="seo_new" class=""><span class="glyphicons glyphicons-plus"></span>New...</button>
   <span id="domain_filter"></span>
   <span id="page_type_filter"></span>
   <button class="gray"><span class="glyphicons glyphicons-check"></span>Apply</button>
@@ -85,8 +85,9 @@
 
   $(function(){
 
-    $('#domain_filter').dropdown({ width:"200px", searchable:true, value:"*", src:"http://localhost:81/fa-ux/data/seo_domain_filter.php" });
-    $('#page_type_filter').dropdown({ width:"200px", searchable:true, value:"*", src:"http://localhost:81/fa-ux/data/seo_page_type_filter.php" });
+    $('#domain_filter').dropdown({ width:"200px", searchable:true, value:"*", src:"http://localhost/fa-ux/data/seo_domain_filter.php" });
+    $('#page_type_filter').dropdown({ width:"200px", searchable:true, value:"*", src:"http://localhost/fa-ux/data/seo_page_type_filter.php" });
+    $('#seo_new').on('click', function(){ mod.entry(); });
 
     var columns = [
       { name:"options", text:"", width:"80px", type:"html", html:"mod.seo_grid_options" },
@@ -95,18 +96,18 @@
       { name:"country", text:"Country", width:"150px" },
     ];
     $('#seo_gridhead').gridhead({ columns:columns, grid:"#seo_grid" });
-    $('#seo_grid').grid({ columns:columns, src:"http://localhost:81/fa-ux/data/seo_data.php" });
+    $('#seo_grid').grid({ columns:columns, src:"http://localhost/fa-ux/data/seo_data.php" });
 
     $('#seo_detail_id').hidden({ name:"id" });
-    $('#seo_detail_page_type').dropdown({ name:"type", width:"200px", src:"http://localhost:81/fa-ux/data/seo_page_type_filter.php" });
-    $('#seo_detail_domain').dropdown({ name:"domain", width:"200px", src:"http://localhost:81/fa-ux/data/seo_domain_filter.php" });
-    $('#seo_detail_country').autocomplete({ name:"country_ctl1", multiple:true, src:"http://localhost:81/fa-ux/data/seo_country_filter.php", placeholder:"Fill Country..." });
+    $('#seo_detail_page_type').dropdown({ name:"type", width:"200px", src:"http://localhost/fa-ux/data/seo_page_type_filter.php" });
+    $('#seo_detail_domain').dropdown({ name:"domain", width:"200px", src:"http://localhost/fa-ux/data/seo_domain_filter.php" });
+    $('#seo_detail_country').autocomplete({ name:"country_ctl1", multiple:true, src:"http://localhost/fa-ux/data/seo_country_filter.php", placeholder:"Fill Country..." });
     $('#seo_detail_country_modifier').dropdown({ name:"country_ctl2", placeholder:"Select", width:"120px", items:[{ text:"All", value:"*" }, { text:"All Except...", value:"*!" }, { text:"Only This", value:"" }], onchange:"mod.modifier_changed('country')" });
-    $('#seo_detail_parent_category').autocomplete({ name:"parent_category_ctl1", multiple:true, src:"http://localhost:81/fa-ux/data/seo_country_filter.php", placeholder:"Fill Parent Category..." });
+    $('#seo_detail_parent_category').autocomplete({ name:"parent_category_ctl1", multiple:true, src:"http://localhost/fa-ux/data/seo_country_filter.php", placeholder:"Fill Parent Category..." });
     $('#seo_detail_parent_category_modifier').dropdown({ name:"parent_category_ctl2", placeholder:"Select", width:"120px", items:[{ text:"All", value:"*" }, { text:"All Except...", value:"*!" }, { text:"Only This", value:"" }], onchange:"mod.modifier_changed('parent_category')" });
-    $('#seo_detail_category').autocomplete({ name:"category_ctl1", multiple:true, src:"http://localhost:81/fa-ux/data/seo_country_filter.php", placeholder:"Fill Category..." });
+    $('#seo_detail_category').autocomplete({ name:"category_ctl1", multiple:true, src:"http://localhost/fa-ux/data/seo_country_filter.php", placeholder:"Fill Category..." });
     $('#seo_detail_category_modifier').dropdown({ name:"category_ctl2", placeholder:"Select", width:"120px", items:[{ text:"All", value:"*" }, { text:"All Except...", value:"*!" }, { text:"Only This", value:"" }], onchange:"mod.modifier_changed('category')" });
-    $('#seo_detail_product_code').autocomplete({ name:"product_code_ctl1", multiple:true, src:"http://localhost:81/fa-ux/data/seo_country_filter.php", placeholder:"Fill Product Code..." });
+    $('#seo_detail_product_code').autocomplete({ name:"product_code_ctl1", multiple:true, src:"http://localhost/fa-ux/data/seo_country_filter.php", placeholder:"Fill Product Code..." });
     $('#seo_detail_product_code_modifier').dropdown({ name:"product_code_ctl2", placeholder:"Select", width:"120px", items:[{ text:"All", value:"*" }, { text:"All Except...", value:"*!" }, { text:"Only This", value:"" }], onchange:"mod.modifier_changed('product_code')" });
 
     $('#seo_detail_title').textbox({ name:"title", placeholder:"Title...", width:"100%" });
@@ -128,31 +129,7 @@
       html.push("<span class='glyphicons glyphicons-copy padding5 selectable'></span>");
       html.push("<span class='glyphicons glyphicons-remove padding5 selectable'></span>");
       $(this).html(html.join(''));
-      $('.glyphicons-menu-hamburger', this).on('click', function(){
-
-        $.api_post('http://localhost:81/fa-ux/data/seo_data.php?id=' + obj['id'], { }, function(response){
-
-          var obj = response.data;
-          obj['country_ctl1'] = mod.get_type0_value(obj['country'])[1];
-          obj['country_ctl2'] = mod.get_type0_value(obj['country'])[0];
-          obj['parent_category_ctl1'] = mod.get_type0_value(obj['parent_category'])[1];
-          obj['parent_category_ctl2'] = mod.get_type0_value(obj['parent_category'])[0];
-          obj['category_ctl1'] = mod.get_type0_value(obj['category'])[1];
-          obj['category_ctl2'] = mod.get_type0_value(obj['category'])[0];
-          obj['product_code_ctl1'] = mod.get_type0_value(obj['product_code'])[1];
-          obj['product_code_ctl2'] = mod.get_type0_value(obj['product_code'])[0];
-
-          $('#seo_detail_country').readonly(obj['country_ctl2'] == '*' ? true : false);
-          $('#seo_detail_parent_category').readonly(obj['parent_category_ctl2'] == '*' ? true : false);
-          $('#seo_detail_category').readonly(obj['category_ctl2'] == '*' ? true : false);
-          $('#seo_detail_product_code').readonly(obj['product_code_ctl2'] == '*' ? true : false);
-
-          $('#seo_detail_modal').modal_open({
-            value:response.data
-          });
-        })
-
-      });
+      $('.glyphicons-menu-hamburger', this).on('click', function(){ mod.open(obj['id']); });
 
     },
 
@@ -175,6 +152,38 @@
       delete obj['product_code_ctl2'];
 
       console.log(obj);
+
+    },
+
+    open:function(id){
+
+      $.api_post('http://localhost/fa-ux/data/seo_data.php?id=' + id, { }, function(response){
+
+        var obj = response.data;
+        obj['country_ctl1'] = mod.get_type0_value(obj['country'])[1];
+        obj['country_ctl2'] = mod.get_type0_value(obj['country'])[0];
+        obj['parent_category_ctl1'] = mod.get_type0_value(obj['parent_category'])[1];
+        obj['parent_category_ctl2'] = mod.get_type0_value(obj['parent_category'])[0];
+        obj['category_ctl1'] = mod.get_type0_value(obj['category'])[1];
+        obj['category_ctl2'] = mod.get_type0_value(obj['category'])[0];
+        obj['product_code_ctl1'] = mod.get_type0_value(obj['product_code'])[1];
+        obj['product_code_ctl2'] = mod.get_type0_value(obj['product_code'])[0];
+
+        $('#seo_detail_country').readonly(obj['country_ctl2'] == '*' ? true : false);
+        $('#seo_detail_parent_category').readonly(obj['parent_category_ctl2'] == '*' ? true : false);
+        $('#seo_detail_category').readonly(obj['category_ctl2'] == '*' ? true : false);
+        $('#seo_detail_product_code').readonly(obj['product_code_ctl2'] == '*' ? true : false);
+
+        $('#seo_detail_modal').modal_open({
+          value:response.data
+        });
+      })
+
+    },
+
+    entry:function(){
+
+      $('#seo_detail_modal').modal_open({ reset:true });
 
     },
 

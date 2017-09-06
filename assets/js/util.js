@@ -1349,6 +1349,8 @@ $.fn.placeholder = function(){
   var type = $(this).attr('data-type');
   if(type != null && typeof $(this)[type + '_placeholder'] != 'undefined')
     return $(this)[type + '_placeholder'].apply(this, arguments);
+  else if($(this).hasClass('container'))
+    return $(this).container_placeholder.apply(this, arguments);
 
 }
 
@@ -1357,6 +1359,18 @@ $.fn.readonly = function(){
   var type = $(this).attr('data-type');
   if(type != null && typeof $(this)[type + '_readonly'] != 'undefined')
     return $(this)[type + '_readonly'].apply(this, arguments);
+  else if($(this).hasClass('container'))
+    return $(this).container_readonly.apply(this, arguments);
+
+}
+
+$.fn.reset = function(){
+
+  var type = $(this).attr('data-type');
+  if(type != null && typeof $(this)[type + '_reset'] != 'undefined')
+    return $(this)[type + '_reset'].apply(this, arguments);
+  else if($(this).hasClass('container'))
+    return $(this).container_reset.apply(this, arguments);
 
 }
 

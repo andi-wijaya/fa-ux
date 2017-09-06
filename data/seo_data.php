@@ -12,7 +12,7 @@ if(isset($_GET['id'])){
 else{
   $response = [
     'data'=>[
-      [ 'id'=>1, 'type'=>'**', 'domain'=>'*', 'country'=>'*' ],
+      [ 'id'=>1, 'type'=>'*', 'domain'=>'*', 'country'=>'*' ],
       [ 'id'=>2, 'type'=>'Home', 'domain'=>'*', 'country'=>'*' ],
       [ 'id'=>3, 'type'=>'Catalog', 'domain'=>'*', 'country'=>'*' ],
     ]

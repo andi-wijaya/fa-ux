@@ -290,6 +290,12 @@ $.fn.extend({
 
     })
 
+  },
+
+  dropdown_reset:function(){
+
+    $(this).dropdown_val('');
+
   }
 
 });

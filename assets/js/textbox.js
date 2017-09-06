@@ -101,6 +101,12 @@ $.fn.extend({
       })
     }
 
+  },
+
+  textbox_reset:function(){
+
+    $(this).textbox_val('');
+
   }
 
 });

@@ -34,6 +34,18 @@ $.fn.extend({
 
     }
 
+  },
+
+  container_reset:function(){
+
+    $("*[data-type]", this).each(function(){
+
+      var type = $(this).attr('data-type');
+      if(type != null && typeof $(this)[type + '_reset'] != 'undefined')
+        $(this)[type + '_reset'].apply(this, arguments);
+
+    });
+
   }
 
 })

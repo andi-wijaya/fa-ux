@@ -22,6 +22,9 @@ $.fn.extend({
         $(document.body).append("<div class='modal-bg'></div>");
       $('.modal-bg').addClass('on');
 
+      var reset = $.val('reset', options, { d:false });
+      if(reset === true) $(instance).reset();
+
       var value = $.val('value', options, { d:null });
       if(value != null) $(instance).val(options['value']);
 

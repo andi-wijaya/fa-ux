@@ -2,11 +2,14 @@ $.fn.extend({
 
   hidden: function (options) {
 
+    var name = $.val('name', options, { d:'' });
+
     $(this).each(function () {
 
       var html = [];
       $(this).html(html.join(''));
       $(this).attr('data-type', 'hidden');
+      $(this).attr('data-name', name);
       $(this).addClass('hidden');
       $(this).data('options', options);
 
@@ -18,7 +21,11 @@ $.fn.extend({
 
     if(typeof val == 'undefined'){
 
-
+      var results = [];
+      $(this).each(function(){
+        results.push($(this).data('value'));
+      });
+      return results.length > 1 ? results : (results.length == 1 ? results[0] : '');
 
     }
 
@@ -26,7 +33,7 @@ $.fn.extend({
 
       $(this).each(function(){
 
-
+        $(this).data('value', val);
 
       })
 

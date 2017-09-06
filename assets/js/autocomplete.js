@@ -170,4 +170,10 @@ $.fn.extend({
 
   },
 
+  autocomplete_reset:function(){
+
+    $(this).autocomplete_val('', true);
+
+  }
+
 });
