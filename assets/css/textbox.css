@@ -60,5 +60,9 @@
     border-color: transparent;
   }
 
+  .textbox.invalid{
+    border-color: red;
+  }
+
 
 }

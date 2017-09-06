@@ -85,8 +85,8 @@
 
   $(function(){
 
-    $('#domain_filter').dropdown({ width:"200px", searchable:true, value:"*", src:"http://localhost/fa-ux/data/seo_domain_filter.php" });
-    $('#page_type_filter').dropdown({ width:"200px", searchable:true, value:"*", src:"http://localhost/fa-ux/data/seo_page_type_filter.php" });
+    $('#domain_filter').dropdown({ width:"200px", searchable:true, value:"*", src:"http://localhost:81/fa-ux/data/seo_domain_filter.php" });
+    $('#page_type_filter').dropdown({ width:"200px", searchable:true, value:"*", src:"http://localhost:81/fa-ux/data/seo_page_type_filter.php" });
     $('#seo_new').on('click', function(){ mod.entry(); });
 
     var columns = [
@@ -96,21 +96,21 @@
       { name:"country", text:"Country", width:"150px" },
     ];
     $('#seo_gridhead').gridhead({ columns:columns, grid:"#seo_grid" });
-    $('#seo_grid').grid({ columns:columns, src:"http://localhost/fa-ux/data/seo_data.php" });
+    $('#seo_grid').grid({ columns:columns, src:"http://localhost:81/fa-ux/data/seo_data.php" });
 
     $('#seo_detail_id').hidden({ name:"id" });
-    $('#seo_detail_page_type').dropdown({ name:"type", width:"200px", src:"http://localhost/fa-ux/data/seo_page_type_filter.php" });
-    $('#seo_detail_domain').dropdown({ name:"domain", width:"200px", src:"http://localhost/fa-ux/data/seo_domain_filter.php" });
-    $('#seo_detail_country').autocomplete({ name:"country_ctl1", multiple:true, src:"http://localhost/fa-ux/data/seo_country_filter.php", placeholder:"Fill Country..." });
+    $('#seo_detail_page_type').dropdown({ name:"type", width:"200px", src:"http://localhost:81/fa-ux/data/seo_page_type_filter.php" });
+    $('#seo_detail_domain').dropdown({ name:"domain", width:"200px", src:"http://localhost:81/fa-ux/data/seo_domain_filter.php" });
+    $('#seo_detail_country').autocomplete({ name:"country_ctl1", multiple:true, src:"http://localhost:81/fa-ux/data/seo_country_filter.php", placeholder:"Fill Country..." });
     $('#seo_detail_country_modifier').dropdown({ name:"country_ctl2", placeholder:"Select", width:"120px", items:[{ text:"All", value:"*" }, { text:"All Except...", value:"*!" }, { text:"Only This", value:"" }], onchange:"mod.modifier_changed('country')" });
-    $('#seo_detail_parent_category').autocomplete({ name:"parent_category_ctl1", multiple:true, src:"http://localhost/fa-ux/data/seo_country_filter.php", placeholder:"Fill Parent Category..." });
+    $('#seo_detail_parent_category').autocomplete({ name:"parent_category_ctl1", multiple:true, src:"http://localhost:81/fa-ux/data/seo_country_filter.php", placeholder:"Fill Parent Category..." });
     $('#seo_detail_parent_category_modifier').dropdown({ name:"parent_category_ctl2", placeholder:"Select", width:"120px", items:[{ text:"All", value:"*" }, { text:"All Except...", value:"*!" }, { text:"Only This", value:"" }], onchange:"mod.modifier_changed('parent_category')" });
-    $('#seo_detail_category').autocomplete({ name:"category_ctl1", multiple:true, src:"http://localhost/fa-ux/data/seo_country_filter.php", placeholder:"Fill Category..." });
+    $('#seo_detail_category').autocomplete({ name:"category_ctl1", multiple:true, src:"http://localhost:81/fa-ux/data/seo_country_filter.php", placeholder:"Fill Category..." });
     $('#seo_detail_category_modifier').dropdown({ name:"category_ctl2", placeholder:"Select", width:"120px", items:[{ text:"All", value:"*" }, { text:"All Except...", value:"*!" }, { text:"Only This", value:"" }], onchange:"mod.modifier_changed('category')" });
-    $('#seo_detail_product_code').autocomplete({ name:"product_code_ctl1", multiple:true, src:"http://localhost/fa-ux/data/seo_country_filter.php", placeholder:"Fill Product Code..." });
+    $('#seo_detail_product_code').autocomplete({ name:"product_code_ctl1", multiple:true, src:"http://localhost:81/fa-ux/data/seo_country_filter.php", placeholder:"Fill Product Code..." });
     $('#seo_detail_product_code_modifier').dropdown({ name:"product_code_ctl2", placeholder:"Select", width:"120px", items:[{ text:"All", value:"*" }, { text:"All Except...", value:"*!" }, { text:"Only This", value:"" }], onchange:"mod.modifier_changed('product_code')" });
 
-    $('#seo_detail_title').textbox({ name:"title", placeholder:"Title...", width:"100%" });
+    $('#seo_detail_title').textbox({ name:"title", placeholder:"Title...", width:"100%", required:true, maxlength:70 });
     $('#seo_detail_description').textbox({ name:"description", placeholder:"Description...", width:"100%" });
     $('#seo_detail_keyword').textbox({ name:"keyword", placeholder:"Keyword...", width:"100%" });
     $('#seo_detail_h1').textbox({ name:"h1", placeholder:"H1...", width:"100%" });
@@ -157,7 +157,7 @@
 
     open:function(id){
 
-      $.api_post('http://localhost/fa-ux/data/seo_data.php?id=' + id, { }, function(response){
+      $.api_post('http://localhost:81/fa-ux/data/seo_data.php?id=' + id, { }, function(response){
 
         var obj = response.data;
         obj['country_ctl1'] = mod.get_type0_value(obj['country'])[1];
