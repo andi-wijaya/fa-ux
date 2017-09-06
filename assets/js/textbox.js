@@ -47,9 +47,6 @@ $.fn.extend({
 
       // Event handler
       $('input', el)
-      .focus(function(e){
-        $(el).data('temp', this.value);
-      })
       .blur(function(e){
         $(el).textbox_validate();
         $.fire_event(onblur, [], el);

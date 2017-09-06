@@ -702,7 +702,7 @@ $.extend({
       if(typeof errcallback != 'undefined' || errcallback != null)
         $.fire_event(errcallback);
       else
-        alert(this.responseText == '' ? 'Unknown error' : this.responseText);
+        console.log(this.responseText);
     });
     xmlhttp.send();
 
@@ -735,7 +735,7 @@ $.extend({
       if(typeof errcallback != 'undefined' || errcallback != null)
         $.fire_event(errcallback);
       else
-        alert(this.responseText == '' ? 'Unknown error' : this.responseText);
+        console.log(this.responseText);
     });
     xmlhttp.send(JSON.stringify(data));
 
