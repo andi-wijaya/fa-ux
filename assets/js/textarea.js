@@ -5,7 +5,7 @@ $.fn.extend({
     var placeholder = $.val('placeholder', options, { d:'' });
     var className = $.val('class', options, { d:'' });
     var name = $.val('name', options, { d:'' });
-    var height = $.val('height', options);
+    var height = $.val('height', options, { d:"1em" });
     var width = $.val('width', options);
     var maxlength = $.val('maxlength', options, { d:'' });
     var onblur = $.val('onblur', options);
@@ -13,8 +13,7 @@ $.fn.extend({
     var onchange = $.val('onchange', options);
 
     var css = {
-      width:width,
-      height:height
+      width:width
     };
 
     this.each(function(){
@@ -22,7 +21,7 @@ $.fn.extend({
       var el = this;
 
       var html = [];
-      html.push("<textarea placeholder='" + placeholder + "' style='height:" + height + ";' maxlength='" + maxlength + "'></textarea>");
+      html.push("<textarea rows='1' placeholder='" + placeholder + "' style='height:" + height + ";' maxlength='" + maxlength + "'></textarea>");
       html.push("<span class='icon fa hidden'></span>");
 
       $(el).addClass('textarea');
@@ -40,12 +39,21 @@ $.fn.extend({
       })
       .keyup(function(e){
 
+        //$.textarea_fit_to_content(this, 500);
+
         $.fire_event(onkeyup, [ this.value ], el);
         if($(this).data('last_value') != this.value){
           $.fire_event(onchange, [ this.value ], el);
         }
         $(this).data('last_value', this.value);
 
+      });
+
+      $('textarea', el).each(function () {
+        this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
+      }).on('input', function () {
+        this.style.height = 'auto';
+        this.style.height = (this.scrollHeight) + 'px';
       });
 
     });
@@ -153,28 +161,20 @@ $.fn.extend({
 
 $.extend({
 
-  textarea_onblur:function(e){
+  textarea_fit_to_content:function(el, maxHeight){
 
-    var el = $(this).closest('.textarea');
-    var options = $(el).data('options');
-    var value = $('input', el).val();
+    if (!el) return;
 
-    var required = $.val('required', options, { d:0 });
+    console.log([ el.scrollHeight ]);
 
-    if(required){
-
-      // Invalid
-      if(value.length <= 0){
-        $(".icon", el).addClass('fa-warning').removeClass('hidden');
-        el.addClass('error');
-      }
-
-      // Valid
-      else{
-        $(".icon", el).removeClass('fa-warning').addClass('hidden');
-        el.removeClass('error');
-      }
-
+    var adjustedHeight = el.clientHeight;
+    if ( !maxHeight || maxHeight > adjustedHeight )
+    {
+      adjustedHeight = Math.max(el.scrollHeight, adjustedHeight);
+      if ( maxHeight )
+        adjustedHeight = Math.min(maxHeight, adjustedHeight);
+      if ( adjustedHeight > el.clientHeight )
+        el.style.height = adjustedHeight + "px";
     }
 
   }

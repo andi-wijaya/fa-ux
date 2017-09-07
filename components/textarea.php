@@ -16,6 +16,7 @@
 
     $('#textarea1').textarea({
       placeholder:"Simple textarea",
+      width:"80px"
     });
 
     $('#textarea2').textarea({
