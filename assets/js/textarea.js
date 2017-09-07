@@ -39,8 +39,6 @@ $.fn.extend({
       })
       .keyup(function(e){
 
-        //$.textarea_fit_to_content(this, 500);
-
         $.fire_event(onkeyup, [ this.value ], el);
         if($(this).data('last_value') != this.value){
           $.fire_event(onchange, [ this.value ], el);
@@ -160,23 +158,5 @@ $.fn.extend({
 });
 
 $.extend({
-
-  textarea_fit_to_content:function(el, maxHeight){
-
-    if (!el) return;
-
-    console.log([ el.scrollHeight ]);
-
-    var adjustedHeight = el.clientHeight;
-    if ( !maxHeight || maxHeight > adjustedHeight )
-    {
-      adjustedHeight = Math.max(el.scrollHeight, adjustedHeight);
-      if ( maxHeight )
-        adjustedHeight = Math.min(maxHeight, adjustedHeight);
-      if ( adjustedHeight > el.clientHeight )
-        el.style.height = adjustedHeight + "px";
-    }
-
-  }
 
 })
