@@ -31,7 +31,7 @@ $.fn.extend({
             value:$(el).data('value'),
             type:type,
             onchange:function(value){
-              $(el).datepicker_attr({ value:value });
+              $(el).datepicker_val(value);
             }
           });
         }
@@ -41,86 +41,53 @@ $.fn.extend({
         e.stopPropagation();
       });
 
-      $(this).datepicker_set($.val('value', options, { d:'2017-01-01' }));
+      $(this).datepicker_val($.val('value', options, { d:'20170101' }));
 
     });
 
   },
 
-  datepicker_get:function(format){
+  datepicker_val:function(value){
 
-    var value = [];
-    $(this).each(function(){
-      var d = $(this).data('value');
-      value.push(d);
-    });
-    return value.length == 1 ? value[0] : (value.length == 0 ? null : value);
+    if(typeof value == 'undefined'){
 
-  },
+      var value = [];
+      $(this).each(function(){
+        var d = $(this).data('value');
+        value.push(d);
+      });
+      return value.length == 1 ? value[0] : (value.length == 0 ? null : value);
+      
+    }
+    
+    else{
 
-  datepicker_set:function(value){
+      $(this).each(function(){
 
-    $(this).each(function(){
-      $(this).datepicker_attr({ value:value });
-    })
+        var text = '';
+        value = $.date_parse(value);
 
-  },
+        console.log(value);
 
-  datepicker_attr:function(obj){
-
-    if($.type(obj) != 'object') return;
-
-    $(this).each(function(){
-
-      var options = $(this).data('options');
-
-      if($.type(obj) == 'object'){
-        for(var key in obj){
-          var value = obj[key];
-          var css = {};
-          switch(key){
-
-            case 'readonly':
-              if(value){
-                $(this).addClass('readonly');
-                options['readonly'] = 1;
-              }
-              else{
-                $(this).removeClass('readonly');
-                options['readonly'] = 0;
-              }
-              break;
-            case 'value':
-
-              var text = '';
-              var value = $.date_parse(value);
-
-              if(value.indexOf('-') >= 0){
-                var d = value.split('-');
-                var d1 = $.date('M j, Y', $.strtotime(d[0]));
-                var d2 = $.date('M j, Y', $.strtotime(d[1]));
-                text = d1 + ' - ' + d2;
-              }
-              else{
-                var d = $.date('M j, Y', $.strtotime(value));
-                text = d;
-              }
-
-              $('input', this).val(text);
-              $(this).data('value', value);
-              break;
-
-          }
-          $(this).css(css);
-
+        if(value.indexOf('-') >= 0){
+          var d = value.split('-');
+          var d1 = $.date('M j, Y', $.strtotime(d[0]));
+          var d2 = $.date('M j, Y', $.strtotime(d[1]));
+          text = d1 + ' - ' + d2;
         }
-      }
+        else{
+          var d = $.date('M j, Y', $.strtotime(value));
+          text = d;
+        }
 
-      $(this).data('options', options);
-
-    })
-
-  }
+        $('input', this).val(text);
+        $(this).data('value', value);
+        
+      })
+      
+    }
+    
+  },
 
 });
 
@@ -132,6 +99,7 @@ $.extend({
     $.popup_toggle(popup, el);
 
   },
+
   datepicker_popup_set:function(el, value){
 
     var popup = $('.popup', el);

@@ -11,11 +11,11 @@ $.fn.extend({
       var html = [];
       html.push("<span class='main-switch'></span>");
 
-      el.classList.add('switch');
-      if(className != '') el.classList.add(className);
       el.innerHTML = html.join('');
+      $(this).addClass('switch');
+      $(this).addClass(className);
       $(el).attr('data-type', 'switch');
-      $(el).switch_set(value);
+      $(el).switch_val(value);
 
       el.querySelector('.main-switch').addEventListener('click', function(){
 
@@ -32,15 +32,25 @@ $.fn.extend({
 
   },
 
-  switch_set:function(value){
+  switch_val:function(value){
 
-    if(value == 'undefined') return;
-    if(!$(this).hasClass('switch')) return;
+    if(!$(this).hasClass('switch')) return undefined;
 
-    if(value == true || value == 1)
-      $(this).addClass('on');
-    else
-      $(this).removeClass('on');
+    if(typeof value == 'undefined'){
+
+      return $(this).hasClass('on') ? 1 : 0;
+
+    }
+
+
+    else{
+
+      if(value == true || value == 1)
+        $(this).addClass('on');
+      else
+        $(this).removeClass('on');
+
+    }
 
   },
 

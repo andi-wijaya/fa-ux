@@ -19,14 +19,14 @@
   $(function(){
 
     $('#autocomplete1').autocomplete({
-      src:"http://localhost:81/fa-ux/data/seo_country_filter.php",
+      src:"http://localhost/fa-ux/data/seo_country_filter.php",
       width:"300px",
     })
 
     $('#autocomplete2').autocomplete({
       multiple: true,
       placeholder:"Country...",
-      src:"http://localhost:81/fa-ux/data/seo_country_filter.php",
+      src:"http://localhost/fa-ux/data/seo_country_filter.php",
       width:"300px"
     })
 
