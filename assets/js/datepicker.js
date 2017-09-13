@@ -67,8 +67,6 @@ $.fn.extend({
         var text = '';
         value = $.date_parse(value);
 
-        console.log(value);
-
         if(value.indexOf('-') >= 0){
           var d = value.split('-');
           var d1 = $.date('M j, Y', $.strtotime(d[0]));
@@ -87,107 +85,6 @@ $.fn.extend({
       
     }
     
-  },
-
-});
-
-$.extend({
-
-  datepicker_toggle:function(el){
-
-    var popup = el.querySelector('.popup');
-    $.popup_toggle(popup, el);
-
-  },
-
-  datepicker_popup_set:function(el, value){
-
-    var popup = $('.popup', el);
-    $(popup).attr("data-value", value);
-    var month = $.date('n', $.strtotime(value));
-    var year = $.date('Y', $.strtotime(value));
-    var date = $.date('j', $.strtotime(value));
-    var start_day = $.start_day_of_month(year, month) % 7;
-    var last_date_of_month = $.last_date_of_month(year, month);
-    var date_label = $.date('M Y', $.strtotime(value));
-
-    var html = [];
-    html.push("<table>");
-    html.push("<tr>");
-    html.push("<td><span class='fa fa-caret-left padding5' onclick='$.datepicker_popup_change_month(event, this, -1)'></span></td>");
-    html.push("<td colspan='5'><span class='date-label'>" + date_label + "</span></td>");
-    html.push("<td><span class='fa fa-caret-right padding5' onclick='$.datepicker_popup_change_month(event, this, 1)'></span></td>");
-    html.push("</tr>");
-    html.push("<tr>");
-    html.push("<td>Sun</td>");
-    html.push("<td>Mon</td>");
-    html.push("<td>Tue</td>");
-    html.push("<td>Wed</td>");
-    html.push("<td>Thu</td>");
-    html.push("<td>Fri</td>");
-    html.push("<td>Sun</td>");
-    html.push("</tr>");
-
-    var current_date = 1;
-    for(var i = 0 ; i < 6 ; i++){
-
-      html.push("<tr>");
-      for(var j = 0 ; j < 7 ; j++){
-
-        if(start_day > 0){
-          html.push("<td></td>");
-          start_day--;
-        }
-        else if(current_date <= last_date_of_month){
-          html.push(current_date == date ? "<td class='active' onclick='$.datepicker_popup_select(event, this)'>" + current_date + "</td>" : "<td onclick='$.datepicker_popup_select(event, this)'>" + current_date + "</td>");
-          current_date++;
-        }
-        else
-          html.push("<td></td>");
-
-      }
-      html.push("</tr>");
-
-    }
-
-    html.push("</table>");
-
-    $(popup).html(html.join(''));
-
-  },
-  datepicker_popup_select:function(e, td){
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    var popup = $(td).closest('.popup');
-    var el = $(popup).closest('.datepicker');
-    var month_year = $(popup).attr('data-value');
-    var date = td.innerHTML;
-
-    var month = $.date('n', $.strtotime(month_year));
-    var year = $.date('Y', $.strtotime(month_year));
-    var d = $.date('j M Y', $.mktime(0, 0, 0, month, date, year));
-    $('input', el).val(d);
-
-    $.popup_close(popup);
-
-  },
-  datepicker_popup_change_month:function(e, span, direction){
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    var popup = $.parent(span, '.popup');
-    var el = $.parent(popup, '.datepicker');
-    var month_year = popup.getAttribute("data-value");
-    var month = parseInt($.date('n', $.strtotime(month_year)));
-    var year = parseInt($.date('Y', $.strtotime(month_year)));
-    var d = parseInt(popup.querySelector("td.active").innerHTML);
-
-    var next_month = $.date('Y-m-d', $.mktime(0, 0, 0, month + direction, d, year));
-    $.datepicker_popup_set(el, next_month);
-
   },
 
 });

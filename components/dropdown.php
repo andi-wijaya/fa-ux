@@ -61,7 +61,7 @@
           width:"300px",
           placeholder:"Select Value",
           searchable:true,
-          src:"<?=base_url()?>/data/sample_dropdown.php"
+          src:"/fa-ux/data/sample_dropdown.php"
         });
       })
     </script>

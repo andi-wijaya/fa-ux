@@ -1,5 +1,9 @@
 @media screen{
 
+  #calendar{
+    padding: 10px;
+  }
+
   #calendar table{
     display: inline-block;
     vertical-align: top;

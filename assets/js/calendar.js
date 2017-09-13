@@ -276,7 +276,7 @@ $.extend({
 
       e.preventDefault();
       e.stopPropagation();
-
+      console.log('value: ' + 1);
       var popup = $(this).closest('#calendar');
       var month_year = $(popup).attr('data-value');
       var date = this.innerHTML;
