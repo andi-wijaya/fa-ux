@@ -1,0 +1,11 @@
+@media screen{
+
+  .radio{
+    display: inline-block;
+    vertical-align: middle;
+  }
+  .radio>label{
+    padding: 6px;
+  }
+
+}

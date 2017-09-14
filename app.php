@@ -8,7 +8,7 @@ session_start();
 ?>
 <html>
 <head>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
   <link rel="stylesheet" href="<?=base_url() . '/assets/'?>fontawesome.css" />
   <link rel="stylesheet" href="<?=base_url() . '/assets/'?>glyphicons.css" />
   <?php $files = glob('assets/css/*.css'); foreach($files as $file){ ?>

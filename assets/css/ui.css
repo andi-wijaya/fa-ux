@@ -8,7 +8,6 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    color: #333;
     -moz-osx-font-smoothing: grayscale;
     font-feature-settings: "liga", "kern";
     font-synthesis: none;
@@ -46,6 +45,9 @@
   h5, h5 *, .h5, .h5 *{
     font-size: 14px;
     text-transform: uppercase;
+  }
+  strong{
+    font-weight: 600;
   }
 
   span{
