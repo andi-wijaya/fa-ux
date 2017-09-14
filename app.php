@@ -5,23 +5,6 @@ include __DIR__ . '/assets/php/util.php';
 
 session_start();
 
-if($_GET['url'] == 'test'){
-  include 'components/test.php';
-  exit();
-}
-
-if(!isset($_SESSION['auth_email']) || !in_array($_SESSION['auth_email'], $allowed_emails)){
-  include 'auth.php';
-  exit();
-}
-else{
-  // Unauthorize
-  if(isset($_GET['unauth'])){
-    unset($_SESSION['auth_email']);
-    header('Location: .');
-  }
-}
-
 ?>
 <html>
 <head>
