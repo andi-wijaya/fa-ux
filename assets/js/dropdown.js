@@ -4,7 +4,8 @@ $.fn.extend({
 
     var className = $.val('class', options, { d:'' });
     var name = $.val('name', options, { d:'' });
-    var value = $.val('value', options, { d:'' });
+    var defaultvalue = $.val('defaultvalue', options, { d:'' });
+    var value = $.val('value', options, { d:defaultvalue });
     var items = $.val('items', options, { d:[] });
     var width = $.val('width', options, { d:[] });
     var src = $.val('src', options, { d:'' });
@@ -294,7 +295,24 @@ $.fn.extend({
 
   dropdown_reset:function(){
 
-    $(this).dropdown_val('');
+    $(this).each(function(){
+
+      var options = $(this).data('options');
+      var defaultvalue = $.val('defaultvalue', options, { d:'' });
+      $(this).dropdown_val(defaultvalue);
+
+    })
+
+  },
+
+  dropdown_readonly:function(readonly){
+
+    $(this).each(function(){
+
+      if($.istrue(readonly)) $(this).addClass('readonly');
+      else $(this).removeClass('readonly');
+
+    })
 
   }
 

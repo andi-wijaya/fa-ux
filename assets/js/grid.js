@@ -278,7 +278,8 @@ $.fn.extend({
         $.api_post(src, el_params, function(response){
 
           // Render data
-          var data = response['data'];
+          var data = $.val('data', response, { d:[] });
+          var page = $.val('page', response, { d:1 });
           var append = page == 1 ? false : true;
           $(instance).grid_val(data, append);
 

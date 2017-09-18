@@ -20,8 +20,6 @@ $.fn.extend({
       $('.icon', this).click(function(e){
         e.preventDefault();
         e.stopPropagation();
-        $.calendar_popup_set(el, this.previousElementSibling.value);
-        $.calendar_toggle(el);
       });
       $('.popup', this).click(function(e){
         e.preventDefault();
