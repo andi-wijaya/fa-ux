@@ -8,7 +8,9 @@ $data = [
 
 
 $response = [
-  'data'=>$data
+  'data'=>$data,
+  'page'=>1,
+  'max_page'=>2
 ];
 
 header('Content-Type: application/json');
