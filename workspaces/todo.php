@@ -17,7 +17,7 @@
     <span id="start_date"></span>
   </div>
   <div class="modal-foot align-right padding10">
-    <button id="todo_savebtn" class="blue"><span class="glyphicons glyphicons-save"></span>Save</button>
+    <button id="todo_savebtn" class="blue"><span class="glyphicons glyphicons-disk-save"></span>Save</button>
     <button data-action="modal.close"><span class="glyphicons glyphicons-remove"></span>Close</button>
   </div>
 </div>
