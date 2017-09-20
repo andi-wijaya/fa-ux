@@ -11,7 +11,6 @@ $.fn.extend({
       var html = [];
       html.push("<input type='text' readonly/>");
       html.push("<span class='icon fa fa-calendar'></span>");
-      html.push("<span class='popup'>datepicker</span>");
 
       $(el).addClass('datepicker');
       $(el).html(html.join(''));

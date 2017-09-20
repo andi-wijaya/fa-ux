@@ -3,7 +3,7 @@
   .popup{
 
     position: fixed;
-    z-index: 1;
+    z-index: 4;
     display: none;
     background: #fff;
     border: solid 1px #aaa;

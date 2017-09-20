@@ -48,8 +48,9 @@ $.fn.extend({
       });
 
       $('textarea', el).each(function () {
-        this.setAttribute('style', 'height:' + (this.scrollHeight) + 'px;overflow-y:hidden;');
-      }).on('input', function () {
+        this.setAttribute('style', 'height:' + (this.scrollHeight <= 0 ? '' : this.scrollHeight) + 'px;overflow-y:hidden;');
+      })
+      .on('input', function () {
         this.style.height = 'auto';
         this.style.height = (this.scrollHeight) + 'px';
       });
