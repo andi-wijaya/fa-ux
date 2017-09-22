@@ -1,4 +1,4 @@
-<div class="padding20">
+<div class="content padding20">
 
   <span id="datepicker1"></span>
 

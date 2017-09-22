@@ -3,7 +3,7 @@
 
 ?>
 
-<div class="padding20">
+<div class="content padding20">
 
   <small>Default Switch</small>
   <br />

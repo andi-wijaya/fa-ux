@@ -2,7 +2,7 @@
 
 ?>
 
-<div class="padding10">
+<div class="content padding10">
 
   <div>
     <label class="padding8">Simple Dropdown</label>

@@ -1,12 +1,16 @@
-<h1>Grid</h1>
-<br /><br /><br />
+<div class="content">
 
-<h5>Samples:</h5>
-<br /><br />
-<span class="padding10">
-  <span id="sample1"></span>
-  <span id="sample2"></span>
-</span>
+  <h1>Grid</h1>
+  <br /><br /><br />
+
+  <h5>Samples:</h5>
+  <br /><br />
+  <span class="padding10">
+    <span id="sample1"></span>
+    <span id="sample2"></span>
+  </span>
+
+</div>
 
 
 <script id="script1" type="text/javascript">

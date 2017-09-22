@@ -1,71 +1,72 @@
-<table>
-  <tr>
-    <td><h1>Todo</h1></td>
-    <td><span class="todo-addbtn glyphicons glyphicons-plus selectable padding10"></span></td>
-  </tr>
-</table>
-<div class="height20"></div>
-<span id="todo_list"></span>
+<div class="content">
 
-<div class="modal width480">
-  <div class="modal-head"></div>
-  <div class="modal-body padding10">
-    <span id="title"></span>
-    <div class="height10"></div>
-    <span id="description"></span>
-    <div class="height10"></div>
-    <span id="start_date"></span>
+  <table>
+    <tr>
+      <td><h1>Todo</h1></td>
+      <td><span class="todo-addbtn glyphicons glyphicons-plus selectable padding10"></span></td>
+    </tr>
+  </table>
+  <div class="height20"></div>
+  <span id="todo_list"></span>
+
+  <div class="modal width-full">
+    <div class="wrapper width600">
+      <h1>New Todo</h1>
+      <div class="height30"></div>
+      <span id="title"></span>
+      <div class="height10"></div>
+      <span id="description"></span>
+      <div class="height10"></div>
+      <span id="start_date"></span>
+    </div>
   </div>
-  <div class="modal-foot align-right padding10">
-    <button id="todo_savebtn" class="blue"><span class="glyphicons glyphicons-disk-save"></span>Save</button>
-    <button data-action="modal.close"><span class="glyphicons glyphicons-remove"></span>Close</button>
-  </div>
-</div>
 
-<script type="text/javascript">
+  <script type="text/javascript">
 
-  todo = {
+    todo = {
 
-    init:function(){
+      init:function(){
 
-      $('#todo_list').feed({
-        src:'/fa-ux/data/todo.php',
-        template:'todo.feed_template'
-      });
+        $('#todo_list').feed({
+          src:'/fa-ux/data/todo.php',
+          template:'todo.feed_template'
+        });
 
-      $('#title').textbox({ placeholder:"Title", width:"100%" });
-      $('#description').textarea({ placeholder:"Description", width:"100%" });
-      $('#start_date').datepicker({ name:"" });
+        $('#title').textbox({ placeholder:"Title", width:"100%" });
+        $('#description').textarea({ placeholder:"Description", width:"100%" });
+        $('#start_date').datepicker({ name:"" });
 
-      $('.todo-addbtn').on('click', function(){ todo.new(); });
-      $('#todo_savebtn').on('click', function(){ });
+        $('.todo-addbtn').on('click', function(){ todo.new(); });
+        $('#todo_savebtn').on('click', function(){ });
 
-      todo.load();
+        todo.load();
 
-    },
+      },
 
-    load:function(){
+      load:function(){
 
-      $('#todo_list').feed_load();
+        $('#todo_list').feed_load();
 
-    },
+      },
 
-    new:function(){
+      new:function(){
 
-      $('.modal').modal_open();
+        $('.modal').modal_open();
 
-    },
+      },
 
-    feed_template:function(obj){
+      feed_template:function(obj){
 
-      var html = [];
-      html.push("<h2>" + obj.title + "</h2>");
-      $(this).html(html.join(''));
+        var html = [];
+        html.push("<h2>" + obj.title + "</h2>");
+        $(this).html(html.join(''));
+
+      }
 
     }
 
-  }
+    $(todo.init);
 
-  $(todo.init);
+  </script>
 
-</script>
+</div>

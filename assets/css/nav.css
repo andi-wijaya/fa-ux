@@ -9,11 +9,9 @@
     list-style-type: none;
     margin: 0;
     padding: 0;
-    border: solid 1px #eee;
-    border-bottom: none;
   }
   .nav li:last-child{
-    border-bottom: solid 1px #eee;
+
   }
   .nav li:hover{
     background: rgba(0, 0, 0, .1);

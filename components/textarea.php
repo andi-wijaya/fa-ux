@@ -1,16 +1,18 @@
-<h5>Samples:</h5>
-<br /><br />
-<span class="padding10">
-  <span id="textarea1"></span>
-  <div class="height10"></div>
-  <span id="textarea2"></span>
-  <div class="height10"></div>
-  <span id="textarea3"></span>
-  <div class="height10"></div>
-  <span id="textarea4"></span>
-  <div class="height10"></div>
-  <span id="textarea5"></span>
-</span>
+<div class="content padding20">
+  <h5>Samples:</h5>
+  <br /><br />
+  <span class="padding10">
+    <span id="textarea1"></span>
+    <div class="height10"></div>
+    <span id="textarea2"></span>
+    <div class="height10"></div>
+    <span id="textarea3"></span>
+    <div class="height10"></div>
+    <span id="textarea4"></span>
+    <div class="height10"></div>
+    <span id="textarea5"></span>
+  </span>
+</div>
 <script id="script1" type="text/javascript">
   $(function(){
 

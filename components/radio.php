@@ -1,4 +1,4 @@
-<div class="padding20">
+<div class="content padding20">
 
   <strong>Simple Radio with 1 Item</strong>
   <div class="height10"></div>
