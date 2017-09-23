@@ -6,7 +6,6 @@
     overflow-x: hidden;
   }
   .gridhead *{
-    font-size: 13px;
   }
   .grid-head{
     border-top: solid 1px #eee;
@@ -25,12 +24,12 @@
   }
   .gridhead td.label{
     padding: 8px;
-    font-weight: 600;
     border: solid 1px #eee;
     cursor: pointer;
     -moz-transition: background-color 300ms ease-in;
     -webkit-transition: background-color 300ms ease-in;
     position: relative;
+    color: #aaa;
   }
   .gridhead td.label:first-child{
     border-left: none;

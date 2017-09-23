@@ -17,12 +17,12 @@
   .bg-white{ background: #fff; }
   .bg-blue{ background: #4A89DC; color: #fff; }
 
-  .cl-lightgray{ color: #eee; }
-  .cl-blue{ color: #4A89DC; }
-  .cl-gray{ color: #AAA; }
-  .cl-green{ color: #8CC152; }
-  .cl-red{ color: #E9573F; }
-  .cl-white{ color: #FFFFFF; }
+  .cl-lightgray, .cl-lightgray *{ color: #eee; }
+  .cl-blue, .cl-blue *{ color: #4A89DC; }
+  .cl-gray, .cl-gray *{ color: #AAA; }
+  .cl-green, .cl-green *{ color: #8CC152; }
+  .cl-red, .cl-red *{ color: #E9573F; }
+  .cl-white, .cl-white *{ color: #FFFFFF; }
 
   .inline-block{ display: inline-block; }
 
@@ -96,8 +96,8 @@
 
   .relative{ position:relative; }
 
-  .selectable{ cursor: pointer;color:#bbb; }
-  .selectable:hover{ color:inherit; }
+  .selectable{ cursor: pointer;color:#4FC1E9; }
+  .selectable:hover{ color:#3BAFDA; }
   .nowrap{ white-space: nowrap; }
   .overflow-hidden{ overflow: hidden; }
   .ellipsis{ text-overflow: ellipsis; }

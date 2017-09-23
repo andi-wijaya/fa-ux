@@ -1,7 +1,7 @@
 @media screen{
 
   #calendar{
-    padding: 10px;
+    padding: 8px;
   }
 
   #calendar table{
@@ -9,7 +9,7 @@
     vertical-align: top;
   }
   #calendar td{
-    padding: 5px;
+    padding: 3px;
     text-align: center;
     cursor: pointer;
   }

@@ -12,6 +12,7 @@
     border-color: #aaa;
   }
   .datepicker input{
+    background: transparent;
     border: none;
     padding: 8px;
     flex: 1 1 auto;

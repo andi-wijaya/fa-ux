@@ -27,7 +27,7 @@
       multiple: true,
       placeholder:"Country...",
       src:"/fa-ux/data/seo_country_filter.php",
-      width:"300px"
+      width:"600px"
     })
 
   })

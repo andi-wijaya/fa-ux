@@ -4,6 +4,10 @@
     font-family: "Open Sans", Sans-Serif;
   }
 
+  body{
+    background: #f5f5f5;
+  }
+
   .sidebar{
     position: fixed;
     left: 0;

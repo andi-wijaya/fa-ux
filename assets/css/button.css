@@ -3,13 +3,13 @@
   button{
     position: relative;
     display: inline-block;
-    border: solid 1px #eee;
+    border: solid 1px #ddd;
     margin: 0;
     padding: 0;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    background: #fff;
+    background: transparent;
     padding: 7px;
     vertical-align: top;
   }
