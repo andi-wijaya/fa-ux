@@ -7,20 +7,20 @@ $.fn.extend({
       var instance = this;
       $(instance).addClass('on');
 
-      var width = parseInt($.val('width', options, { d:null }));
-      var height = parseInt($.val('height', options, { d:Math.round(window.innerHeight * .78) }));
-      var modal_body_height = height - ($('.modal-head', instance).outerHeight() + $('.modal-foot', instance).outerHeight());
+      //var width = parseInt($.val('width', options, { d:null }));
+      //var height = parseInt($.val('height', options, { d:Math.round(window.innerHeight * .78) }));
+      var modal_body_height = $(instance).outerHeight() - 5 - ($('.modal-head', instance).outerHeight() + $('.modal-foot', instance).outerHeight());
 
-      if(!isNaN(width)) $('.modal-body', instance).css({ 'width':width });
+      //if(!isNaN(width)) $('.modal-body', instance).css({ 'width':width });
       if(!isNaN(modal_body_height)) $('.modal-body', instance).css({ 'height':modal_body_height });
 
-      var left = (window.innerWidth - instance.clientWidth) / 2;
-      var top = (window.innerHeight - instance.clientHeight) / 2;
-      $(instance).css({ left:left, top:top });
+      //var left = (window.innerWidth - instance.clientWidth) / 2;
+      //var top = (window.innerHeight - instance.clientHeight) / 2;
+      //$(instance).css({ left:left, top:top });
 
-      if($('.modal-bg').length == 0)
-        $(document.body).append("<div class='modal-bg'></div>");
-      $('.modal-bg').addClass('on');
+      //if($('.modal-bg').length == 0)
+        //$(document.body).append("<div class='modal-bg'></div>");
+      //$('.modal-bg').addClass('on');
 
       var reset = $.val('reset', options, { d:false });
       if(reset === true) $(instance).reset();
