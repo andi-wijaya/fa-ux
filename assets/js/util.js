@@ -1359,7 +1359,7 @@ $.fn.placeholder = function(){
   else if($(this).hasClass('container'))
     return $(this).container_placeholder.apply(this, arguments);
 
-}
+};
 
 $.fn.readonly = function(){
 
@@ -1369,7 +1369,7 @@ $.fn.readonly = function(){
   else if($(this).hasClass('container'))
     return $(this).container_readonly.apply(this, arguments);
 
-}
+};
 
 $.fn.reset = function(){
 
@@ -1379,10 +1379,10 @@ $.fn.reset = function(){
   else if($(this).hasClass('container'))
     return $(this).container_reset.apply(this, arguments);
 
-}
+};
 
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
-}
+};
 
 $($.ux_init);

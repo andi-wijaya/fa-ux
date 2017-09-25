@@ -12,69 +12,71 @@
     <span id="seo_grid"></span>
   </div>
 
-  <div id="seo_detail_modal" class="modal width600 container">
+  <div id="seo_detail_modal" class="modal container">
     <div class="modal-head">
       <span id="seo_detail_id"></span>
     </div>
     <div class="modal-body padding5">
-      <table class="form" cellspacing="10">
-        <tr>
-          <th><label class="padding8">Domain</label></th>
-          <td colspan="2"><span id="seo_detail_domain"></span></td>
-        </tr>
-        <tr>
-          <th><label class="padding8">Type</label></th>
-          <td colspan="2"><span id="seo_detail_page_type"></span></td>
-        </tr>
-        <tr>
-          <th><label class="padding8">Country</label></th>
-          <td><span id="seo_detail_country_modifier"></span></td>
-          <td><span id="seo_detail_country" style="width:100%" ></span></td>
-        </tr>
-        <tr>
-          <th><label class="padding8">Parent Category</label></th>
-          <td><span id="seo_detail_parent_category_modifier"></span></td>
-          <td><span id="seo_detail_parent_category"></span></td>
-        </tr>
-        <tr>
-          <th><label class="padding8">Category</label></th>
-          <td><span id="seo_detail_category_modifier"></span></td>
-          <td><span id="seo_detail_category"></span></td>
-        </tr>
-        <tr>
-          <th><label class="padding8">Product Code</label></th>
-          <td><span id="seo_detail_product_code_modifier"></span></td>
-          <td><span id="seo_detail_product_code"></span></td>
-        </tr>
-        <tr><td class="height20"></td></tr>
-        <tr>
-          <th><label class="padding8">Title</label></th>
-          <td colspan="2"><span id="seo_detail_title"></span></td>
-        </tr>
-        <tr>
-          <th><label class="padding8">Description</label></th>
-          <td colspan="2"><span id="seo_detail_description"></span></td>
-        </tr>
-        <tr>
-          <th><label class="padding8">Keyword</label></th>
-          <td colspan="2"><span id="seo_detail_keyword"></span></td>
-        </tr>
-        <tr>
-          <th><label class="padding8">H1</label></th>
-          <td colspan="2"><span id="seo_detail_h1"></span></td>
-        </tr>
-        <tr>
-          <th><label class="padding8">H2</label></th>
-          <td colspan="2"><span id="seo_detail_h2"></span></td>
-        </tr>
-        <tr>
-          <th><label class="padding8">Footer</label></th>
-          <td colspan="2"><span id="seo_detail_footer"></span></td>
-        </tr>
-      </table>
+      <div class="wrapper width600">
+        <table class="form" cellspacing="10">
+          <tr>
+            <th><label class="padding8">Domain</label></th>
+            <td colspan="2"><span id="seo_detail_domain"></span></td>
+          </tr>
+          <tr>
+            <th><label class="padding8">Type</label></th>
+            <td colspan="2"><span id="seo_detail_page_type"></span></td>
+          </tr>
+          <tr>
+            <th><label class="padding8">Country</label></th>
+            <td><span id="seo_detail_country_modifier"></span></td>
+            <td><span id="seo_detail_country" style="width:100%" ></span></td>
+          </tr>
+          <tr>
+            <th><label class="padding8">Parent Category</label></th>
+            <td><span id="seo_detail_parent_category_modifier"></span></td>
+            <td><span id="seo_detail_parent_category"></span></td>
+          </tr>
+          <tr>
+            <th><label class="padding8">Category</label></th>
+            <td><span id="seo_detail_category_modifier"></span></td>
+            <td><span id="seo_detail_category"></span></td>
+          </tr>
+          <tr>
+            <th><label class="padding8">Product Code</label></th>
+            <td><span id="seo_detail_product_code_modifier"></span></td>
+            <td><span id="seo_detail_product_code"></span></td>
+          </tr>
+          <tr><td class="height20"></td></tr>
+          <tr>
+            <th><label class="padding8">Title</label></th>
+            <td colspan="2"><span id="seo_detail_title"></span></td>
+          </tr>
+          <tr>
+            <th><label class="padding8">Description</label></th>
+            <td colspan="2"><span id="seo_detail_description"></span></td>
+          </tr>
+          <tr>
+            <th><label class="padding8">Keyword</label></th>
+            <td colspan="2"><span id="seo_detail_keyword"></span></td>
+          </tr>
+          <tr>
+            <th><label class="padding8">H1</label></th>
+            <td colspan="2"><span id="seo_detail_h1"></span></td>
+          </tr>
+          <tr>
+            <th><label class="padding8">H2</label></th>
+            <td colspan="2"><span id="seo_detail_h2"></span></td>
+          </tr>
+          <tr>
+            <th><label class="padding8">Footer</label></th>
+            <td colspan="2"><span id="seo_detail_footer"></span></td>
+          </tr>
+        </table>
+      </div>
     </div>
     <div class="modal-foot align-right padding5">
-      <button id="seo_detail_save"><span class="glyphicons glyphicons-disk-save"></span> Save</button>
+      <button id="seo_detail_save" class="blue"><span class="glyphicons glyphicons-disk-save"></span> Save</button>
       <button data-action="modal.close"><span class="glyphicons glyphicons-remove"></span> Close</button>
     </div>
   </div>
