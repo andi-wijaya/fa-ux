@@ -5,9 +5,9 @@
 
 <div class="content padding20">
 
-  <small>Default Switch</small>
+  <small>Default Toggle</small>
   <br />
-  <span id="switch1"></span>
+  <span id="toggle1"></span>
   
 </div>
 
@@ -15,7 +15,7 @@
   
   $(function(){
     
-    $('#switch1').switch({
+    $('#toggle1').toggle({
       name:"enabled"
     });
     

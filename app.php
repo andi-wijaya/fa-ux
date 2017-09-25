@@ -17,9 +17,10 @@ session_start();
 <!--  --><?php //} ?>
   <link rel="stylesheet" href="<?=base_url() . '/assets/'?>app.css" />
   <script type="text/javascript" src="<?=base_url() . '/'?>assets/jquery-2.2.3.min.js"></script>
-  <?php $files = glob('assets/js/*.js'); foreach($files as $file){ ?>
-    <script type="text/javascript" src="<?=base_url() . '/' . $file?>"></script>
-  <?php } ?>
+  <script type="text/javascript" src="<?=base_url() . '/'?>assets/js/script.min.js"></script>
+<!--  --><?php //$files = glob('assets/js/*.js'); foreach($files as $file){ ?>
+<!--    <script type="text/javascript" src="--><?//=base_url() . '/' . $file?><!--"></script>-->
+<!--  --><?php //} ?>
 </head>
 <body>
 

@@ -1,6 +1,6 @@
 $.fn.extend({
 
-  switch:function(options){
+  toggle:function(options){
 
     var className = $.val('class', options, { d:'' });
     var value = $.val('value', options, { d:false });
@@ -9,15 +9,15 @@ $.fn.extend({
 
       var el = this;
       var html = [];
-      html.push("<span class='main-switch'></span>");
+      html.push("<span class='main-toggle'></span>");
 
       el.innerHTML = html.join('');
-      $(this).addClass('switch');
+      $(this).addClass('toggle');
       $(this).addClass(className);
-      $(el).attr('data-type', 'switch');
-      $(el).switch_val(value);
+      $(el).attr('data-type', 'toggle');
+      $(el).toggle_val(value);
 
-      el.querySelector('.main-switch').addEventListener('click', function(){
+      el.querySelector('.main-toggle').addEventListener('click', function(){
 
         if(this.parentNode.classList.contains('on'))
           this.parentNode.classList.remove('on');
@@ -32,9 +32,9 @@ $.fn.extend({
 
   },
 
-  switch_val:function(value){
+  toggle_val:function(value){
 
-    if(!$(this).hasClass('switch')) return undefined;
+    if(!$(this).hasClass('toggle')) return undefined;
 
     if(typeof value == 'undefined'){
 

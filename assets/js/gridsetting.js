@@ -79,7 +79,7 @@ $.fn.extend({
 
       });
       $('.preset-grid', el).grid({
-        class: 'transparent',
+        'class': 'transparent',
         columns:[
           { text:'', type:'html', html:'$.gridsetting_preset_option', width:'50px' },
           { text:'Preset Name', name:'text', width:'150px' },
@@ -87,7 +87,7 @@ $.fn.extend({
       });
 
       $('.column-grid', el).grid({
-        class: 'transparent',
+        'class': 'transparent',
         columns:[
           { text:'Column Name', name:'text', width:'150px' },
           { text:'Width', name:'width', width:'100px' },
@@ -150,7 +150,7 @@ $.fn.extend({
         $('.filter-grid', el).grid_add();
       });
       $('.filter-grid', el).grid({
-        class: 'transparent',
+        'class': 'transparent',
         columns:[
           { text:'', type:'html', html:'$.gridsetting_grid_option', width:'50px' },
           // { text:'Type', type:'html', html:'$.gridsetting_grid_type', width:'100px' },
