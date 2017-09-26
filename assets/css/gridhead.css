@@ -13,6 +13,7 @@
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
+    border-bottom: solid 1px #e5e5e5;
   }
   .gridhead td{
     white-space: nowrap;
@@ -22,7 +23,6 @@
   }
   .gridhead td.label{
     padding: 8px;
-    border: solid 1px #eee;
     cursor: pointer;
     -moz-transition: background-color 300ms ease-in;
     -webkit-transition: background-color 300ms ease-in;
@@ -41,9 +41,6 @@
     margin: 0 !important;
     border: none 0px !important;
   }
-  .gridhead td.label:hover{
-    background-color: rgba(0, 0, 0, .05);
-  }
   .grid-head td.label .separator{
     position: absolute;
     bottom: 0;
@@ -53,6 +50,7 @@
     background: transparent;
     cursor: e-resize;
     display: inline-block;
+    border-right: solid 1px #e5e5e5;
   }
 
 }
