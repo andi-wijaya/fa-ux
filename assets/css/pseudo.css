@@ -97,7 +97,6 @@
   .relative{ position:relative; }
 
   .selectable{ cursor: pointer; }
-  .selectable:hover{ color:#3BAFDA; }
   .nowrap{ white-space: nowrap; }
   .overflow-hidden{ overflow: hidden; }
   .ellipsis{ text-overflow: ellipsis; }
