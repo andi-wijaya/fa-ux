@@ -1355,7 +1355,7 @@ $.extend({
       $("*[data-type]", this).each(function(){
 
         var name = this.getAttribute("data-name");
-        if(name != null){
+        if(name != null && name != ''){
           var val = $(this).val();
           result[name] = val;
         }
@@ -1371,7 +1371,7 @@ $.extend({
       $("*[data-type]", this).each(function(){
 
         var name = this.getAttribute("data-name");
-        if(name != null){
+        if(name != null && name != ''){
           var val = $.val(name, value, { d:'' });
           $(this).val(val);
         }
@@ -3205,6 +3205,8 @@ $.fn.extend({
       var instance = this;
       $(instance).addClass('on');
 
+      $(document.body).css({ overflow:'hidden' });
+
       //var width = parseInt($.val('width', options, { d:null }));
       //var height = parseInt($.val('height', options, { d:Math.round(window.innerHeight * .78) }));
       var modal_body_height = $(instance).outerHeight() - 5 - ($('.modal-head', instance).outerHeight() + $('.modal-foot', instance).outerHeight());
@@ -3239,6 +3241,9 @@ $.fn.extend({
       $('.modal-bg').removeClass('on');
 
     });
+
+    if($('.modal.on').length == 0)
+      $(document.body).css({ overflow:'' });
 
   }
 
@@ -3523,6 +3528,7 @@ $.extend({
     var onblur = $.val('onblur', options);
     var onkeyup = $.val('onkeyup', options);
     var onchange = $.val('onchange', options);
+    var value = $.val('value', options, { d:'' });
 
     var css = {
       width:width
@@ -3567,6 +3573,8 @@ $.extend({
         this.style.height = (this.scrollHeight) + 'px';
       });
 
+      if(value != '') $(this).textarea_val(value);
+
     });
 
   },
@@ -3585,7 +3593,10 @@ $.extend({
     // Setter
     else{
       $(this).each(function(){
-        $('textarea', this).val(value);
+        $('textarea', this).val(value).each(function(){
+          this.style.height = 'auto';
+          this.style.height = (this.scrollHeight) + 'px';
+        });
       })
     }
 
@@ -3837,6 +3848,7 @@ $.extend({
   toggle:function(options){
 
     var className = $.val('class', options, { d:'' });
+    var name = $.val('name', options, { d:'' });
     var value = $.val('value', options, { d:false });
 
     this.each(function(){
@@ -3849,7 +3861,7 @@ $.extend({
       $(this).addClass('toggle');
       $(this).addClass(className);
       $(el).attr('data-type', 'toggle');
-      $(el).toggle_val(value);
+      if(name != '') $(el).attr('data-name', name);
 
       el.querySelector('.main-toggle').addEventListener('click', function(){
 
@@ -3859,6 +3871,8 @@ $.extend({
           this.parentNode.classList.add('on');
 
       });
+
+      $(el).toggle_val(value);
 
       return el;
 
@@ -3876,7 +3890,6 @@ $.extend({
 
     }
 
-
     else{
 
       if(value == true || value == 1)
@@ -3885,7 +3898,7 @@ $.extend({
         $(this).removeClass('on');
 
     }
-
+    
   },
 
 });$.extend({

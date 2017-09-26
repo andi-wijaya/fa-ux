@@ -11,6 +11,7 @@ $.fn.extend({
     var onblur = $.val('onblur', options);
     var onkeyup = $.val('onkeyup', options);
     var onchange = $.val('onchange', options);
+    var value = $.val('value', options, { d:'' });
 
     var css = {
       width:width
@@ -55,6 +56,8 @@ $.fn.extend({
         this.style.height = (this.scrollHeight) + 'px';
       });
 
+      if(value != '') $(this).textarea_val(value);
+
     });
 
   },
@@ -73,7 +76,10 @@ $.fn.extend({
     // Setter
     else{
       $(this).each(function(){
-        $('textarea', this).val(value);
+        $('textarea', this).val(value).each(function(){
+          this.style.height = 'auto';
+          this.style.height = (this.scrollHeight) + 'px';
+        });
       })
     }
 

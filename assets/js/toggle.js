@@ -3,6 +3,7 @@ $.fn.extend({
   toggle:function(options){
 
     var className = $.val('class', options, { d:'' });
+    var name = $.val('name', options, { d:'' });
     var value = $.val('value', options, { d:false });
 
     this.each(function(){
@@ -15,7 +16,7 @@ $.fn.extend({
       $(this).addClass('toggle');
       $(this).addClass(className);
       $(el).attr('data-type', 'toggle');
-      $(el).toggle_val(value);
+      if(name != '') $(el).attr('data-name', name);
 
       el.querySelector('.main-toggle').addEventListener('click', function(){
 
@@ -25,6 +26,8 @@ $.fn.extend({
           this.parentNode.classList.add('on');
 
       });
+
+      $(el).toggle_val(value);
 
       return el;
 

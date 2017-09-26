@@ -9,7 +9,7 @@ $.fn.extend({
       $("*[data-type]", this).each(function(){
 
         var name = this.getAttribute("data-name");
-        if(name != null){
+        if(name != null && name != ''){
           var val = $(this).val();
           result[name] = val;
         }
@@ -25,7 +25,7 @@ $.fn.extend({
       $("*[data-type]", this).each(function(){
 
         var name = this.getAttribute("data-name");
-        if(name != null){
+        if(name != null && name != ''){
           var val = $.val(name, value, { d:'' });
           $(this).val(val);
         }
