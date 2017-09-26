@@ -31,7 +31,7 @@
     $('#sample2').grid({
       columns:columns,
       src:"/fa-ux/data/sample_grid.php",
-      method:"get",
+      method:"post",
     });
 
   })

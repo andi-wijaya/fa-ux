@@ -8,8 +8,6 @@
   .gridhead *{
   }
   .grid-head{
-    border-top: solid 1px #eee;
-    border-bottom: solid 1px #eee;
   }
   .gridhead>table{
     table-layout: fixed;

@@ -42,7 +42,6 @@ $.fn.extend({
 
     }
 
-
     else{
 
       if(value == true || value == 1)

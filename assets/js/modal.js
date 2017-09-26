@@ -7,6 +7,8 @@ $.fn.extend({
       var instance = this;
       $(instance).addClass('on');
 
+      $(document.body).css({ overflow:'hidden' });
+
       //var width = parseInt($.val('width', options, { d:null }));
       //var height = parseInt($.val('height', options, { d:Math.round(window.innerHeight * .78) }));
       var modal_body_height = $(instance).outerHeight() - 5 - ($('.modal-head', instance).outerHeight() + $('.modal-foot', instance).outerHeight());
@@ -41,6 +43,9 @@ $.fn.extend({
       $('.modal-bg').removeClass('on');
 
     });
+
+    if($('.modal.on').length == 0)
+      $(document.body).css({ overflow:'' });
 
   }
 
