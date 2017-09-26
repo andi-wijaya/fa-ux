@@ -11,16 +11,16 @@ session_start();
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
   <link rel="stylesheet" href="<?=base_url() . '/assets/'?>fontawesome.css" />
   <link rel="stylesheet" href="<?=base_url() . '/assets/'?>glyphicons.css" />
-  <link rel="stylesheet" href="<?=base_url() . '/assets/css/'?>style.min.css" />
-<!--  --><?php //$files = glob('assets/css/*.css'); foreach($files as $file){ ?>
-<!--    <link rel="stylesheet" href="--><?//=base_url() . '/' . $file?><!--" />-->
-<!--  --><?php //} ?>
+<!--  <link rel="stylesheet" href="--><?//=base_url() . '/assets/css/'?><!--style.min.css" />-->
+  <?php $files = glob('assets/css/*.css'); foreach($files as $file){ if(strpos($file, 'style.min') === false){ ?>
+    <link rel="stylesheet" href="<?=base_url() . '/' . $file?>" />
+  <?php } } ?>
   <link rel="stylesheet" href="<?=base_url() . '/assets/'?>app.css" />
   <script type="text/javascript" src="<?=base_url() . '/'?>assets/jquery-2.2.3.min.js"></script>
-  <script type="text/javascript" src="<?=base_url() . '/'?>assets/js/script.min.js"></script>
-<!--  --><?php //$files = glob('assets/js/*.js'); foreach($files as $file){ ?>
-<!--    <script type="text/javascript" src="--><?//=base_url() . '/' . $file?><!--"></script>-->
-<!--  --><?php //} ?>
+<!--  <script type="text/javascript" src="--><?//=base_url() . '/'?><!--assets/js/script.min.js"></script>-->
+  <?php $files = glob('assets/js/*.js'); foreach($files as $file){  if(strpos($file, 'script.min') === false){ ?>
+    <script type="text/javascript" src="<?=base_url() . '/' . $file?>"></script>
+  <?php } } ?>
 </head>
 <body>
 

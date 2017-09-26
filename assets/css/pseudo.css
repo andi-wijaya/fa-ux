@@ -102,6 +102,10 @@
   .overflow-hidden{ overflow: hidden; }
   .ellipsis{ text-overflow: ellipsis; }
 
+  .wrapper{
+    margin: 0 auto;
+  }
+
   .padding3{ padding: 3px; }
   .padding5{ padding: 5px; }
   .padding8{ padding: 8px; }

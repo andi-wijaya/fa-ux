@@ -262,6 +262,7 @@ $.fn.extend({
       var instance = this;
       var options = $(instance).data('options');
       var src = $.val('src', options, { d:'' });
+      var method = $.val('method', options, { d:'post' });
 
       if(src.length > 0){
 
@@ -275,27 +276,52 @@ $.fn.extend({
           columns:columns
         };
 
-        $.api_post(src, el_params, function(response){
+        if(method.toString().toLowerCase() == 'get'){
+          $.api_get(src, el_params, function(response){
 
-          // Render data
-          var data = $.val('data', response, { d:[] });
-          var page = $.val('page', response, { d:1 });
-          var append = page == 1 ? false : true;
-          $(instance).grid_val(data, append);
+            // Render data
+            var data = $.val('data', response, { d:[] });
+            var page = $.val('page', response, { d:1 });
+            var append = page == 1 ? false : true;
+            $(instance).grid_val(data, append);
 
-          // Check if next page exists
-          var next_page = $.val('next_page', response, { d:page });
-          if(next_page > page){
-            $('.grid-footer', instance).html("<div class='load-more align-center padding10'>Load More...</div>");
-            $('.load-more', instance).on('click', function(){
-              $(instance).grid_load({ page:next_page });
-            });
-          }
-          else{
-            $('.grid-footer', instance).html("");
-          }
+            // Check if next page exists
+            var next_page = $.val('next_page', response, { d:page });
+            if(next_page > page){
+              $('.grid-footer', instance).html("<div class='load-more align-center padding10'>Load More...</div>");
+              $('.load-more', instance).on('click', function(){
+                $(instance).grid_load({ page:next_page });
+              });
+            }
+            else{
+              $('.grid-footer', instance).html("");
+            }
 
-        });
+          });
+        }
+        else{
+          $.api_post(src, el_params, function(response){
+
+            // Render data
+            var data = $.val('data', response, { d:[] });
+            var page = $.val('page', response, { d:1 });
+            var append = page == 1 ? false : true;
+            $(instance).grid_val(data, append);
+
+            // Check if next page exists
+            var next_page = $.val('next_page', response, { d:page });
+            if(next_page > page){
+              $('.grid-footer', instance).html("<div class='load-more align-center padding10'>Load More...</div>");
+              $('.load-more', instance).on('click', function(){
+                $(instance).grid_load({ page:next_page });
+              });
+            }
+            else{
+              $('.grid-footer', instance).html("");
+            }
+
+          });
+        }
 
         $('.grid-footer', this).html("<div class='align-center padding10'>Loading...</div>");
 

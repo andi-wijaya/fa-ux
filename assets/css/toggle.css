@@ -1,6 +1,6 @@
 @media screen{
 
-  .switch{
+  .toggle{
     display: inline-block;
     border: solid 1px #eee;
     background-color: #fff;
@@ -15,24 +15,24 @@
     vertical-align: middle;
     font-size: 13px;
   }
-  .switch.on{
+  .toggle.on{
     padding-left: 24px;
     background: #AAA;
     border: solid 1px rgba(0, 0, 0, .2);
   }
-  .switch.green.on{
+  .toggle.green.on{
     background: #A0D468;
   }
-  .switch.blue.on{
+  .toggle.blue.on{
     background: #3BAFDA;
   }
-  .switch.yellow.on{
+  .toggle.yellow.on{
     background: #FFCE54;
   }
-  .switch.red.on{
+  .toggle.red.on{
     background: #E9573F;
   }
-  .switch>.main-switch{
+  .toggle>.main-toggle{
 
     display: inline-block;
     height: 24px;
@@ -46,11 +46,11 @@
     box-shadow: 1px 1px 1px rgba(0, 0, 0, .2);
     
   }
-  .switch.on>.main-switch{
+  .toggle.on>.main-toggle{
     border: solid 1px rgba(0, 0, 0, .5);
     box-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
   }
-  .switch>.main-switch.on{
+  .toggle>.main-toggle.on{
 
     left: inherit;
     right: 0;
