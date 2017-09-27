@@ -2,10 +2,10 @@
 
 $response = [
   'data'=>[
-    [ 'text'=>'(All Countries)', 'value'=>'*' ],
-    [ 'text'=>'Indonesia', 'value'=>'indonesia' ],
-    [ 'text'=>'Malaysia', 'value'=>'malaysia' ],
-    [ 'text'=>'Singapore', 'value'=>'singapore' ],
+    [ 'text'=>'(All Countries)', 'value'=>'*', 'code'=>'All' ],
+    [ 'text'=>'Indonesia', 'value'=>'indonesia', 'code'=>'ID' ],
+    [ 'text'=>'Malaysia', 'value'=>'malaysia', 'code'=>'MY' ],
+    [ 'text'=>'Singapore', 'value'=>'singapore', 'code'=>'SG', ],
   ]
 ];
 

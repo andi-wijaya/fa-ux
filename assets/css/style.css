@@ -12,7 +12,6 @@
 
     border: solid 1px #eee;
     position: relative;
-    width: 100%;
     vertical-align: middle;
     overflow: hidden;
     border-radius: 6px;
@@ -41,9 +40,9 @@
   }
   .autocomplete>.text .icon-remove{
     position: absolute;
-    top: 8px;
+    top: 30%;
     right: 5px;
-    padding: 2px 5px;
+    padding: 2px;
     display: none;
     background: rgba(0, 0, 0, .3);
     color: #fff;
@@ -97,25 +96,31 @@
 }@media screen{
   
   button{
-    position: relative;
-    display: inline-block;
-    border: solid 1px #ddd;
-    margin: 0;
-    padding: 0;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    outline: none;
+    position: relative;
+    display: inline-block;
+    border: solid 1px #eee;
+    margin: 0;
     background: transparent;
-    padding: 7px;
-    vertical-align: top;
+    padding: 6px;
+    border-radius: 6px;
+    vertical-align: middle;
   }
-  button, button *{
-    vertical-align: sub !important;
+  button::-moz-focus-inner {
+    border: 0;
+  }
+  button::-webkit-focus-inner {
+    border: 0;
+  }
+  button>*{
+    display: inline !important;
   }
   button .glyphicons, button .fa{
     padding: 0;
-    margin: 0;
-    margin-right: 6px;
+    margin: 0 6px 0 0;
   }
   button:hover{
     border-color: #aaa;
@@ -426,12 +431,14 @@
 }@media screen{
 
   .datepicker{
-    display: inline-flex;
     vertical-align: middle;
     position: relative;
     border: solid 1px #eee;
     white-space: nowrap;
     align-items: center;
+    overflow: hidden;
+    width: 130px;
+    border-radius: 6px;
   }
   .datepicker:hover{
     border-color: #aaa;
@@ -439,12 +446,16 @@
   .datepicker input{
     background: transparent;
     border: none;
-    padding: 8px;
-    flex: 1 1 auto;
+    padding: 6px;
+    width: 100%;
+    padding: 6px 18px 6px 12px;
   }
   .datepicker .icon{
-    padding: 8px;
+    padding: 6px 12px;
     cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
   }
 
   /* READONLY */
@@ -485,6 +496,8 @@
     white-space: nowrap;
     overflow: hidden;
     vertical-align: top;
+    border-radius: 6px;
+    position: relative;
   }
   .dropdown:hover, .dropdown:active{
     border-color: #aaa;
@@ -492,24 +505,25 @@
   .dropdown>input{
     background: transparent;
     border: none;
-    padding: 8px;
+    padding: 6px;
     vertical-align: middle;
-    width: calc(100% - 28px);
     cursor: pointer;
   }
   .dropdown .icon{
     color: #aaa;
-    cursor: pointer;
-    padding: 8px;
-    width: 28px;
-    display: inline-block;
-    text-align: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right:0;
+    margin: auto;
+    padding: 0 12px;
+    height: 50%;
   }
   .dropdown.error{
     border-color: #E9573F;
   }
   .dropdown .item{
-    padding: 8px;
+    padding: 6px;
     text-align: left;
     border-top: solid 1px #eee;
   }
@@ -527,7 +541,7 @@
   .dropdown .popup .search-item input{
     border: solid 1px #eee;
     border-radius: 4px;
-    padding: 8px;
+    padding: 6px;
     width: 100%;
   }
 
@@ -1112,6 +1126,7 @@
     border: solid 1px #ddd;
     overflow-y: auto;
     overflow-x: hidden;
+    border-radius: 6px;
 
   }
 
@@ -1232,7 +1247,10 @@
 
   .padding3{ padding: 3px; }
   .padding5{ padding: 5px; }
+  .padding6{ padding: 6px; }
+  .padding7{ padding: 7px; }
   .padding8{ padding: 8px; }
+  .padding9{ padding: 9px; }
   .padding10{ padding: 10px; }
   .padding15{ padding: 15px; }
   .padding20{ padding: 20px; }
@@ -1265,11 +1283,16 @@
 }@media screen{
 
   .radio{
+    padding: 6px;
+  }
+  .radio>input{
     display: inline-block;
     vertical-align: middle;
+    margin-right: 5px;
   }
   .radio>label{
-    padding: 6px;
+    margin-right: 10px;
+    vertical-align: middle;
   }
 
 }@media screen{
@@ -1511,22 +1534,20 @@
 
   .textarea{
     border: solid 1px #eee;
-    display: inline-flex;
     background: #fff;
     position: relative;
     white-space: nowrap;
-    width: 100%;
     vertical-align: middle;
     overflow: hidden;
+    border-radius: 6px;
   }
   .textarea textarea{
     border: none;
-    padding: 8px;
+    padding: 6px;
     background: transparent;
     vertical-align: middle;
     width: 100%;
     background: transparent;
-    flex-grow: 1;
     resize: none;
     appearance: none;
     outline: none;
@@ -1547,10 +1568,11 @@
     white-space: nowrap;
     vertical-align: middle;
     overflow: hidden;
+    border-radius: 6px;
   }
   .textbox input{
     border: none;
-    padding: 8px;
+    padding: 6px;
     background: transparent;
     vertical-align: middle;
     background: transparent;

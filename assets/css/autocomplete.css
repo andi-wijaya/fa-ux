@@ -32,9 +32,9 @@
   }
   .autocomplete>.text .icon-remove{
     position: absolute;
-    top: 8px;
+    top: 30%;
     right: 5px;
-    padding: 2px 5px;
+    padding: 2px;
     display: none;
     background: rgba(0, 0, 0, .3);
     color: #fff;

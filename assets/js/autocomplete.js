@@ -33,6 +33,7 @@ $.fn.extend({
         var el = $(this).closest('.autocomplete');
         if($(el).hasClass('readonly')) return;
         var options = $(el).data('options');
+        var mapping = $.val('mapping', options, { d:null });
         var readonly = $.val('readonly', options);
 
         if(!readonly && src.length > 0){
@@ -47,8 +48,12 @@ $.fn.extend({
             if($.type(data) == 'array')
               for(var i = 0 ; i < data.length ; i++){
                 var item = data[i];
-                var value = $.val('value', item, { d:'' });
-                var text = $.val('text', item, { d:value });
+
+                var value_key = $.val('value', mapping, { d:'value' });
+                var text_key = $.val('text', mapping, { d:'text' });
+                var value = $.val(value_key, item, { d:'' });
+                var text = $.val(text_key, item, { d:value });
+                
                 html.push("<div class='item' data-value=\"" + value + "\">");
                 html.push("<label>" + text + "</label>");
                 html.push("</div>");

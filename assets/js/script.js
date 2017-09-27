@@ -33,6 +33,7 @@ $.fn.extend({
         var el = $(this).closest('.autocomplete');
         if($(el).hasClass('readonly')) return;
         var options = $(el).data('options');
+        var mapping = $.val('mapping', options, { d:null });
         var readonly = $.val('readonly', options);
 
         if(!readonly && src.length > 0){
@@ -47,8 +48,12 @@ $.fn.extend({
             if($.type(data) == 'array')
               for(var i = 0 ; i < data.length ; i++){
                 var item = data[i];
-                var value = $.val('value', item, { d:'' });
-                var text = $.val('text', item, { d:value });
+
+                var value_key = $.val('value', mapping, { d:'value' });
+                var text_key = $.val('text', mapping, { d:'text' });
+                var value = $.val(value_key, item, { d:'' });
+                var text = $.val(text_key, item, { d:value });
+                
                 html.push("<div class='item' data-value=\"" + value + "\">");
                 html.push("<label>" + text + "</label>");
                 html.push("</div>");
@@ -1411,6 +1416,8 @@ $.extend({
   datepicker: function (options) {
 
     var type = $.val('type', options);
+    var name = $.val('name', options, { d:'' });
+    var width = $.val('width', options, { d:'' });
 
     this.each(function(){
 
@@ -1423,7 +1430,12 @@ $.extend({
       $(el).addClass('datepicker');
       $(el).html(html.join(''));
       $(el).attr('data-type', 'datepicker');
+      if(name != '') $(el).attr('data-name', name);
       $(el).data('options', options);
+
+      var css = {};
+      if(!isNaN(parseInt(width))) css['width'] = width;
+      $(el).css(css);
 
       $('.icon', this).click(function(e){
         e.preventDefault();
