@@ -1,25 +1,24 @@
 @media screen{
   
   button{
-    position: relative;
-    display: inline-block;
-    border: solid 1px #ddd;
-    margin: 0;
-    padding: 0;
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    position: relative;
+    display: inline-block;
+    border: solid 1px #eee;
+    margin: 0;
     background: transparent;
-    padding: 6px;
-    vertical-align: top;
+    padding: 5px;
+    border-radius: 6px;
+    vertical-align: middle;
   }
-  button, button *{
-    vertical-align: sub !important;
+  button>*{
+    display: inline !important;
   }
   button .glyphicons, button .fa{
     padding: 0;
-    margin: 0;
-    margin-right: 6px;
+    margin: 0 6px 0 0;
   }
   button:hover{
     border-color: #aaa;
