@@ -3,6 +3,7 @@ $.fn.extend({
   datepicker: function (options) {
 
     var type = $.val('type', options);
+    var name = $.val('name', options, { d:'' });
     var width = $.val('width', options, { d:'' });
 
     this.each(function(){
@@ -16,6 +17,7 @@ $.fn.extend({
       $(el).addClass('datepicker');
       $(el).html(html.join(''));
       $(el).attr('data-type', 'datepicker');
+      if(name != '') $(el).attr('data-name', name);
       $(el).data('options', options);
 
       var css = {};

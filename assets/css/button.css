@@ -4,14 +4,21 @@
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
+    outline: none;
     position: relative;
     display: inline-block;
     border: solid 1px #eee;
     margin: 0;
     background: transparent;
-    padding: 5px;
+    padding: 6px;
     border-radius: 6px;
     vertical-align: middle;
+  }
+  button::-moz-focus-inner {
+    border: 0;
+  }
+  button::-webkit-focus-inner {
+    border: 0;
   }
   button>*{
     display: inline !important;
