@@ -3,6 +3,7 @@ $.fn.extend({
   datepicker: function (options) {
 
     var type = $.val('type', options);
+    var width = $.val('width', options, { d:'' });
 
     this.each(function(){
 
@@ -16,6 +17,10 @@ $.fn.extend({
       $(el).html(html.join(''));
       $(el).attr('data-type', 'datepicker');
       $(el).data('options', options);
+
+      var css = {};
+      if(!isNaN(parseInt(width))) css['width'] = width;
+      $(el).css(css);
 
       $('.icon', this).click(function(e){
         e.preventDefault();

@@ -8,10 +8,11 @@
     white-space: nowrap;
     vertical-align: middle;
     overflow: hidden;
+    border-radius: 6px;
   }
   .textbox input{
     border: none;
-    padding: 8px;
+    padding: 6px;
     background: transparent;
     vertical-align: middle;
     background: transparent;
