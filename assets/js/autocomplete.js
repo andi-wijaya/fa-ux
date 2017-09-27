@@ -60,7 +60,7 @@ $.fn.extend({
               var text = $('label', this).text();
               var obj = { value:value, text:text };
 
-              $(el).autocomplete_val(obj);
+              $(el).autocomplete_val(obj, true);
             });
             $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
 
@@ -99,7 +99,7 @@ $.fn.extend({
         }
 
       })
-      return value.length == 1 ? value[0] : (value.length > 1 ? value : '');
+      return value.join(',');
 
     }
 
@@ -121,15 +121,27 @@ $.fn.extend({
 
         if(multiple){
 
-          var clear = typeof arg1 != 'undefined' && arg1 === true ? true : false;
-          if(clear) $('.text', this).remove();
+          var append = typeof arg1 != 'undefined' && arg1 === true ? true : false;
+          if(!append == true)
+            $('.text', this).remove();
 
           var current_val = $(this).val();
-          if(!$.in_array(value, current_val) && value !== ''){
-            $("<span class='text' data-value=\"" + value + "\">" + text + "<span class='icon-remove glyphicons glyphicons-remove'></span></span>").insertBefore($('input', this));
-            $('.glyphicons-remove', $('input', this).prev()).on('click', function(){
-              $(this).parent().remove();
-            })
+          current_val = current_val.split(',');
+
+          value = value.split(",");
+          text = text.split(",");
+
+          for(var i = 0 ; i < value.length ; i++){
+            var ivalue = value[i];
+            var itext = typeof text[i] != 'undefined' ? text[i] : ivalue;
+
+            if(!$.in_array(ivalue.toLowerCase(), current_val) && ivalue !== ''){
+              $("<span class='text' data-value=\"" + ivalue + "\">" + itext + "<span class='icon-remove glyphicons glyphicons-remove'></span></span>").insertBefore($('input', this));
+              $('.glyphicons-remove', $('input', this).prev()).on('click', function(){
+                $(this).parent().remove();
+              })
+            }
+
           }
 
           $('input', this).val('');
