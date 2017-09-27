@@ -32,7 +32,7 @@
     border-color: #E9573F;
   }
   .dropdown .item{
-    padding: 8px;
+    padding: 6px;
     text-align: left;
     border-top: solid 1px #eee;
   }
@@ -50,7 +50,7 @@
   .dropdown .popup .search-item input{
     border: solid 1px #eee;
     border-radius: 4px;
-    padding: 8px;
+    padding: 6px;
     width: 100%;
   }
 
