@@ -1,11 +1,16 @@
 @media screen{
 
   .radio{
+    padding: 6px;
+  }
+  .radio>input{
     display: inline-block;
     vertical-align: middle;
+    margin-right: 5px;
   }
   .radio>label{
-    padding: 6px;
+    margin-right: 10px;
+    vertical-align: middle;
   }
 
 }
