@@ -34,7 +34,8 @@ $.fn.extend({
       $(this).addClass('radio');
       $(this).addClass(className);
       $(this).attr({
-        'data-type':'radio'
+        'data-type':'radio',
+        'data-name':name
       });
       $(this).html(html.join(''));
 

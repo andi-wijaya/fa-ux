@@ -7,6 +7,7 @@
     vertical-align: top;
     border-radius: 6px;
     position: relative;
+    vertical-align: middle;
   }
   .dropdown:hover, .dropdown:active{
     border-color: #aaa;

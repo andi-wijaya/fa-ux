@@ -1,4 +1,4 @@
-<div class="content bg-white padding20 container">
+<div class="content bg-white padding20 container" style="line-height: 3em;">
 
   <h1>Playground</h1>
   <div class="height50"></div>
@@ -12,10 +12,9 @@
   <button><span class="glyphicons glyphicons-activity"></span>Activity</button>
   <button class="button1 blue">Execute</button>
   <button class="blue"><span class="glyphicons glyphicons-activity"></span>Activity</button>
-
-  <div class="height20"></div>
-
   <span id="autocomplete2"></span>
+  <span id="radio1"></span>
+  <span id="toggle1"></span>
 
 </div>
 
@@ -34,6 +33,8 @@
     })
 
     $('#autocomplete2').autocomplete({ name:"autocomplete1", multiple:true, placeholder:"Autocomplete", src:"/fa-ux/data/seo_country_filter.php" });
+    $('#radio1').radio({ name:"radio1", items:[{ text:"Radio-1", value:"1" }, { text:"Radio-2", value:"2" }, { text:"Radio-3", value:"3" }] });
+    $('#toggle1').toggle({ name:"toggle1" });
 
   })
 
