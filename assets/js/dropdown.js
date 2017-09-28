@@ -4,8 +4,8 @@ $.fn.extend({
 
     var className = $.val('class', options, { d:'' });
     var name = $.val('name', options, { d:'' });
-    var defaultvalue = $.val('defaultvalue', options, { d:'' });
-    var value = $.val('value', options, { d:defaultvalue });
+    var default_value = $.val('default_value', options, { d:'' });
+    var value = $.val('value', options, { d:default_value });
     var items = $.val('items', options, { d:[] });
     var width = $.val('width', options, { d:[] });
     var src = $.val('src', options, { d:'' });
@@ -297,8 +297,8 @@ $.fn.extend({
     $(this).each(function(){
 
       var options = $(this).data('options');
-      var defaultvalue = $.val('defaultvalue', options, { d:'' });
-      $(this).dropdown_val(defaultvalue);
+      var default_value = $.val('default_value', options, { d:'' });
+      $(this).dropdown_val(default_value);
 
     })
 

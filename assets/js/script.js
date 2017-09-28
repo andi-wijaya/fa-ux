@@ -1512,15 +1512,15 @@ $.extend({
 
     var className = $.val('class', options, { d:'' });
     var name = $.val('name', options, { d:'' });
-    var defaultvalue = $.val('defaultvalue', options, { d:'' });
-    var value = $.val('value', options, { d:defaultvalue });
+    var default_value = $.val('default_value', options, { d:'' });
+    var value = $.val('value', options, { d:default_value });
     var items = $.val('items', options, { d:[] });
     var width = $.val('width', options, { d:[] });
     var src = $.val('src', options, { d:'' });
     var placeholder = $.val('placeholder', options, { d:'' });
 
     var html = [];
-    html.push("<input class='text' type='text' placeholder=\"" + placeholder + "\" readonly/>");
+    html.push("<input class='text' placeholder=\"" + placeholder + "\" readonly/>");
     html.push("<span class='icon fa fa-caret-down hoverable'></span>");
     html.push("<span class='popup'></span>");
 
@@ -1556,7 +1556,7 @@ $.extend({
         }
       });
 
-      if(value != '') $(el).dropdown_val();
+      if(value != '') $(el).dropdown_val(value);
       if(src.length > 0)
         $(this).dropdown_load();
 
@@ -1730,7 +1730,6 @@ $.extend({
 
         options['items'] = items;
         $(el).data('options', options);
-        $(el).dropdown_val('*');
 
       })
 
@@ -1806,8 +1805,8 @@ $.extend({
     $(this).each(function(){
 
       var options = $(this).data('options');
-      var defaultvalue = $.val('defaultvalue', options, { d:'' });
-      $(this).dropdown_val(defaultvalue);
+      var default_value = $.val('default_value', options, { d:'' });
+      $(this).dropdown_val(default_value);
 
     })
 
@@ -2522,7 +2521,8 @@ $.extend({
 
         var className = 'label' + (!column_active ? ' inactive' : '');
 
-        html.push("<td class='" + className + "' style='width:" + column_width + ";text-align:" + text_align + "' data-key=\"" + column_name + "\">" + column_text + "<span class='separator'></span></span></td>");
+        html.push("<td class='" + className + "' style='width:" + column_width + ";text-align:" + text_align + "' data-key=\"" + column_name + "\">" + column_text +
+          "<span class='separator'><span class='dot'></span><span class='dot'></span><span class='dot'></span></span></td>");
 
       }
       html.push("<td style='width:100%'></td>");
@@ -3353,7 +3353,8 @@ $.fn.extend({
       $(this).addClass('radio');
       $(this).addClass(className);
       $(this).attr({
-        'data-type':'radio'
+        'data-type':'radio',
+        'data-name':name
       });
       $(this).html(html.join(''));
 
@@ -3873,7 +3874,8 @@ $.extend({
 
     var className = $.val('class', options, { d:'' });
     var name = $.val('name', options, { d:'' });
-    var value = $.val('value', options, { d:false });
+    var default_value = $.val('default_value', options, { d:false });
+    var value = $.val('value', options, { d:default_value });
 
     this.each(function(){
 
@@ -5305,7 +5307,7 @@ $.extend({
     if(typeof val != 'undefined' && (parseInt(val) == 1 || val === true)) return true;
     return false;
 
-  }
+  },
 
 });
 

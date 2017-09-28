@@ -498,6 +498,7 @@
     vertical-align: top;
     border-radius: 6px;
     position: relative;
+    vertical-align: middle;
   }
   .dropdown:hover, .dropdown:active{
     border-color: #aaa;
@@ -672,9 +673,6 @@
     width: 100%;
     overflow-x: hidden;
   }
-  .grid *{
-    font-size: 13px;
-  }
   .grid>table{
     table-layout: fixed;
     width: 100%;
@@ -695,9 +693,17 @@
     border-right: none;
   }
   .grid td.label{
-    padding: 8px;
+    padding: 6px;
   }
 
+  .grid-body tr{
+  }
+  .grid-body td{
+    border-bottom: solid 1px #eee;
+  }
+  .grid-size td{
+    border-bottom-color: transparent;
+  }
   .grid-body tr:hover{
 
   }
@@ -737,7 +743,7 @@
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
-    border-bottom: solid 1px #e5e5e5;
+    border-bottom: solid 1px #ddd;
   }
   .gridhead td{
     white-space: nowrap;
@@ -746,7 +752,7 @@
     text-overflow: ellipsis;
   }
   .gridhead td.label{
-    padding: 8px;
+    padding: 6px;
     cursor: pointer;
     -moz-transition: background-color 300ms ease-in;
     -webkit-transition: background-color 300ms ease-in;
@@ -768,13 +774,17 @@
   .grid-head td.label .separator{
     position: absolute;
     bottom: 0;
-    top: 0;
+    top: 30%;
     right: 0;
-    width: 13px;
-    background: transparent;
     cursor: e-resize;
-    display: inline-block;
-    border-right: solid 1px #e5e5e5;
+  }
+  .grid-head td.label .separator .dot{
+    width: 2px;
+    height: 2px;
+    margin: 2px;
+    border-radius: 4px;
+    background: #ddd;
+    display: block;
   }
 
 }@media screen{
@@ -1735,7 +1745,7 @@
   
   *{
     font-family: 'PT Sans', sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -1787,7 +1797,7 @@
     font-weight: 600;
   }
   small{
-    font-size: 11px;
+    font-size: 13px;
   }
 
   span{

@@ -4,7 +4,8 @@ $.fn.extend({
 
     var className = $.val('class', options, { d:'' });
     var name = $.val('name', options, { d:'' });
-    var value = $.val('value', options, { d:false });
+    var default_value = $.val('default_value', options, { d:false });
+    var value = $.val('value', options, { d:default_value });
 
     this.each(function(){
 

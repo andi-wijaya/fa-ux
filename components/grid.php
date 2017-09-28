@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content bg-white padding10">
 
   <h1>Grid</h1>
   <br /><br /><br />
@@ -39,16 +39,16 @@
   function col0(obj){
 
     var html = [];
-    html.push("<span class='glyphicons glyphicons-barcode padding5 selectable'></span>");
-    html.push("<span class='glyphicons glyphicons-alarm padding5 selectable'></span>");
-    html.push("<span class='glyphicons glyphicons-activity padding5 selectable'></span>");
+    html.push("<span class='glyphicons glyphicons-menu-hamburger padding5 selectable'></span>");
+    html.push("<span class='glyphicons glyphicons-remove padding5 selectable'></span>");
+    html.push("<span class='glyphicons glyphicons-play padding5 selectable'></span>");
     $(this).html(html.join(''));
 
   }
 
   function col1(obj){
 
-    $(this).html("<div class='align-center'><span class='image'></span></div>");
+    $(this).html("<div class='align-center padding5'><span class='image'></span></div>");
     $('.image', this).image({
       value:obj['imageurl']
     })

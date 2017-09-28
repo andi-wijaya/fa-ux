@@ -5,9 +5,6 @@
     width: 100%;
     overflow-x: hidden;
   }
-  .grid *{
-    font-size: 13px;
-  }
   .grid>table{
     table-layout: fixed;
     width: 100%;
@@ -28,9 +25,17 @@
     border-right: none;
   }
   .grid td.label{
-    padding: 8px;
+    padding: 6px;
   }
 
+  .grid-body tr{
+  }
+  .grid-body td{
+    border-bottom: solid 1px #eee;
+  }
+  .grid-size td{
+    border-bottom-color: transparent;
+  }
   .grid-body tr:hover{
 
   }

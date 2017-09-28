@@ -1334,7 +1334,7 @@ $.extend({
     if(typeof val != 'undefined' && (parseInt(val) == 1 || val === true)) return true;
     return false;
 
-  }
+  },
 
 });
 

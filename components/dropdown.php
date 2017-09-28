@@ -25,6 +25,27 @@
     </script>
   </div>
 
+  <div>
+    <label class="padding8">Simple Dropdown with Default Value</label>
+    <div></div>
+    <span id="dropdown5"></span>
+    <script id="script1">
+      $(function(){
+        $('#dropdown5').dropdown({
+          width:"200px",
+          items:[
+            { text:"Dropdown-1", value:"1" },
+            { text:"Dropdown-2", value:"2" },
+            { text:"Dropdown-3", value:"3" },
+            { text:"Dropdown-4", value:"4" },
+            { text:"Dropdown-5", value:"5" },
+          ],
+          value:"5"
+        });
+      })
+    </script>
+  </div>
+
   <div class="height20"></div>
 
   <div>
