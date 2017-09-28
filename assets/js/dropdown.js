@@ -12,7 +12,7 @@ $.fn.extend({
     var placeholder = $.val('placeholder', options, { d:'' });
 
     var html = [];
-    html.push("<input class='text' type='text' placeholder=\"" + placeholder + "\" readonly/>");
+    html.push("<input class='text' placeholder=\"" + placeholder + "\" readonly/>");
     html.push("<span class='icon fa fa-caret-down hoverable'></span>");
     html.push("<span class='popup'></span>");
 
@@ -48,7 +48,7 @@ $.fn.extend({
         }
       });
 
-      if(value != '') $(el).dropdown_val();
+      if(value != '') $(el).dropdown_val(value);
       if(src.length > 0)
         $(this).dropdown_load();
 
@@ -222,7 +222,6 @@ $.fn.extend({
 
         options['items'] = items;
         $(el).data('options', options);
-        $(el).dropdown_val('*');
 
       })
 
