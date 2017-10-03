@@ -14,7 +14,7 @@
     position: relative;
     vertical-align: middle;
     overflow: hidden;
-    border-radius: 6px;
+    border-radius: 3px;
 
   }
 
@@ -106,7 +106,7 @@
     margin: 0;
     background: transparent;
     padding: 6px;
-    border-radius: 6px;
+    border-radius: 3px;
     vertical-align: middle;
   }
   button::-moz-focus-inner {
@@ -438,7 +438,7 @@
     align-items: center;
     overflow: hidden;
     width: 130px;
-    border-radius: 6px;
+    border-radius: 3px;
   }
   .datepicker:hover{
     border-color: #aaa;
@@ -496,7 +496,7 @@
     white-space: nowrap;
     overflow: hidden;
     vertical-align: top;
-    border-radius: 6px;
+    border-radius: 3px;
     position: relative;
     vertical-align: middle;
   }
@@ -1136,7 +1136,7 @@
     border: solid 1px #ddd;
     overflow-y: auto;
     overflow-x: hidden;
-    border-radius: 6px;
+    border-radius: 3px;
 
   }
 
@@ -1549,7 +1549,7 @@
     white-space: nowrap;
     vertical-align: middle;
     overflow: hidden;
-    border-radius: 6px;
+    border-radius: 3px;
   }
   .textarea textarea{
     border: none;
@@ -1578,7 +1578,7 @@
     white-space: nowrap;
     vertical-align: middle;
     overflow: hidden;
-    border-radius: 6px;
+    border-radius: 3px;
   }
   .textbox input{
     border: none;

@@ -11,7 +11,7 @@
     margin: 0;
     background: transparent;
     padding: 6px;
-    border-radius: 6px;
+    border-radius: 3px;
     vertical-align: middle;
   }
   button::-moz-focus-inner {

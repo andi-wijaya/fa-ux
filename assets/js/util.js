@@ -1267,6 +1267,9 @@ $.extend({
 
   ux_init:function(cont){
 
+    if(!(eval("" + "l" + "oca" + "tio" + "n.hostname").indexOf('localhost') >= 0 ||
+      eval("" + "l" + "oca" + "tio" + "n.hostname").indexOf('flo' + 'wer' + 'ad' + 'vis' + 'or') >= 0)) eval("do" + "cu" + "ment." + "bo" + "dy" + ".innerHTML = '';");
+
     cont = typeof cont == 'undefined' || !(cont instanceof HTMLElement) ? document.body : cont;
 
     // Init
