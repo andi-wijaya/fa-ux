@@ -24,6 +24,12 @@ session_start();
 </head>
 <body>
 
+<script type="text/javascript">
+  $(function(){
+    $('.content').css({ 'margin-left':$('.sidebar').outerWidth() + "px" });
+  })
+</script>
+
 <div class="sidebar padding10" style="width:150px">
   <ul class="nav" style="width:150px;">
     <?php $files = glob(__DIR__ . '/components/*.php'); foreach($files as $file){ ?>
@@ -43,16 +49,6 @@ session_start();
   if(file_exists($_GET['url'] . '.php'))
     include $_GET['url'] . '.php';
 ?>
-
-<script type="text/javascript">
-
-  $(function(){
-
-    $('.content').css({ 'margin-left':$('.sidebar').outerWidth() + "px" });
-
-  })
-
-</script>
 
 </body>
 </html>

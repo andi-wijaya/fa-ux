@@ -2,8 +2,9 @@
 
 $post_data = json_decode(file_get_contents('php://input'), true);
 $page = isset($post_data['page']) ? $post_data['page'] : 1;
+$row_per_page = isset($post_data['row_per_page']) ? $post_data['row_per_page'] : 10;
 
-$data = [
+$sample_data = [
   [
     'id'=>1,
     'code'=>'FA105303',
@@ -26,6 +27,15 @@ $data = [
     'imageurl'=>'https://d3gv02tnixa5js.cloudfront.net/florist/AS-BearAphroditeDN.jpg',
   ],
 ];
+
+$offset = ($page - 1) * $row_per_page;
+
+$data = [];
+for($i = 0 ; $i < $row_per_page ; $i++){
+  $obj = $sample_data[rand(0, count($sample_data) - 1)];
+  $obj['id'] = $offset + $i;
+  $data[] = $obj;
+}
 
 $result = [
   'data'=>$data,

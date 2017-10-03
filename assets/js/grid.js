@@ -12,7 +12,6 @@ $.fn.extend({
     var key = $.val('key', options, { d:"" });
 
     options['page'] = 0;
-    options['row_per_page'] = 12;
 
     this.each(function(){
 
@@ -200,83 +199,6 @@ $.fn.extend({
 
   },
 
-  grid_append:function(obj, ext){
-
-    this.each(function() {
-
-      var el = this;
-      var table = el.querySelector('.grid-body');
-      var options = $(el).data('options');
-      var src = $.val('src', options, { d:'' });
-      var onselect = $.val('onselect', options);
-      var columns = $.val('columns', options, { d:[] });
-
-      var page = $.val('page', obj, { d:1 });
-      var row_per_page = $.val('row_per_page', obj, { d:10 });
-      var max_page = $.val('max_page', obj, { d:page });
-      var data = $.val('data', obj);
-
-      if(typeof options['data'] == 'undefined') options['data'] = [];
-
-      var tbody = document.createElement('tbody');
-      $(tbody).html($.grid_html(data, columns, options['data'].length));
-      $(table).append(tbody);
-
-      $("td[data-gridtype='html']", tbody).each(function(){
-
-        var coord = $(this).attr('data-gridtypecoord').split(',');
-        var i = parseInt(coord[0]);
-        var j = parseInt(coord[1]);
-        var obj = data[i];
-        var column = columns[j];
-        var column_html = $.val('html', column, { d:'' });
-        $.fire_event(column_html, [ obj, column ], this);
-
-      });
-
-      $('tr', tbody).click(function(){
-
-        var table = $(this).closest('table');
-        $('.active', table).removeClass('active');
-        $(this).addClass('active');
-        var idx = $(this).attr('data-idx');
-        var obj = options.data[idx];
-        $.fire_event(onselect, [ obj ], el);
-
-      });
-
-      $('.grid-more', el).remove();
-      if(max_page > page){
-        $(el).append("<div class='grid-more' data-page='" + page + "'><label class='cl-gray'>Load more...</label></div>");
-        $('.grid-more', el).click(function(){
-          var page = parseInt($(this).attr('data-page'));
-          var onloadmore = $.val('onloadmore', options);
-          $(this).html("<i class='fa fa-circle-o-notch fa-spin fa-fw cl-gray'></i>");
-          if(src != ''){
-            $(el).grid_load();
-          }
-          $.fire_event(onloadmore, [ { page:page } ], el);
-        });
-        $('.grid-more', el).appear(function(){
-          var page = parseInt($(this).attr('data-page'));
-          var onloadmore = $.val('onloadmore', options);
-          $(this).html("<i class='fa fa-circle-o-notch fa-spinfa-fw cl-gray'></i>");
-          if(src != ''){
-            $(el).grid_load();
-          }
-          $.fire_event(onloadmore, [ { page:page } ], el);
-        });
-      }
-
-      for(var i = 0 ; i < data.length ; i++)
-        options['data'].push(data[i]);
-      $(el).data('options', options);
-
-    });
-
-
-  },
-
   grid_load:function(params){
 
     this.each(function(){
@@ -289,7 +211,7 @@ $.fn.extend({
       if(src.length > 0){
 
         var page = $.val('page', params, { d:1 });
-        var row_per_page = $.val('row_per_page', params, { d:10 });
+        var row_per_page = $.val('row_per_page', options, { d:10 });
         var columns = $.val('columns', options);
 
         var el_params = {
