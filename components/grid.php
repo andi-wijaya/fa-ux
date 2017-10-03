@@ -32,6 +32,7 @@
       columns:columns,
       src:"/fa-ux/data/sample_grid.php",
       method:"post",
+      key:"code"
     });
 
   })
@@ -43,6 +44,20 @@
     html.push("<span class='glyphicons glyphicons-remove padding5 selectable'></span>");
     html.push("<span class='glyphicons glyphicons-play padding5 selectable'></span>");
     $(this).html(html.join(''));
+
+    $('.glyphicons-remove', this).on('click', function(){
+      if(confirm('Remove this?')){
+        $('#sample2').grid_remove(obj);
+      }
+    });
+
+    $('.glyphicons-play', this).on('click', function(){
+
+      $('#sample2').grid_modify(obj, {
+        description:'Modified on ' + new Date().getTime()
+      });
+
+    })
 
   }
 

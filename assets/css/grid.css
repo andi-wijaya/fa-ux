@@ -1,8 +1,6 @@
 @media screen{
 
   .grid{
-    display: block;
-    width: 100%;
     overflow-x: hidden;
   }
   .grid>table{
@@ -16,48 +14,47 @@
     -ms-text-overflow: ellipsis;
     text-overflow: ellipsis;
     vertical-align: middle;
-    border: solid 1px transparent;
-  }
-  .grid td:first-child{
-    border-left: none;
-  }
-  .grid td:last-child{
-    border-right: none;
   }
   .grid td.label{
     padding: 6px;
   }
-
-  .grid-body tr{
-  }
-  .grid-body td{
-    border-bottom: solid 1px #eee;
-  }
-  .grid-size td{
-    border-bottom-color: transparent;
-  }
-  .grid-body tr:hover{
-
-  }
-  .grid-body tr.active{
-    background: #f5f5f5;
-  }
-  .grid-body tr.active td{
-  }
-
   .grid .grid-size-label{
     padding: 0 8px;
   }
-  .grid .grid-size-label.inactive{
-    width: 0 !important;
-    border: none !important;
-    padding: 0 !important;
-  }
 
-  .grid-more{
+
+  /* BEGIN STYLE 1 */
+  .grid.style1 td{
+    border: solid 1px transparent;
+  }
+  .grid.style1 td:first-child{
+    border-left: none;
+  }
+  .grid.style1 td:last-child{
+    border-right: none;
+  }
+  .grid.style1 .grid-body td{
+    border-bottom: solid 1px #eee;
+  }
+  .grid.style1 .grid-size td{
+    border-bottom-color: transparent;
+  }
+  .grid.style1 .grid-body tr.active{
+    background: #f5f5f5;
+  }
+  .grid.style1 .grid-body tr.highlight{
+    background: #e8f4f8;
+  }
+  .grid.style1 .grid-more{
     text-align: center;
     border: none;
     padding: 10px 20px 10px 20px;
   }
+  .grid.style1 .grid-size-label.inactive{
+    width: 0 !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+  /* END STYLE 1 */
 
 }

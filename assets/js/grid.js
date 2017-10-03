@@ -4,11 +4,12 @@ $.fn.extend({
 
     var autoload = $.val('autoload', options, { d:true });
     var columns = $.val('columns', options, { d:[] });
-    var className = $.val('class', options, { d:null });
+    var className = $.val('class', options, { d:'style1' });
     var name = $.val('name', options, { d:'' });
     var footer = $.val('footer', options, { d:'' });
     var value = $.val('value', options, { d:null });
     var height = $.val('height', options, { d:"auto" });
+    var key = $.val('key', options, { d:"" });
 
     options['page'] = 0;
     options['row_per_page'] = 12;
@@ -43,105 +44,67 @@ $.fn.extend({
 
   },
 
-  grid_add:function(obj){
+  grid_remove:function(obj){
 
-    this.each(function(){
+    if(typeof obj == 'undefined') return;
 
-      var el = this;
-      var table = el.querySelector('.grid-body');
-      var options = $(el).data('options');
-      var columns = $.val('columns', options, { d:[] });
+    $(this).each(function(){
 
-      var html = [];
+      if($.type(obj) == 'object'){
+        var options = $(this).data('options');
+        var key = $.val('key', options, { d:'' });
+        key = key.split(',');
 
-      if($('.grid-size', table).length == 0){
-        var html_size = [];
-        html_size.push("<tr class='grid-size'>");
-        for(var i = 0 ; i < columns.length ; i++){
-          var column = columns[i];
-          var column_width = $.val('width', column, { d:'' });
-          html_size.push("<td style='width:" + column_width + ";'></td>");
-          html_size.push("<td class='separator'></td>");
-        }
-        html_size.push("<td style='width:100%'></td>");
-        html_size.push("</tr>");
-        html.push(html_size.join(''));
+        var obj_key = [];
+        for(var j = 0 ; j < key.length ; j++)
+          if(key[j].length > 0 && typeof obj[key[j]] != 'undefined')
+            obj_key.push(obj[key[j]]);
+        obj_key = obj_key.join('');
+        $("tr[data-key=\"" + obj_key + "\"]", this).remove();
       }
 
-      html.push("<tr>");
-      for(var j = 0 ; j < columns.length ; j++){
-        var column = columns[j];
-        var column_type = $.val('type', column, { d:'text' });
-        var column_datatype = $.val('datatype', column, { d:'text' });
-        var column_name = $.val('name', column, { d:'' });
-        var column_width = $.val('width', column, { d:'' });
-        var column_align = $.val('align', column, { d:'' });
-
-        var text_align = '';
-        var td_class = '';
-        var column_value = '';
-        switch(column_type){
-          case 'index':
-            column_value = i + 1;
-            text_align = 'right';
-            td_class = 'label';
-            break;
-          case 'html':
-            gridtypecoord = 0 + ',' + j;
-            break;
-          default:
-
-            switch(column_datatype){
-              case 'number':
-              case 'money':
-                text_align = 'right';
-                column_value = $.val(column_name, obj, { d:0 });
-                break;
-              case 'enum':
-                var column_enums = $.val('enums', column, { d:{} });
-                column_value = $.val(column_name, obj, { d:'-' });
-                column_value = $.val(column_value, column_enums, { d:'-' });
-                break;
-              default:
-                column_value = $.val(column_name, obj, { d:'-' });
-                break;
-            }
-            td_class = 'label';
-            break;
-        }
-
-        if(column_align != '') text_align = column_align;
-
-        html.push("<td data-gridtype='" + column_type + "' data-gridtypecoord='" + gridtypecoord + "' class='" + td_class + "' style='text-align:" + text_align + "'>" + column_value + "</td>");
-        html.push("<td class='separator'></td>");
-      }
-      html.push("<td></td>");
-      html.push("</tr>");
-      $('tbody', table).append(html.join(''));
-
-      $("td[data-gridtype='html']", $('tr', $('tbody', table)).last()).each(function(){
-        var coord = $(this).attr('data-gridtypecoord').split(',');
-        var j = parseInt(coord[1]);
-        var column = columns[j];
-        var column_html = $.val('html', column, { d:'' });
-        $.fire_event(column_html, [ obj, column ], this);
-      });
-
-    });
+    })
 
   },
 
-  grid_remove:function(tr){
+  grid_modify:function(oldObj, newObj){
 
-    var instance = this;
-    $(tr).each(function(){
+    if(typeof oldObj == 'undefined') return;
+    if(typeof newObj == 'undefined' && !$.type(newObj) == 'object') return;
 
-      var grid0 = $(this).closest('.grid');
-      grid0 = typeof grid0[0] != 'undefined' ? grid0[0] : -2;
-      var grid1 = typeof instance[0] != 'undefined' ? instance[0] : -1;
+    $(this).each(function(){
 
-      if(grid0 == grid1){
-        $(this).remove();
+      if($.type(oldObj) == 'object'){
+
+        var options = $(this).data('options');
+        var columns = $.val('columns', options, { d:[] });
+        var key = $.val('key', options, { d:'' });
+        key = key.split(',');
+
+        var obj_key = [];
+        for(var j = 0 ; j < key.length ; j++)
+          if(key[j].length > 0 && typeof oldObj[key[j]] != 'undefined')
+            obj_key.push(oldObj[key[j]]);
+        obj_key = obj_key.join('');
+
+        for(var key in newObj)
+          oldObj[key] = newObj[key];
+
+        $("tr[data-key=\"" + obj_key + "\"]", this).html($.grid_row(columns, oldObj)).each(function(){
+          var column_idx = 0;
+          $('td', this).each(function(){
+            var td = this;
+            var column_type = td.getAttribute('data-column-type');
+            if(column_type == 'html'){
+              var column = columns[column_idx];
+              var column_html = $.val('html', column, { d:'' });
+              $.fire_event(column_html, [ oldObj, column ], td);
+            }
+            column_idx++;
+          })
+          $(this).addClass('highlight');
+        })
+
       }
 
     })
@@ -371,7 +334,7 @@ $.fn.extend({
 
         var tbody = document.createElement('tbody');
         tbody.className = "grid-content";
-        tbody.innerHTML = $.grid_html(value, columns);
+        tbody.innerHTML = $.grid_html(value, options);
         if(typeof append == 'undefined' || append !== true) $('.grid-content', instance).remove();
         $('.grid-body', instance).append(tbody);
 
@@ -392,6 +355,8 @@ $.fn.extend({
 
         // On click event
         $('tr', tbody).on('click.gridrow', function(e){
+
+          $(this).removeClass('highlight');
 
           var table = $(this).closest('table');
           $('.active', table).removeClass('active');
@@ -425,67 +390,87 @@ $.fn.extend({
 
 $.extend({
 
-  grid_html:function(data, columns){
+  grid_html:function(data, options){
 
     if(!data) return;
+
+    var columns = $.val('columns', options, { d:[] });
+    var key = $.val('key', options, { d:'' });
+    key = key.split(',');
 
     var html = [];
     for(var i = 0 ; i < data.length ; i++){
       var obj = data[i];
 
-      html.push("<tr>");
-      for(var j = 0 ; j < columns.length ; j++){
+      var obj_key = [];
+      for(var j = 0 ; j < key.length ; j++)
+        if(key[j].length > 0 && typeof obj[key[j]] != 'undefined')
+          obj_key.push(obj[key[j]]);
+      obj_key = obj_key.join('');
 
-        var column = columns[j];
-        var column_type = $.val('type', column, { d:'text' });
-        var column_datatype = $.val('datatype', column, { d:'text' });
-        var column_name = $.val('name', column, { d:'' });
-        var column_align = $.val('align', column, { d:'' });
-
-        var text_align = '';
-        var td_class = '';
-        var column_value = '';
-        switch(column_type){
-          case 'html':
-            break;
-          default:
-
-            switch(column_datatype){
-              case 'number':
-              case 'money':
-                text_align = 'right';
-                column_value = $.val(column_name, obj, { d:0 });
-                column_value = $.number_format(column_value);
-                break;
-              case 'enum':
-                var column_enums = $.val('enums', column, { d:{} });
-                column_value = $.val(column_name, obj, { d:'-' });
-                column_value = $.val(column_value, column_enums, { d:'-' });
-                break;
-              default:
-                column_value = $.val(column_name, obj, { d:'-' });
-                break;
-            }
-
-            var lettercase = $.val('lettercase', column, { d:'' });
-            switch(lettercase){
-              case 'capitalize': column_value = column_value.toString().capitalize(); break;
-              case 'lowercase': column_value = column_value.toString().toLowerCase(); break;
-              case 'uppercase': column_value = column_value.toString().toUpperCase(); break;
-            }
-
-            td_class = 'label';
-            break;
-        }
-
-        if(column_align != '') text_align = column_align;
-
-        html.push("<td data-column-type='" + column_type + "' class='" + td_class + "' style='text-align:" + text_align + "'>" + column_value + "</td>");
-
-      }
-      html.push("<td></td>");
+      html.push("<tr data-key=\"" + obj_key + "\">");
+      html.push($.grid_row(columns, obj));
       html.push("</tr>");
     }
+    return html.join('');
+
+  },
+
+  grid_row:function(columns, obj){
+
+    var html = [];
+
+    for(var j = 0 ; j < columns.length ; j++){
+
+      var column = columns[j];
+      var column_type = $.val('type', column, { d:'text' });
+      var column_datatype = $.val('datatype', column, { d:'text' });
+      var column_name = $.val('name', column, { d:'' });
+      var column_align = $.val('align', column, { d:'' });
+
+      var text_align = '';
+      var td_class = '';
+      var column_value = '';
+      switch(column_type){
+        case 'html':
+          break;
+        default:
+
+          switch(column_datatype){
+            case 'number':
+            case 'money':
+              text_align = 'right';
+              column_value = $.val(column_name, obj, { d:0 });
+              column_value = $.number_format(column_value);
+              break;
+            case 'enum':
+              var column_enums = $.val('enums', column, { d:{} });
+              column_value = $.val(column_name, obj, { d:'-' });
+              column_value = $.val(column_value, column_enums, { d:'-' });
+              break;
+            default:
+              column_value = $.val(column_name, obj, { d:'-' });
+              break;
+          }
+
+          var lettercase = $.val('lettercase', column, { d:'' });
+          switch(lettercase){
+            case 'capitalize': column_value = column_value.toString().capitalize(); break;
+            case 'lowercase': column_value = column_value.toString().toLowerCase(); break;
+            case 'uppercase': column_value = column_value.toString().toUpperCase(); break;
+          }
+
+          td_class = 'label';
+          break;
+      }
+
+      if(column_align != '') text_align = column_align;
+
+      html.push("<td data-column-type='" + column_type + "' class='" + td_class + "' style='text-align:" + text_align + "'>" + column_value + "</td>");
+
+    }
+
+    html.push("<td></td>");
     return html.join('');
 
   }
