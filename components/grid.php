@@ -2,8 +2,7 @@
 
   <h1>Grid</h1>
   <br /><br /><br />
-
-  <h5>Samples:</h5>
+  <button id="button1">ADD ITEM</button>
   <br /><br />
   <span class="padding10">
     <span id="sample1"></span>
@@ -34,6 +33,16 @@
       method:"post",
       key:"code"
     });
+
+    $('#button1').on('click', function(){
+
+      $('#sample2').grid_add({
+        id:99,
+        code:'Code99',
+        description:'Description99'
+      }, 1);
+
+    })
 
   })
 

@@ -37,7 +37,7 @@ $.fn.extend({
       $.fire_event(footer, [], $('.grid-footer', el));
 
       $(this).grid_set_columns(columns);
-      if(value != null) $(el).grid_set(value);
+      if(value != null) $(el).grid_val(value);
       if(autoload) $(el).grid_load();
 
     })
@@ -111,6 +111,65 @@ $.fn.extend({
 
   },
 
+  grid_add:function(obj, index){
+
+    $(this).each(function(){
+
+      var instance = this;
+      var options = $(instance).data('options');
+      var columns = $.val('columns', options, { d:[] });
+      var onselect = $.val('onselect', options);
+      var key = $.val('key', options, { d:'' });
+      key = key.split(',');
+
+      var obj_key = [];
+      for(var j = 0 ; j < key.length ; j++)
+        if(key[j].length > 0 && typeof obj[key[j]] != 'undefined')
+          obj_key.push(obj[key[j]]);
+      obj_key = obj_key.join('');
+
+      var tr = document.createElement('tr');
+      $(tr).html($.grid_row(columns, obj)).attr('data-key', obj_key);
+
+      var trs = $('tr:not(.grid-size-tr)', this);
+      var pivot_tr = null;
+      if($.type(index) == 'number')
+        pivot_tr = typeof trs[index] != 'undefined' ? trs[index] : pivot_tr;
+
+      if(pivot_tr != null) {
+        $(tr).insertBefore(pivot_tr).each(function(){
+          var column_idx = 0;
+          $('td', this).each(function(){
+            var td = this;
+            var column_type = td.getAttribute('data-column-type');
+            if(column_type == 'html'){
+              var column = columns[column_idx];
+              var column_html = $.val('html', column, { d:'' });
+              $.fire_event(column_html, [ obj, column ], td);
+            }
+            column_idx++;
+          })
+          $(this).addClass('highlight');
+        })
+        .on('click.gridrow', function(e){
+
+          $(this).removeClass('highlight');
+
+          var table = $(this).closest('table');
+          $('.active', table).removeClass('active');
+          $(this).addClass('active');
+          $.fire_event(onselect, [ e, this ], instance);
+
+        });
+      }
+      else{
+
+      }
+
+    })
+
+  },
+
   grid_set_columns:function(columns){
 
     $(this).each(function(){
@@ -122,7 +181,7 @@ $.fn.extend({
       $(this).data('options', options);
 
       var html = [];
-      html.push("<tr>");
+      html.push("<tr class='grid-size-tr'>");
       for(var i = 0 ; i < columns.length ; i++){
         var column = columns[i];
         var name = $.val('name', column);
