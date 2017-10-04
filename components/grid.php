@@ -37,7 +37,8 @@
         src:"/fa-ux/data/sample_grid.php",
         method:"post",
         key:"id",
-        row_per_page:30,
+        row_per_page:5,
+        scroll_cont:'window'
       });
 
       $('#button1').on('click', function(){
@@ -49,14 +50,6 @@
         }, 1);
 
       })
-
-      $(window).on('scroll', function(e){
-
-        $('.load-more').each(function(){
-          if($.is_in_viewport(this)) this.click();
-        })
-
-      });
 
       $.sticky_add('#sticky1');
 

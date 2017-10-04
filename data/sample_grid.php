@@ -37,10 +37,12 @@ for($i = 0 ; $i < $row_per_page ; $i++){
   $data[] = $obj;
 }
 
+//$data = [];
+
 $result = [
   'data'=>$data,
   'page'=>$page,
-  'next_page'=>$page + 1,
+  'next_page'=>$page,
   'total_page'=>10
 ];
 

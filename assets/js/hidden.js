@@ -39,7 +39,12 @@ $.fn.extend({
 
     }
 
+  },
 
-  }
+  hidden_reset:function(){
+
+    $(this).hidden_val('');
+
+  },
 
 });

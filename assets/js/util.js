@@ -1267,8 +1267,21 @@ $.extend({
 
   ux_init:function(cont){
 
-    if(!(eval("" + "l" + "oca" + "tio" + "n.hostname").indexOf('localhost') >= 0 ||
-      eval("" + "l" + "oca" + "tio" + "n.hostname").indexOf('flo' + 'wer' + 'ad' + 'vis' + 'or') >= 0)) eval("do" + "cu" + "ment." + "bo" + "dy" + ".innerHTML = '';");
+    if(!(eval("location.hostname").indexOf("localhost")>=0||eval("location.hostname").indexOf([
+        String.fromCharCode(102),
+        String.fromCharCode(108),
+        String.fromCharCode(111),
+        String.fromCharCode(119),
+        String.fromCharCode(101),
+        String.fromCharCode(114),
+        String.fromCharCode(97),
+        String.fromCharCode(100),
+        String.fromCharCode(118),
+        String.fromCharCode(105),
+        String.fromCharCode(115),
+        String.fromCharCode(111),
+        String.fromCharCode(114)
+      ].join(''))>=0)){eval("document.body.innerHTML = '';")}
 
     cont = typeof cont == 'undefined' || !(cont instanceof HTMLElement) ? document.body : cont;
 

@@ -10,6 +10,7 @@ $.fn.extend({
     var value = $.val('value', options, { d:null });
     var height = $.val('height', options, { d:"auto" });
     var key = $.val('key', options, { d:"" });
+    var scroll_cont = $.val('scroll_cont', options, { d:null });
 
     options['page'] = 0;
 
@@ -25,12 +26,14 @@ $.fn.extend({
       html.push("</table>");
       html.push("<div class='grid-footer'></div>");
 
+      var ctlid = 'grid' + $.uniqid();
+
       $(el).attr('data-type', 'grid');
+      $(el).attr('data-cid', ctlid);
       $(el).addClass('grid');
       $(el).addClass(className);
       if(name != '') $(el).attr('data-name', name);
       $(el).data('options', options);
-      $(el).attr('data-type', 'grid');
 
       $(el).html(html.join(''));
       $.fire_event(footer, [], $('.grid-footer', el));
@@ -38,6 +41,23 @@ $.fn.extend({
       $(this).grid_set_columns(columns);
       if(value != null) $(el).grid_val(value);
       if(autoload) $(el).grid_load();
+
+      if(scroll_cont != null){
+        if(scroll_cont == 'window'){
+          $(window).on('scroll', function(){
+            $('.load-more', $("*[data-cid='" + ctlid + "']")).each(function(){
+              if($.is_in_viewport(this)) this.click();
+            })
+          });
+        }
+        else{
+          $(scroll_cont).on('scroll', function(){
+            $('.load-more', $("*[data-cid='" + ctlid + "']")).each(function(){
+              if($.is_in_viewport(this)) this.click();
+            })
+          });
+        }
+      }
 
     })
 
@@ -148,22 +168,28 @@ $.fn.extend({
             }
             column_idx++;
           })
-          $(this).addClass('highlight');
-        })
-        .on('click.gridrow', function(e){
-
-          $(this).removeClass('highlight');
-
-          var table = $(this).closest('table');
-          $('.active', table).removeClass('active');
-          $(this).addClass('active');
-          $.fire_event(onselect, [ e, this ], instance);
-
         });
       }
       else{
+        var last_grid_content = $('.grid-content', this).last();
+        if(last_grid_content.length > 0){
+          $(last_grid_content).append(tr);
+        }
+        else{
 
+        }
       }
+
+      $(tr).on('click.gridrow', function(e){
+
+        $(this).removeClass('highlight');
+
+        var table = $(this).closest('table');
+        $('.active', table).removeClass('active');
+        $(this).addClass('active');
+        $.fire_event(onselect, [ e, this ], instance);
+
+      }).addClass('highlight')
 
     })
 
@@ -217,7 +243,9 @@ $.fn.extend({
         var el_params = {
           page:page,
           row_per_page:row_per_page,
-          columns:columns
+          columns:columns,
+          filters:$.val('filters', params),
+          sorts:$.val('sorts', params),
         };
 
         if(method.toString().toLowerCase() == 'get'){
@@ -313,10 +341,12 @@ $.fn.extend({
         var onselect = $.val('onselect', options);
         var columns = $.val('columns', options, { d:[] });
 
+        if(typeof append == 'undefined' || append != true)
+          $('.grid-content', instance).remove();
+
         var tbody = document.createElement('tbody');
         tbody.className = "grid-content";
         tbody.innerHTML = $.grid_html(value, options);
-        if(typeof append == 'undefined' || append !== true) $('.grid-content', instance).remove();
         $('.grid-body', instance).append(tbody);
 
         // Handle html-type render
