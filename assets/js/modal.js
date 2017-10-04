@@ -19,7 +19,6 @@ $.fn.extend({
 
       var left = (window.innerWidth - instance.clientWidth) / 2;
       var top = (window.innerHeight - instance.clientHeight) / 2;
-      console.log([ left, top ]);
       $(instance).css({ left:left, top:top });
 
       $('.modal-bg').addClass('on');

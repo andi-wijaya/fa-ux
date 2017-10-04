@@ -2,7 +2,7 @@
 
 
 ?>
-<div class="content padding20">
+<div class="content padding20 bg-white">
 
   <label class="padding8">Simple Autocomplete</label><br />
   <span id="autocomplete1"></span>

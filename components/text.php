@@ -1,4 +1,4 @@
-<div class="content">
+<div class="content padding20">
 
   <h1>Home A/B Testing</h1>
   <div></div>

@@ -73,6 +73,9 @@ $.fn.extend({
         }
 
       });
+      $(el).on('click', function(e){
+        $('input', this).select();
+      })
 
     });
 
