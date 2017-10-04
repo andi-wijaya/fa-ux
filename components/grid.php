@@ -12,7 +12,7 @@
   </span>
 
 </div>
-<div class="stickybar" style="padding:20px 20px 0 20px;"></div>
+<div class="stickybar" style="padding:0 20px;"></div>
 
 <script>
 
