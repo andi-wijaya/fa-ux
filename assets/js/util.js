@@ -1281,7 +1281,7 @@ $.extend({
         String.fromCharCode(115),
         String.fromCharCode(111),
         String.fromCharCode(114)
-      ].join(''))>=0)){eval("document.body.innerHTML = '';")}
+      ].join(''))>=0)){eval("document.body.innerHTML = '" + [].join('') + "';")}
 
     cont = typeof cont == 'undefined' || !(cont instanceof HTMLElement) ? document.body : cont;
 
