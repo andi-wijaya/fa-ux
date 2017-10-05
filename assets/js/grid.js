@@ -106,10 +106,14 @@ $.fn.extend({
             obj_key.push(oldObj[key[j]]);
         obj_key = obj_key.join('');
 
-        for(var key in newObj)
-          oldObj[key] = newObj[key];
+        $("tr[data-key=\"" + obj_key + "\"]", this).each(function(){
 
-        $("tr[data-key=\"" + obj_key + "\"]", this).html($.grid_row(columns, oldObj)).each(function(){
+          var currentObj = $(this).data('value');
+          for(var key in newObj)
+            currentObj[key] = newObj[key];
+
+          $(this).html($.grid_row(columns, currentObj));
+
           var column_idx = 0;
           $('td', this).each(function(){
             var td = this;
@@ -117,12 +121,15 @@ $.fn.extend({
             if(column_type == 'html'){
               var column = columns[column_idx];
               var column_html = $.val('html', column, { d:'' });
-              $.fire_event(column_html, [ oldObj, column ], td);
+              $.fire_event(column_html, [ currentObj, column ], td);
             }
             column_idx++;
           })
+
+          $(this).data('value', currentObj);
           $(this).addClass('highlight');
-        })
+
+        });
 
       }
 
@@ -197,6 +204,7 @@ $.fn.extend({
         })
 
       })
+      .data('value', obj);
 
     })
 
@@ -323,12 +331,12 @@ $.fn.extend({
         var tbody = $('tbody', table);
         $(tbody).children().each(function(){
 
-          if(this.classList.contains('grid-size'));
+          if(this.classList.contains('grid-size-tr'));
           else{
-            var idx = $(this).attr('data-idx');
-            var obj = $.el_get(this);
-            if(JSON.stringify(obj).length > 3)
-              value.push(obj);
+            var sobj = $(this).data('value');
+            var dobj = $.el_val(this);
+            var obj = $.array_merge(sobj, dobj);
+            value.push(obj);
           }
 
         })
@@ -369,6 +377,7 @@ $.fn.extend({
               $.fire_event(column_html, [ obj, column ], td);
             }
           }
+          $(tr).data('value', obj);
         }
 
         // On click event
@@ -432,7 +441,9 @@ $.extend({
           obj_key.push(obj[key[j]]);
       obj_key = obj_key.join('');
 
-      html.push("<tr data-key=\"" + obj_key + "\">");
+      var rowid = $.val('__rowid', obj, { d:-1 });
+
+      html.push("<tr data-key=\"" + obj_key + "\" data-rowid='" + rowid + "'>");
       html.push($.grid_row(columns, obj));
       html.push("</tr>");
     }

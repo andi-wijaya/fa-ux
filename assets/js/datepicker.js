@@ -2,9 +2,21 @@ $.fn.extend({
 
   datepicker: function (options) {
 
-    var type = $.val('type', options);
+    var mode = $.val('mode', options, { d:'' }); // <empty>, range
     var name = $.val('name', options, { d:'' });
     var width = $.val('width', options, { d:'' });
+
+    var defaultvalue = $.val('defaultvalue', options, { d:'' });
+    if(defaultvalue == ''){
+      if(mode == 'range')
+        defaultvalue = $.date('Ymd') + '-' + $.date('Ymd', $.mktime(0, 0, 0, parseInt($.date('m')) + 1, 0, parseInt($.date('Y'))));
+      else
+        defaultvalue = $.date('Ymd');
+    }
+
+    var value = $.val('value', options, { d:defaultvalue });
+
+    if(mode == 'range' && width == '') width = '240px'; // Default width for range mode
 
     this.each(function(){
 
@@ -35,9 +47,10 @@ $.fn.extend({
           $.calendar_open({
             refEl:el,
             value:$(el).data('value'),
-            type:type,
+            mode:mode,
             onchange:function(value){
               $(el).datepicker_val(value);
+              $.fire_event($.val('onchange', options), [ value ], el);
             }
           });
         }
@@ -47,7 +60,7 @@ $.fn.extend({
         e.stopPropagation();
       });
 
-      $(this).datepicker_val($.val('value', options, { d:'20170101' }));
+      $(this).datepicker_val(value);
 
     });
 
@@ -70,6 +83,9 @@ $.fn.extend({
 
       $(this).each(function(){
 
+        var options = $(this).data('options');
+        var mode = $.val('mode', options, { d:'' });
+
         var text = '';
         value = $.date_parse(value);
 
@@ -77,7 +93,7 @@ $.fn.extend({
           var d = value.split('-');
           var d1 = $.date('M j, Y', $.strtotime(d[0]));
           var d2 = $.date('M j, Y', $.strtotime(d[1]));
-          text = d1 + ' - ' + d2;
+          text = mode == 'range' ? d1 + ' - ' + d2 : d1;
         }
         else{
           var d = $.date('M j, Y', $.strtotime(value));

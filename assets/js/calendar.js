@@ -54,16 +54,15 @@ $.extend({
     }
     popup = popup[0];
     $(popup).data('params', params);
-    $.calendar_set(value);
+    $.calendar_set(value, params);
     $.popup_open(popup, refEl);
 
   },
-  calendar_set:function(value){
+  calendar_set:function(value, params){
 
-    var params = $('#calendar').data('params');
-    var type = $.val('type', params, { d:'' });
+    var mode = $.val('mode', params, { d:'' });
 
-    switch(type){
+    switch(mode){
       case 'range': $.calendar_set_range(value); break;
       default: $.calendar_set_single(value); break;
 
@@ -139,7 +138,7 @@ $.extend({
       var date = this.innerHTML;
       var month = parseInt($.date('n', $.strtotime(month_year)));
       var year = $.date('Y', $.strtotime(month_year));
-      var d = $.date('j M Y', $.mktime(0, 0, 0, month, date, year));
+      var d = $.date('Ymd', $.mktime(0, 0, 0, month, date, year));
       $.fire_event(onchange, [ d ], popup);
 
       $.popup_close(popup);
@@ -274,7 +273,6 @@ $.extend({
 
       e.preventDefault();
       e.stopPropagation();
-      console.log('value: ' + 1);
       var popup = $(this).closest('#calendar');
       var month_year = $(popup).attr('data-value');
       var date = this.innerHTML;

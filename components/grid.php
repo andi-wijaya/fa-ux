@@ -1,9 +1,9 @@
 <div class="content bg-white padding10">
 
   <h1>Grid</h1>
-  <br /><br /><br />
+  <br />
   <button id="button1">ADD ITEM</button>
-  <br /><br />
+  <br />
   <span class="padding10" id="sticky1">
     <span id="sample1"></span>
   </span>
@@ -12,7 +12,6 @@
   </span>
 
 </div>
-<div class="stickybar" style="padding:0 20px;"></div>
 
 <script>
 
@@ -25,6 +24,7 @@
         { text:"Code", name:"code", width:"100px" },
         { text:"Description", name:"description", width:"300px" },
 //      { text:"Image", name:"image", width:"80px", align:"center", type:"html", html:"mod.col1" },
+        { text:"Editable", width:"150px", align:"center", type:"html", html:"mod.col2" },
       ];
 
       $('#sample1').gridhead({
@@ -80,6 +80,7 @@
       })
 
     },
+
     col1:function(obj){
 
       $(this).html("<div class='align-center padding5'><span class='image'></span></div>");
@@ -88,6 +89,16 @@
       })
 
     },
+
+    col2:function(obj){
+
+      var html = [];
+      html.push("<span class='col2-text'></span>");
+      $(this).html(html.join(''));
+
+      $('.col2-text', this).textbox({ name:"code", value:$.val('code', obj) });
+
+    }
 
   };
 

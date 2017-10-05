@@ -816,14 +816,14 @@ $.extend({
 
   },
 
-  el_get:function(cont){
+  el_val:function(cont){
 
 
     if($(cont).attr('data-type') != null){
 
       var type = $(cont).attr('data-type');
-      if(typeof $(cont)[type + "_get"] == 'function')
-        return $(cont)[type + "_get"]();
+      if(typeof $(cont)[type + "_val"] == 'function')
+        return $(cont)[type + "_val"]();
       return null;
 
     }
@@ -834,7 +834,7 @@ $.extend({
       $(els).each(function(){
 
         var el = this;
-        var value = $.el_get(el);
+        var value = $.el_val(el);
         var name  = el.getAttribute("data-name");
         if(name == null) name = 'undefined';
         obj[name] = value;
