@@ -180,6 +180,10 @@ $.fn.extend({
         $(this).addClass('active');
         $.fire_event(onselect, [ e, this ], instance);
 
+      })
+      .addClass('highlight')
+      .each(function(){
+
         var column_idx = 0;
         $('td', this).each(function(){
           var td = this;
@@ -192,7 +196,7 @@ $.fn.extend({
           column_idx++;
         })
 
-      }).addClass('highlight')
+      })
 
     })
 
@@ -382,6 +386,12 @@ $.fn.extend({
       })
 
     }
+
+  },
+
+  grid_reset:function(){
+
+    $(this).grid_val([]);
 
   },
 

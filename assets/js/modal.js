@@ -39,12 +39,13 @@ $.fn.extend({
 
       var instance = this;
       $(instance).removeClass('on');
-      $('.modal-bg').removeClass('on');
 
     });
 
-    if($('.modal.on').length == 0)
+    if($('.modal.on').length == 0){
+      $('.modal-bg').removeClass('on');
       $(document.body).css({ overflow:'' });
+    }
 
   }
 
