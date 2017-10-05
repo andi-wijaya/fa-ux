@@ -156,19 +156,7 @@ $.fn.extend({
         pivot_tr = typeof trs[index] != 'undefined' ? trs[index] : pivot_tr;
 
       if(pivot_tr != null) {
-        $(tr).insertBefore(pivot_tr).each(function(){
-          var column_idx = 0;
-          $('td', this).each(function(){
-            var td = this;
-            var column_type = td.getAttribute('data-column-type');
-            if(column_type == 'html'){
-              var column = columns[column_idx];
-              var column_html = $.val('html', column, { d:'' });
-              $.fire_event(column_html, [ obj, column ], td);
-            }
-            column_idx++;
-          })
-        });
+        $(tr).insertBefore(pivot_tr);
       }
       else{
         var last_grid_content = $('.grid-content', this).last();
@@ -176,7 +164,10 @@ $.fn.extend({
           $(last_grid_content).append(tr);
         }
         else{
-
+          var tbody = document.createElement('tbody');
+          tbody.className = "grid-content";
+          $('.grid-body', instance).append(tbody);
+          $(tbody).append(tr);
         }
       }
 
@@ -188,6 +179,18 @@ $.fn.extend({
         $('.active', table).removeClass('active');
         $(this).addClass('active');
         $.fire_event(onselect, [ e, this ], instance);
+
+        var column_idx = 0;
+        $('td', this).each(function(){
+          var td = this;
+          var column_type = td.getAttribute('data-column-type');
+          if(column_type == 'html'){
+            var column = columns[column_idx];
+            var column_html = $.val('html', column, { d:'' });
+            $.fire_event(column_html, [ obj, column ], td);
+          }
+          column_idx++;
+        })
 
       }).addClass('highlight')
 
