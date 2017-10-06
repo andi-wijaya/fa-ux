@@ -30,9 +30,9 @@ $.fn.extend({
 
       $(el).attr('data-type', 'grid');
       $(el).attr('data-cid', ctlid);
+      $(el).attr('data-name', name);
       $(el).addClass('grid');
       $(el).addClass(className);
-      if(name != '') $(el).attr('data-name', name);
       $(el).data('options', options);
 
       $(el).html(html.join(''));
@@ -468,6 +468,18 @@ $.extend({
       var column_value = '';
       switch(column_type){
         case 'html':
+          break;
+        case 'enum':
+          var enum_var = $.val('enum', column, { d:[] });
+          column_value = $.val(column_name, obj, { d:'' });
+          if($.type(enum_var) == 'array'){
+            for(var k = 0 ; k < enum_var.length ; k++){
+              if($.val('value', enum_var[k]) == column_value){
+                column_value = $.val('text', enum_var[k]);
+                break;
+              }
+            }
+          }
           break;
         default:
 

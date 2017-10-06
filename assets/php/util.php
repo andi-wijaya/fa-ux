@@ -2739,6 +2739,15 @@ function save_input_as_file($path, $filename){
 
 }
 
+function retrieve_file_upload($key, $dest_dir, $dest_name = ''){
+
+  if(isset($_FILES[$key]['tmp_name'])){
+    if(!$dest_name) $dest_name = $_FILES[$key]['name'];
+    move_uploaded_file($_FILES[$key]['tmp_name'], $dest_dir . "/" . $dest_name);
+  }
+
+}
+
 function smtpmailer($from, $to, $cc = null, $subject, $body, $replyto = null){
 
   require_once dirname(__FILE__) . '/PHPMailer_5.2.4/class.phpmailer.php';

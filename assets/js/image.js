@@ -14,6 +14,7 @@ $.fn.extend({
 
       var html = [];
       html.push("<img src=\"" + value + "\"/>");
+      html.push("<input type='file' accept='image/*'/>");
 
       $(el).attr('data-type', 'image');
       $(el).attr('data-name', name);
@@ -22,6 +23,24 @@ $.fn.extend({
       $(el).html(html.join(''));
       $(el).data('options', options);
       $('img', el).css({ width:width, height:height });
+
+      $('input[type=file]', this).on('change', function(e){
+
+        var input = this;
+
+        // FileReader support
+        if (FileReader && this.files && this.files.length) {
+          var fr = new FileReader();
+          fr.onload = function () {
+            input.previousElementSibling.src = fr.result;
+
+
+
+          }
+          fr.readAsDataURL(this.files[0]);
+        }
+
+      })
 
     });
 
@@ -33,7 +52,7 @@ $.fn.extend({
 
       var result = [];
       this.each(function(){
-        result.push($('img', this).attr('src'));
+        result.push($('input[type=file]', this)[0].files[0]);
       })
       return result.length > 1 ? result : (result.length == 1 ? result[0] : '');
 

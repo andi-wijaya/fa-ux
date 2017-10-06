@@ -17,6 +17,12 @@
 
   var mod = {
 
+    enums:[
+      { text:"FA-105303", value:"FA105303" },
+      { text:"FA-105310", value:"FA105310" },
+      { text:"FA-105304", value:"FA105304" },
+    ],
+
     init:function(){
 
       var columns = [
@@ -25,6 +31,7 @@
         { text:"Description", name:"description", width:"300px" },
 //      { text:"Image", name:"image", width:"80px", align:"center", type:"html", html:"mod.col1" },
         { text:"Editable", width:"150px", align:"center", type:"html", html:"mod.col2" },
+        { text:"Enum", width:"100px", name:"code", align:"center", type:"enum", enum:mod.enums },
       ];
 
       $('#sample1').gridhead({
