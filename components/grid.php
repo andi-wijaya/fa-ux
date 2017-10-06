@@ -1,3 +1,12 @@
+<?php
+
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+  print_r($_POST);
+
+}
+
+?>
 <div class="content bg-white padding10">
 
   <h1>Grid</h1>
@@ -56,7 +65,7 @@
           description:'Description99'
         }, 1);
 
-      })
+      });
 
       $.sticky_add('#sticky1');
 

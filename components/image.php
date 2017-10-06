@@ -1,12 +1,34 @@
 <?php
 
+
+function fix_file_upload(){
+
+  $_FILES = array_flatten($_FILES);
+  $temp = [];
+  foreach($_FILES as $key=>$value){
+    $keys = explode('.', $key);
+    $sliced_keys = array_splice($keys, 1, 1);
+    $temp[implode('.', array_merge($keys, $sliced_keys))] = $value;
+  }
+  $_FILES = $temp;
+  print_r($_FILES);
+
+  $_FILES = array_unflatten($_FILES);
+  print_r($_FILES);
+
+}
+
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-  print_r(array_keys($_FILES));
+  fix_file_upload();
 
-  retrieve_file_upload('uploadfile', __DIR__ . '/../upload');
+  //ob_end_clean();
+  //print_r($_FILES);
+  //print_r(array_merge($_POST, $_FILES));
 
-  exit();
+  //retrieve_file_upload('college', __DIR__ . '/../upload');
+
+  //exit();
 
 }
 
@@ -30,20 +52,34 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $('#button1').on('click', function(){
 
-      var formData = new FormData();
-      console.log(formData);
-      var token = '-token-';
-      formData.append('uploadfile', $('#image1').val());
-      console.log(formData);
+      console.log($('input[type=file]')[0].files[0] instanceof File);
 
-      $.ajax({
-        url:'',
-        type:"POST",
-        cache:false,
-        contentType:false,
-        processData: false,
-        data:formData
-      })
+      var obj = {
+        name:"andy",
+        college:{
+          name:"binus",
+          address:"kemanggisan",
+          image:{
+            path:$('input[type=file]')[0].files[0]
+          }
+        },
+        items:[
+          { title:"item-1", code:"code1", image:$('input[type=file]')[0].files[0] },
+          { title:"item-2", code:"code2", image:$('input[type=file]')[0].files[0] },
+          { title:"item-3", code:"code3", image:$('input[type=file]')[0].files[0] }
+        ]
+      };
+
+      var fd = $.flatten_obj(obj, 0, true);
+
+//      fd.append("name", "andy");
+//      fd.append("college[name]", "binus");
+//      fd.append("items[][title]", "item-1");
+//      fd.append("items[][code]", "code1");
+
+      $.api_form_post('', fd, function(response){
+        console.log(response);
+      });
 
     })
 

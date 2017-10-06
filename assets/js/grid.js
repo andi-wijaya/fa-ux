@@ -69,7 +69,11 @@ $.fn.extend({
 
     $(this).each(function(){
 
-      if($.type(obj) == 'object'){
+      if(obj instanceof HTMLElement){
+        if($(obj).closest('.grid').length == 1)
+          $(obj).remove();
+      }
+      else if($.type(obj) == 'object'){
         var options = $(this).data('options');
         var key = $.val('key', options, { d:'' });
         key = key.split(',');

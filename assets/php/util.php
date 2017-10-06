@@ -3018,4 +3018,65 @@ function object_extract($obj, $schema){
 
 }
 
+function array_set( &$array, $key, $value )
+{
+  if ( is_null( $key ) )
+    return $array = $value;
+  $keys = explode( '.', $key );
+  while ( count( $keys ) > 1 )
+  {
+    $key = array_shift( $keys );
+    // If the key doesn't exist at this depth, we will just create an empty array
+    // to hold the next value, allowing us to create the arrays to hold final
+    // values at the correct depth. Then we'll keep digging into the array.
+    if ( ! isset( $array[$key] ) || ! is_array( $array[$key] ) )
+    {
+      $array[$key] = array();
+    }
+    $array =& $array[$key];
+  }
+  $array[array_shift( $keys )] = $value;
+  return $array;
+}
+
+function array_flatten($ob, $depth = 0) {
+
+  $toReturn = [];
+
+  foreach($ob as $k=>$v){
+    if(!$v) continue;
+
+    if(gettype($ob[$k]) == 'array'){
+      $iob = array_flatten($v, $depth + 1);
+      foreach($iob as $ik=>$iv){
+        if(!$iv) continue;
+        $toReturn[$k . '.' . $ik] = $iv;
+      }
+    }
+    else{
+      $toReturn[$k] = $v;
+    }
+  }
+
+  return $toReturn;
+
+}
+
+function array_unflatten($collection)
+{
+  $collection = (array) $collection;
+  $output = array();
+  foreach ( $collection as $key => $value )
+  {
+    array_set( $output, $key, $value );
+    if ( is_array( $value ) && ! strpos( $key, '.' ) )
+    {
+      $nested = array_unflatten($value);
+
+      $output[$key] = $nested;
+    }
+  }
+  return $output;
+}
+
 ?>

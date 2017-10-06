@@ -742,6 +742,39 @@ $.extend({
     return xmlhttp;
 
   },
+  api_form_post:function(url, formdata, callback, errcallback){
+
+    return $.ajax({
+      url: url,
+      data: formdata,
+      cache:false,
+      processData: false,
+      contentType: false,
+      type: 'POST',
+      success:function(obj) {
+        var error = $.val('error', obj, { d:0, datatype:"integer" });
+        var error_message = $.val('error_message', obj, { d:'' });
+
+        if(parseInt(error) == 0)
+          $.fire_event(callback, [ obj ], this);
+        else{
+          if(typeof errcallback != 'undefined' || errcallback != null)
+            $.fire_event(errcallback, [ { error:error, error_message:error_message } ]);
+          else{
+            alert(JSON.stringify(obj, null, 2));
+          }
+        }
+      },
+      error: function(){
+        if(typeof errcallback != 'undefined' || errcallback != null)
+          $.fire_event(errcallback);
+        else
+          console.log(this.responseText);
+      }
+    });
+
+  },
+
 
   http_build_query:function(obj, num_prefix, temp_key){
 
@@ -1393,6 +1426,76 @@ $.extend({
       (top + height) > window.pageYOffset &&
       (left + width) > window.pageXOffset
     );
+
+  },
+
+  flatten_obj:function(ob, depth, asFormData) {
+    var toReturn = {};
+
+    if(typeof depth == 'undefined' || isNaN(parseInt(depth))) depth = 0;
+    if(typeof asFormData == 'undefined' && asFormData !== true) asFormData = false;
+
+    for (var i in ob) {
+      if (!ob.hasOwnProperty(i)) continue;
+
+      if(ob[i] instanceof File){
+        toReturn[i] = ob[i];
+      }
+      else if ((typeof ob[i]) == 'object') {
+        var flatObject = $.flatten_obj(ob[i], depth + 1);
+        for (var x in flatObject) {
+          if (!flatObject.hasOwnProperty(x)) continue;
+
+          toReturn[i + '.' + x] = flatObject[x];
+        }
+      } else {
+        toReturn[i] = ob[i];
+      }
+    }
+
+    if(depth == 0){
+      if(asFormData == true){
+        var fd = new FormData();
+        for(var key in toReturn){
+          var keys = key.split('.');
+          var new_key = [];
+          for(var i = 0 ; i < keys.length ; i++)
+            new_key.push(i == 0 ? keys[i] : "[" + keys[i] + "]");
+          fd.append(new_key.join(''), toReturn[key]);
+        }
+        return fd;
+      }
+      else{
+        var temp = {};
+        for(var key in toReturn){
+          var keys = key.split('.');
+          var new_key = [];
+          for(var i = 0 ; i < keys.length ; i++)
+            new_key.push(i == 0 ? keys[i] : "[" + keys[i] + "]");
+          temp[new_key.join('')] = toReturn[key];
+        }
+        return temp;
+      }
+
+    }
+
+    return toReturn;
+  },
+
+  create_formdata:function(obj){
+
+    var fd = new FormData();
+    for(var key in obj){
+
+      if($.type(obj[key]) == 'array'){
+
+      }
+      else if($.type(obj[key]) == 'object');
+      else
+        fd.append(key, obj[key]);
+
+    }
+    return fd;
 
   }
 
