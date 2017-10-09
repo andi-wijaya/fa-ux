@@ -3,7 +3,7 @@
 
 function get_rearranged_file(){
 
-  $arr = array_flatten($_FILES);
+  $arr = custom_array_flatten($_FILES);
   $temp = [];
   foreach($arr as $key=>$value){
     $keys = explode('.', $key);
@@ -11,7 +11,7 @@ function get_rearranged_file(){
     $temp[implode('.', array_merge($keys, $sliced_keys))] = $value;
   }
   $arr = $temp;
-  $arr = array_unflatten($arr);
+  $arr = custom_array_unflatten($arr);
 
   return $arr;
 
@@ -41,25 +41,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
   <span id="image1"></span>
   <button id="button1">BUtton</button>
-
-    <?php
-
-    $arr = [
-      'items'=>[
-        [ 'text'=>'text-1', 'isdisplayed'=>1 ],
-        [ 'text'=>'text-2', 'isdisplayed'=>1 ],
-      ]
-    ];
-    echo "<pre>" . print_r($arr, 1) . "</pre>";
-
-    $arr = array_flatten($arr);
-    echo "<pre>" . print_r($arr, 1) . "</pre>";
-
-    $arr = array_unflatten($arr);
-    echo "<pre>" . print_r($arr, 1) . "</pre>";
-
-
-    ?>
 
 </div>
 
@@ -97,7 +78,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 //      fd.append("items[][title]", "item-1");
 //      fd.append("items[][code]", "code1");
 
-      $.api_post('', fd, function(response){
+      $.api_form_post('', fd, function(response){
         console.log(response);
       });
 

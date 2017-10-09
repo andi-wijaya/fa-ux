@@ -258,6 +258,7 @@ $.fn.extend({
         var page = $.val('page', params, { d:1 });
         var row_per_page = $.val('row_per_page', options, { d:10 });
         var columns = $.val('columns', options);
+        var search = $.val('search', params, { d:'' });
 
         var el_params = {
           page:page,
@@ -266,6 +267,7 @@ $.fn.extend({
           filters:$.val('filters', params),
           sorts:$.val('sorts', params),
         };
+        if(search != '') el_params['search'] = search;
 
         if(method.toString().toLowerCase() == 'get'){
           $.api_get(src, el_params, function(response){

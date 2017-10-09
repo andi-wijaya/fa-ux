@@ -674,7 +674,7 @@ $.extend({
   api_get:function(url, data, callback, errcallback){
 
     var qs = $.http_build_query(data);
-    url += qs.length > 0 ? "?" + qs : '';
+    url += url.indexOf('?') > 0 ? (qs.length > 0 ? '&' + qs : '') : (qs.length > 0 ? '?' + qs : '');
 
     // Process
     var xmlhttp = new XMLHttpRequest();
@@ -783,9 +783,8 @@ $.extend({
       processData: false,
       contentType: false,
       type: 'POST',
-      success:function(text) {
+      success:function(obj) {
 
-        var obj = $.eval_as_object(text);
         var error = $.val('error', obj, { d:0, datatype:"integer" });
         var error_message = $.val('error_message', obj, { d:'' });
 
@@ -805,6 +804,7 @@ $.extend({
         else
           console.log(this.responseText);
       }
+
     });
 
   },
