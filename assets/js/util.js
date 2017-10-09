@@ -711,6 +711,38 @@ $.extend({
   },
   api_post:function(url, data, callback, errcallback){
 
+    if(typeof data != 'undefined' && data instanceof FormData)
+      return $.api_form_post(url, data, callback, errcallback);
+
+    return $.ajax({
+      url: url,
+      data: data,
+      cache:false,
+      type: 'POST',
+      success:function(text) {
+
+        var obj = $.eval_as_object(text);
+        var error = $.val('error', obj, { d:0, datatype:"integer" });
+        var error_message = $.val('error_message', obj, { d:'' });
+
+        if(parseInt(error) == 0)
+          $.fire_event(callback, [ obj ], this);
+        else{
+          if(typeof errcallback != 'undefined' || errcallback != null)
+            $.fire_event(errcallback, [ { error:error, error_message:error_message } ]);
+          else{
+            alert(JSON.stringify(obj, null, 2));
+          }
+        }
+      },
+      error: function(){
+        if(typeof errcallback != 'undefined' || errcallback != null)
+          $.fire_event(errcallback);
+        else
+          console.log(this.responseText);
+      }
+    });
+
     // Process
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.open('POST', url, true);
@@ -742,16 +774,18 @@ $.extend({
     return xmlhttp;
 
   },
-  api_form_post:function(url, formdata, callback, errcallback){
+  api_form_post:function(url, data, callback, errcallback){
 
     return $.ajax({
       url: url,
-      data: formdata,
+      data: data,
       cache:false,
       processData: false,
       contentType: false,
       type: 'POST',
-      success:function(obj) {
+      success:function(text) {
+
+        var obj = $.eval_as_object(text);
         var error = $.val('error', obj, { d:0, datatype:"integer" });
         var error_message = $.val('error_message', obj, { d:'' });
 
@@ -774,7 +808,6 @@ $.extend({
     });
 
   },
-
 
   http_build_query:function(obj, num_prefix, temp_key){
 

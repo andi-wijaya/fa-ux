@@ -3018,7 +3018,7 @@ function object_extract($obj, $schema){
 
 }
 
-function array_set( &$array, $key, $value )
+function custom_array_set( &$array, $key, $value )
 {
   if ( is_null( $key ) )
     return $array = $value;
@@ -3039,7 +3039,7 @@ function array_set( &$array, $key, $value )
   return $array;
 }
 
-function array_flatten($ob, $depth = 0) {
+function custom_array_flatten($ob, $depth = 0) {
 
   $toReturn = [];
 
@@ -3047,7 +3047,7 @@ function array_flatten($ob, $depth = 0) {
     if(!$v) continue;
 
     if(gettype($ob[$k]) == 'array'){
-      $iob = array_flatten($v, $depth + 1);
+      $iob = custom_array_flatten($v, $depth + 1);
       foreach($iob as $ik=>$iv){
         if(!$iv) continue;
         $toReturn[$k . '.' . $ik] = $iv;
@@ -3062,16 +3062,16 @@ function array_flatten($ob, $depth = 0) {
 
 }
 
-function array_unflatten($collection)
+function custom_array_unflatten($collection)
 {
   $collection = (array) $collection;
   $output = array();
   foreach ( $collection as $key => $value )
   {
-    array_set( $output, $key, $value );
+    custom_array_set( $output, $key, $value );
     if ( is_array( $value ) && ! strpos( $key, '.' ) )
     {
-      $nested = array_unflatten($value);
+      $nested = custom_array_unflatten($value);
 
       echo json_encode($nested);
 

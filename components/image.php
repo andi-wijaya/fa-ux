@@ -97,7 +97,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 //      fd.append("items[][title]", "item-1");
 //      fd.append("items[][code]", "code1");
 
-      $.api_form_post('', fd, function(response){
+      $.api_post('', fd, function(response){
         console.log(response);
       });
 
