@@ -1,30 +1,33 @@
 <?php
 
 
-function fix_file_upload(){
+function get_rearranged_file(){
 
-  $_FILES = array_flatten($_FILES);
+  $arr = array_flatten($_FILES);
   $temp = [];
-  foreach($_FILES as $key=>$value){
+  foreach($arr as $key=>$value){
     $keys = explode('.', $key);
     $sliced_keys = array_splice($keys, 1, 1);
     $temp[implode('.', array_merge($keys, $sliced_keys))] = $value;
   }
-  $_FILES = $temp;
-  print_r($_FILES);
+  $arr = $temp;
+  $arr = array_unflatten($arr);
 
-  $_FILES = array_unflatten($_FILES);
-  print_r($_FILES);
+  return $arr;
+
+}
+
+function post_merge_files(){
+
+  $files = get_rearranged_file();
+  $_POST = array_replace_recursive($_POST, $files);
 
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-  fix_file_upload();
-
-  //ob_end_clean();
-  //print_r($_FILES);
-  //print_r(array_merge($_POST, $_FILES));
+  post_merge_files();
+  print_r($_POST);
 
   //retrieve_file_upload('college', __DIR__ . '/../upload');
 
@@ -39,6 +42,25 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   <span id="image1"></span>
   <button id="button1">BUtton</button>
 
+    <?php
+
+    $arr = [
+      'items'=>[
+        [ 'text'=>'text-1', 'isdisplayed'=>1 ],
+        [ 'text'=>'text-2', 'isdisplayed'=>1 ],
+      ]
+    ];
+    echo "<pre>" . print_r($arr, 1) . "</pre>";
+
+    $arr = array_flatten($arr);
+    echo "<pre>" . print_r($arr, 1) . "</pre>";
+
+    $arr = array_unflatten($arr);
+    echo "<pre>" . print_r($arr, 1) . "</pre>";
+
+
+    ?>
+
 </div>
 
 <script>
@@ -52,8 +74,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     $('#button1').on('click', function(){
 
-      console.log($('input[type=file]')[0].files[0] instanceof File);
-
       var obj = {
         name:"andy",
         college:{
@@ -65,7 +85,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         },
         items:[
           { title:"item-1", code:"code1", image:$('input[type=file]')[0].files[0] },
-          { title:"item-2", code:"code2", image:$('input[type=file]')[0].files[0] },
+          { title:"item-2", code:"code2", image:$('input[type=file]')[0].files[0], image2:true },
           { title:"item-3", code:"code3", image:$('input[type=file]')[0].files[0] }
         ]
       };

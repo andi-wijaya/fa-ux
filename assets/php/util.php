@@ -3073,6 +3073,8 @@ function array_unflatten($collection)
     {
       $nested = array_unflatten($value);
 
+      echo json_encode($nested);
+
       $output[$key] = $nested;
     }
   }
