@@ -11,6 +11,7 @@ $.fn.extend({
 
       var instance = this;
 
+      $(instance).addClass('tab');
       $(instance).attr('data-type', 'tab');
       $(instance).attr('data-name', name);
       $(instance).data('options', options);

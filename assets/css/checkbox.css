@@ -1,0 +1,20 @@
+@media screen{
+
+  .checkbox{
+    display: inline-block;
+    white-space: nowrap;
+    padding: 6px;
+  }
+  .checkbox .item{
+    display: inline-block;
+    vertical-align: top;
+  }
+  .checkbox input[type=checkbox]{
+    vertical-align: middle;
+  }
+  .checkbox label{
+    vertical-align: middle;
+    margin: 0 12px 0 6px;
+  }
+
+}

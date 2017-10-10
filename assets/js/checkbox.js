@@ -6,6 +6,7 @@ $.fn.extend({
 
       var className = $.val('class', options, { d:'' });
       var items = $.val('items', options, { d:null });
+      var name = $.val('name', options, { d:'' });
 
       var html = [];
       if($.type(items) == 'array')
@@ -24,11 +25,78 @@ $.fn.extend({
 
       $(this).addClass('checkbox');
       $(this).addClass(className);
+      $(this).attr('data-type', 'checkbox');
+      $(this).attr('data-name', name);
       $(this).html(html.join(''));
-
       $(this).data('options', options);
+      $(this).checkbox_val($.val('value', options, { d:false }));
 
     })
+
+  },
+
+  checkbox_val:function(value){
+
+    if(typeof value == 'undefined') {
+
+      var results = [];
+      $(this).each(function(){
+
+        if(!$(this).hasClass('checkbox')) return;
+
+        var options = $(this).data('options');
+        var items = $.val('items', options, { d:null });
+        var is_multiple = $.type(items) == 'array' ? true : false;
+
+        if(is_multiple){
+
+          $('.item', this).each(function(){
+            if($('input[type=checkbox]', this).is(':checked')){
+              results.push($('input[type=checkbox]', this).val());
+            }
+          });
+
+        }
+        else{
+          results.push($('input[type=checkbox]', this).is(':checked') ? 1 : 0);
+        }
+
+      });
+      return results.length > 1 ? results.join(',') : (results.length == 1 ? results[0] : 0);
+
+    }
+
+    else{
+
+      $(this).each(function(){
+
+        var options = $(this).data('options');
+        var items = $.val('items', options, { d:null });
+        var is_multiple = $.type(items) == 'array' ? true : false;
+
+        if(is_multiple){
+
+          value = value.split(',');
+          $('.item', this).each(function(){
+            if($.in_array($('input[type=checkbox]', this).val(), value)){
+              $('input[type=checkbox]', this).prop('checked', true).attr('checked', true);
+            }
+            else{
+              $('input[type=checkbox]', this).prop('checked', false).attr('checked', false);
+            }
+          });
+
+        }
+        else{
+          value = value == true || value == 1 ? true : false;
+          $('input[type=checkbox]', this).prop('checked', value).attr('checked', value);
+        }
+
+      })
+
+    }
+
+
 
   }
 

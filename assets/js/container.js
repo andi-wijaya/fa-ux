@@ -8,6 +8,8 @@ $.fn.extend({
       result = {};
       $("*[data-type]", this).each(function(){
 
+        if($(this).parent().closest('.grid').length > 0) return; // Exclude controls inside grid
+
         var name = this.getAttribute("data-name");
         if(name != null && name != ''){
           var val = $(this).val();
