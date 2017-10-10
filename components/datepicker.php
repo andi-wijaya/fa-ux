@@ -8,6 +8,39 @@
 
 </div>
 
+<div class="codebar width600 padding20">
+  <pre>
+<?php $c =
+  <<< EOT
+<span id="datepicker1"></span>
+<script>
+  $('#datepicker1').datepicker({
+    onchange:function(value){
+      console.log([ 'changed', value ]);
+    }
+  });
+</script>
+EOT;
+echo htmlentities($c);?>
+  </pre>
+  <div style="border-bottom: solid 1px rgba(255, 255, 255, .2);height:1px;margin:30px 0"></div>
+  <pre>
+<?php $c =
+  <<< EOT
+<span id="datepicker2"></span>
+<script>
+  $('#datepicker2').datepicker({
+    mode:'range',
+    onchange:function(value){
+      console.log([ 'changed', value ]);
+    }
+  });
+</script>
+EOT;
+echo htmlentities($c);?>
+  </pre>
+</div>
+
 <script type="text/javascript">
 
   $(function(){

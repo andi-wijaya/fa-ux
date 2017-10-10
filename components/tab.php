@@ -20,7 +20,7 @@
 
 </div>
 
-<div class="codebar width300 padding20">
+<div class="codebar width600 padding20">
   <pre>
 <?php $c =
 <<< EOT
