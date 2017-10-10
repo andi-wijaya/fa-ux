@@ -1,0 +1,26 @@
+@media screen{
+
+  .codebar{
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    background: #333;
+  }
+
+  .codebar pre{
+    color: #eee;
+    font-family: 'Ubuntu Mono', monospace;
+  }
+
+  body{
+    background: #fff;
+  }
+
+  .properties{
+    border-collapse: collapse;
+  }
+
+}

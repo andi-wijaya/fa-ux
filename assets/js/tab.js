@@ -5,6 +5,7 @@ $.fn.extend({
     var container = $.val('container', options, { d:'' });
     var name = $.val('name', options, { d:'' });
     var onchange = $.val('onchange', options);
+    var default_index = $.val('default_index', options, { d:0 });
 
     this.each(function(){
 
@@ -13,6 +14,19 @@ $.fn.extend({
       $(instance).attr('data-type', 'tab');
       $(instance).attr('data-name', name);
       $(instance).data('options', options);
+
+      // Assign default index
+      var index = 0;
+      $('li', instance).each(function(){
+
+        if(index == default_index){
+          this.classList.add('active');
+        }
+        else
+          this.classList.remove('active');
+
+        index++;
+      });
 
       // Tab item click handler
       $('li', instance).click(function(){

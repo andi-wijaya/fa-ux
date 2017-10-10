@@ -852,11 +852,15 @@ $.extend({
 
   eval_as_object:function(exp){
 
+    if(typeof exp == 'undefined') return {};
+    if($.type(exp) == 'object') return exp;
     try{
-      return eval("(" + exp + ")");
+      var obj =  eval("(" + exp + ")");
+      if($.type(obj) != 'object') return {};
+      return obj;
     }
     catch(e){
-      return null;
+      return {};
     }
 
   },

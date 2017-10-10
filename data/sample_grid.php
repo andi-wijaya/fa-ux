@@ -1,6 +1,6 @@
 <?php
 
-$post_data = json_decode(file_get_contents('php://input'), true);
+$post_data = $_POST;
 $page = isset($post_data['page']) ? $post_data['page'] : 1;
 $row_per_page = isset($post_data['row_per_page']) ? $post_data['row_per_page'] : 10;
 
