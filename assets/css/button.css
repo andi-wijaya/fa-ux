@@ -22,7 +22,6 @@
     border: 0;
   }
   button>*{
-    display: inline !important;
   }
   button .glyphicons, button .fa{
     padding: 0;
@@ -30,6 +29,10 @@
   }
   button:hover{
     border-color: #aaa;
+  }
+  button:disabled, button:disabled:hover{
+    border-color: transparent;
+    color: #ccc;
   }
   button:active{
     position: relative;

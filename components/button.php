@@ -1,9 +1,9 @@
 <div class="content">
 
   <div class="padding10">
-    <button class="">Simple Button</button>
+    <button id="button1" class="">Simple Button</button>
     &nbsp;
-    <button class=""><span class="glyphicons glyphicons-alert"></span>Button with Icon</button>
+    <button id="button2" class=""><span class="glyphicons glyphicons-alert"></span>Button with Icon</button>
   </div>
   <div class="padding10">
     <button class="gray">Simple Gray Button</button>
@@ -28,12 +28,28 @@
 
 </div>
 
+<script>
+
+  $(function(){
+
+    $('#button1').on('click', function(){
+      $(this).button_state($(this).button_state() == 1 ? 2 : 1);
+    })
+
+    $('#button2').on('click', function(){
+      $(this).button_state($(this).button_state() == 1 ? 2 : 1, 1);
+    })
+
+  })
+
+</script>
+
 <div class="codebar">
   <pre>
 <?php $c =
   <<< EOT
-<button class="">Simple Button</button>
-<button class=""><span class="glyphicons glyphicons-alert"></span>Button with Icon</button>
+<button id="button1" class="">Simple Button</button>
+<button id="button2" class=""><span class="glyphicons glyphicons-alert"></span>Button with Icon</button>
 
 <button class="gray">Simple Gray Button</button>
 <button class="gray"><span class="glyphicons glyphicons-alert"></span>Gray Button with Icon</button>
@@ -43,6 +59,17 @@
 
 <button class="green">Simple Green Button</button>
 <button class="green"><span class="glyphicons glyphicons-alert"></span>Green Button with Icon</button>
+
+<script>
+  $('#button1').on('click', function(){
+    $(this).button_state($(this).button_state() == 1 ? 2 : 1);
+  })
+  
+  $('#button2').on('click', function(){
+    $(this).button_state($(this).button_state() == 1 ? 2 : 1, 1);
+  })
+</script>
+
 EOT;
 echo htmlentities($c);?>
   </pre>

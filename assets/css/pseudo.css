@@ -33,6 +33,7 @@
 
   .height5{ height: 5px }
   .height10{ height: 10px }
+  .height16{ height: 16px }
   .height20{ height: 20px }
   .height30{ height: 30px }
   .height50{ height: 50px }
@@ -84,6 +85,9 @@
   }
 
   .width10{ width: 10px }
+  .width16{ width: 16px }
+  .width30{ width: 30px }
+  .width50{ width: 50px }
   .width100{ width: 100px }
   .width200{ width: 200px }
   .width240{ width: 240px }
