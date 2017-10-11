@@ -6,6 +6,7 @@ $.fn.extend({
     var columns = $.val('columns', options, { d:[] });
     var className = $.val('class', options, { d:null });
     var name = $.val('name', options, { d:'' });
+    var width = $.val('width', options, { d:'' });
     var grid = $.val('grid', options, { d:null });
     var height = $.val('height', options, { d:null });
 
@@ -20,6 +21,10 @@ $.fn.extend({
       $(el).data('options', options);
       $(el).attr('data-type', 'gridhead');
       $(el).gridhead_attr({ height:height });
+
+      var css = {};
+      if(width != '') css['width'] = width;
+      $(el).css(css);
 
       $(this).gridhead_set(columns);
 

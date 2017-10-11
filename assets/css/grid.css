@@ -2,11 +2,12 @@
 
   .grid{
     overflow-x: hidden;
+    display: block;
   }
   .grid>table{
+    border-collapse: collapse;
     table-layout: fixed;
     width: 100%;
-    border-collapse: collapse;
   }
   .grid td{
     white-space: nowrap;

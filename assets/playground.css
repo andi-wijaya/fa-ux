@@ -1,5 +1,14 @@
 @media screen{
 
+  .sidebar{
+    width: 150px;
+  }
+
+  .content{
+    margin-left: 150px;
+    width: calc(100% - 450px);
+  }
+
   .codebar{
     position: fixed;
     right: 0;
@@ -8,6 +17,8 @@
     overflow-x: hidden;
     overflow-y: auto;
     background: #333;
+    padding: 15px;
+    width: 300px;
   }
 
   .codebar pre{

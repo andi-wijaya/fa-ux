@@ -34,3 +34,40 @@
   })
 
 </script>
+
+<div class="codebar">
+  <pre>
+<?php $c =
+  <<< EOT
+<span id="radio1"></span>
+
+<script>
+  $('#radio1').radio({
+    name:'gender_is_male',
+    text:"Male",
+    value:1
+  })
+</script>
+EOT;
+echo htmlentities($c);?>
+  </pre>
+  <div class="height10"></div><hr /><div class="height10"></div>
+  <pre>
+<?php $c =
+  <<< EOT
+<span id="radio2"></span>
+
+<script>
+  $('#radio2').radio({
+    name:'gender',
+    items:[
+      { text:"Male", value:"m" },
+      { text:"Female", value:"f" }
+    ],
+    value:"f"
+  })
+</script>
+EOT;
+echo htmlentities($c);?>
+  </pre>
+</div>

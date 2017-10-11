@@ -8,7 +8,7 @@
 
 </div>
 
-<div class="codebar width600 padding20">
+<div class="codebar">
   <pre>
 <?php $c =
   <<< EOT

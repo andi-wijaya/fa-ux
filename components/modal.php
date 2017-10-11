@@ -41,3 +41,29 @@
   })
 
 </script>
+
+<div class="codebar">
+  <pre>
+<?php $c =
+  <<< EOT
+<div class="modal">
+  <div class="modal-head"></div>
+  <div class="modal-body"></div>
+  <div class="modal-foot align-right padding5"></div>
+</div>
+
+<script>
+  $('#modal1').modal_open();
+  $('#modal1').modal_open({ width:"600px" });
+  $('#modal1').modal_open({ width:"600px", height:window.innerHeight * .8 });
+  $('#modal1').modal_open({ 
+    width:"600px", 
+    height:window.innerHeight * .8,
+    reset:1,
+    value:{}
+  });
+</script>
+EOT;
+echo htmlentities($c);?>
+  </pre>
+</div>

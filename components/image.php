@@ -40,7 +40,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <div class="content padding20 bg-light">
 
   <span id="image1"></span>
-  <button id="button1">BUtton</button>
+  <div class="height10"></div>
+  <button id="button1">Save Image</button>
 
 </div>
 
@@ -88,3 +89,20 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   })
 
 </script>
+
+<div class="codebar">
+  <pre>
+<?php $c =
+  <<< EOT
+<span id="image1"></span>
+
+<script>
+  $('#image1').image({
+    height:"300px",
+    width:"300px",
+  });
+</script>
+EOT;
+echo htmlentities($c);?>
+  </pre>
+</div>

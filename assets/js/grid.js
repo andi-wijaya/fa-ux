@@ -8,6 +8,7 @@ $.fn.extend({
     var name = $.val('name', options, { d:'' });
     var footer = $.val('footer', options, { d:'' });
     var value = $.val('value', options, { d:null });
+    var width = $.val('width', options, { d:'' });
     var height = $.val('height', options, { d:"auto" });
     var key = $.val('key', options, { d:"" });
     var scroll_cont = $.val('scroll_cont', options, { d:null });
@@ -36,6 +37,11 @@ $.fn.extend({
       $(el).data('options', options);
 
       $(el).html(html.join(''));
+
+      var css = {};
+      if(width != '') css['width'] = width;
+      $(el).css(css);
+
       $.fire_event(footer, [], $('.grid-footer', el));
 
       $(this).grid_set_columns(columns);

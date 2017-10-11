@@ -56,3 +56,101 @@
 
   })
 </script>
+
+<div class="codebar">
+  <pre>
+<?php $c =
+  <<< EOT
+<span id="textarea1"></span>
+
+<script>  
+  $('#textarea1').textarea({
+    placeholder:"Simple textarea",
+    width:"80px"
+  });
+</script>
+EOT;
+echo htmlentities($c);?>
+  </pre>
+  <div class="height10"></div><hr /><div class="height10"></div>
+  <pre>
+<?php $c =
+  <<< EOT
+<span id="textarea2"></span>
+
+<script>  
+  $('#textarea2').textarea({
+    placeholder:"textarea (required)",
+    required:true
+  });
+</script>
+EOT;
+echo htmlentities($c);?>
+  </pre>
+  <div class="height10"></div><hr /><div class="height10"></div>
+  <pre>
+<?php $c =
+  <<< EOT
+<span id="textarea3"></span>
+
+<script>  
+  $('#textarea3').textarea({
+    placeholder:"textarea with Regex Validation",
+    validation:/^\d+$/,
+    validation_text:"Invalid value, number required."
+  });
+</script>
+EOT;
+echo htmlentities($c);?>
+  </pre>
+  <div class="height10"></div><hr /><div class="height10"></div>
+  <pre>
+<?php $c =
+  <<< EOT
+<span id="textarea4"></span>
+
+<script>  
+  $('#textarea4').textarea({
+    placeholder:"textarea with Onchange Handler",
+    onchange:function(value){
+      console.warn(value);
+    },
+    width:"360px"
+  });
+</script>
+EOT;
+echo htmlentities($c);?>
+  </pre>
+  <div class="height10"></div><hr /><div class="height10"></div>
+  <pre>
+<?php $c =
+  <<< EOT
+<span id="textarea5"></span>
+
+<script>  
+  $('#textarea5').textarea({
+    placeholder:"textarea with Maximum 3 Letters",
+    maxlength:3,
+    width:"360px"
+  });
+</script>
+EOT;
+echo htmlentities($c);?>
+  </pre>
+  <div class="height10"></div><hr /><div class="height10"></div>
+  <pre>
+<?php $c =
+  <<< EOT
+<span id="textarea6"></span>
+
+<script>  
+  $('#textarea6').textarea({
+    placeholder:"textarea with Very Long Text Preset",
+    width:"360px",
+    value:""  
+  });
+</script>
+EOT;
+echo htmlentities($c);?>
+  </pre>
+</div>

@@ -26,13 +26,7 @@ session_start();
 </head>
 <body>
 
-<script type="text/javascript">
-  $(function(){
-    $('.content').css({ 'margin-left':$('.sidebar').outerWidth() + "px" });
-  })
-</script>
-
-<div class="sidebar padding10" style="width:150px">
+<div class="sidebar padding10">
   <ul class="nav" style="width:150px;">
     <?php $files = glob(__DIR__ . '/components/*.php'); foreach($files as $file){ ?>
     <li><a href="<?=base_url() . '/components/' . str_replace('.php', '', basename($file))?>"><?=ucwords(basename(str_replace('.php', '', $file)))?></a></li>

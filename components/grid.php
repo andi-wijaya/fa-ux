@@ -13,12 +13,12 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   <br />
   <button id="button1">ADD ITEM</button>
   <br />
-  <span class="padding10" id="sticky1">
-    <span id="sample1"></span>
-  </span>
-  <span class="padding10">
-    <span id="sample2"></span>
-  </span>
+  <div class="padding10" id="sticky1">
+    <span id="gridhead1"></span>
+  </div>
+  <div class="padding10">
+    <span id="grid1"></span>
+  </div>
 
 </div>
 
@@ -38,17 +38,17 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         { text:"", name:"options", width:"130px", type:"html", html:"mod.col0" },
         { text:"Code", name:"code", width:"100px" },
         { text:"Description", name:"description", width:"300px" },
-//      { text:"Image", name:"image", width:"80px", align:"center", type:"html", html:"mod.col1" },
+        { text:"Image", name:"image", width:"80px", align:"center", type:"html", html:"mod.col1" },
         { text:"Editable", width:"150px", align:"center", type:"html", html:"mod.col2" },
         { text:"Enum", width:"100px", name:"code", align:"center", type:"enum", enum:mod.enums },
       ];
 
-      $('#sample1').gridhead({
+      $('#gridhead1').gridhead({
         columns:columns,
-        grid:"#sample2"
+        grid:"#grid1"
       });
 
-      $('#sample2').grid({
+      $('#grid1').grid({
         columns:columns,
         src:"/fa-ux/data/sample_grid.php",
         method:"post",
@@ -59,7 +59,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
       $('#button1').on('click', function(){
 
-        $('#sample2').grid_add({
+        $('#grid1').grid_add({
           id:99,
           code:'Code99',
           description:'Description99'
@@ -83,13 +83,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
       $('.glyphicons-remove', this).on('click', function(){
         if(confirm('Remove this?')){
-          $('#sample2').grid_remove(obj);
+          $('#grid1').grid_remove(obj);
         }
       });
 
       $('.glyphicons-play', this).on('click', function(){
 
-        $('#sample2').grid_modify(obj, {
+        $('#grid1').grid_modify(obj, {
           description:'Modified on ' + new Date().getTime()
         });
 
@@ -101,7 +101,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
       $(this).html("<div class='align-center padding5'><span class='image'></span></div>");
       $('.image', this).image({
-        value:obj['imageurl']
+        value:obj['imageurl'],
+        height: "40px"
       })
 
     },
@@ -121,3 +122,38 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   $(mod.init);
 
 </script>
+
+<div class="codebar">
+  <pre>
+<?php $c =
+  <<< EOT
+<div id="gridhead1"></div>
+<div id="grid1"></div>
+
+<script>
+  var columns = [
+    { text:"", name:"options", width:"130px", type:"html", html:"mod.col0" },
+    { text:"Code", name:"code", width:"100px" },
+    { text:"Description", name:"description", width:"300px" },
+    { text:"Image", name:"image", width:"80px", align:"center", type:"html", html:"mod.col1" },
+    { text:"Editable", width:"150px", align:"center", type:"html", html:"mod.col2" },
+    { text:"Enum", width:"100px", name:"code", align:"center", type:"enum", enum:mod.enums },
+  ];
+
+  $('#gridhead1').gridhead({
+    columns:columns,
+    grid:"#grid1"
+  });
+
+  $('#grid1').grid({
+    columns:columns,
+    src:"/sample_grid.php",
+    method:"post",
+    key:"id",
+    row_per_page:5
+  });
+</script>
+EOT;
+echo htmlentities($c);?>
+  </pre>
+</div>
