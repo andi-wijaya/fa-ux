@@ -79,4 +79,10 @@ $.fn.extend({
 
   },
 
+  image_reset:function(){
+
+    $(this).image_val('');
+
+  }
+
 });

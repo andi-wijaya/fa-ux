@@ -289,7 +289,9 @@ $.fn.extend({
             if(next_page > page){
               $('.grid-footer', instance).html("<div class='load-more align-center padding10'>Load More...</div>");
               $('.load-more', instance).on('click', function(){
-                $(instance).grid_load({ page:next_page });
+                params['page'] = next_page;
+                console.log(params);
+                $(instance).grid_load(params);
               });
             }
             else{
@@ -312,7 +314,9 @@ $.fn.extend({
             if(next_page > page){
               $('.grid-footer', instance).html("<div class='load-more align-center padding10'>Load More...</div>");
               $('.load-more', instance).on('click', function(){
-                $(instance).grid_load({ page:next_page });
+                params['page'] = next_page;
+                console.log(params);
+                $(instance).grid_load(params);
               });
             }
             else{
