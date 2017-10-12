@@ -23,6 +23,7 @@
   .cl-green, .cl-green *{ color: #8CC152; }
   .cl-red, .cl-red *{ color: #E9573F; }
   .cl-white, .cl-white *{ color: #FFFFFF; }
+  .cl-black, .cl-white *{ color: #333; }
 
   .inline-block{ display: inline-block; }
 

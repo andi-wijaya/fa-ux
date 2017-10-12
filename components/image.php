@@ -50,8 +50,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
   $(function(){
 
     $('#image1').image({
-      height:"300px",
-      width:"300px",
+      height:"120px",
+      width:"120px",
+      readonly:false
     });
 
     $('#button1').on('click', function(){
@@ -98,8 +99,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
 <script>
   $('#image1').image({
-    height:"300px",
-    width:"300px",
+    height:"120px",
+    width:"120px",
+    readonly:false
   });
 </script>
 EOT;

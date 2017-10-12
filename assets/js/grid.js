@@ -322,7 +322,7 @@ $.fn.extend({
           });
         }
 
-        $('.grid-footer', this).html("<div class='align-center padding10'>Loading...</div>");
+        $('.grid-footer', this).html("<div class='align-center padding10'><span class='loading width16 height16'></span></div>");
 
       }
       

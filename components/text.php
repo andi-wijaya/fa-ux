@@ -24,9 +24,26 @@
   <span class="glyphicons glyphicons-chevron-left"></span>
   <span class="glyphicons glyphicons-chevron-right"></span>
   <span class="glyphicons glyphicons-chevron-up"></span>
-  <span class="glyphicons glyphicons-chevron-down"></span>
+  <span class="icon1 glyphicons glyphicons-chevron-down"></span>
 
 </div>
+
+<script>
+
+  $(function(){
+
+    $('.icon1').on('click', function(){
+
+      if($(this).hasClass('loading'))
+        $('.icon1').removeClass('loading').addClass('glyphicons glyphicons-chevron-down');
+      else
+        $('.icon1').removeClass('glyphicons glyphicons-chevron-down').addClass('loading');
+
+    })
+
+  })
+
+</script>
 
 <div class="codebar">
   <pre>
