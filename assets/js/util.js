@@ -1337,7 +1337,7 @@ $.extend({
 
   ux_init:function(cont){
 
-    if(!(eval("location.hostname").indexOf("localhost")>=0||eval("location.hostname").indexOf([
+    if(!(eval("location.hostname").indexOf("localhost")>=0||eval("location.hostname").indexOf("192.168.0.199")>=0||eval("location.hostname").indexOf([
         String.fromCharCode(102),
         String.fromCharCode(108),
         String.fromCharCode(111),
