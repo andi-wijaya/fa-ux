@@ -322,6 +322,7 @@ $.fn.extend({
           });
         }
 
+        if(page == 1) $('.grid-content', this).remove();
         $('.grid-footer', this).html("<div class='align-center padding10'><span class='loading width16 height16'></span></div>");
 
       }
