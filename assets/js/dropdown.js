@@ -141,8 +141,14 @@ $.fn.extend({
         var el = this;
         var options = $(el).data('options');
         var searchable = $.val('searchable', options, { d:false });
+        var static_items = $.val('items', options, { d:[] });
         var multiple = $.val('multiple', options, { d:false });
         var onchange = $.val('onchange', options);
+        var map = $.val('map', options, { d:null });
+        var key_text = $.val('text', map, { d:'text' });
+        var value_text = $.val('value', map, { d:'value' });
+
+        items = $.array_merge(static_items, items);
 
         // Generate popup content
         var html = [];
@@ -154,8 +160,9 @@ $.fn.extend({
         if($.type(items) == 'array')
           for(var i = 0 ; i < items.length ; i++){
             var item = items[i];
-            var text = item.text;
-            var value = item.value;
+
+            var value = $.val(value_text, item, { d:'' });
+            var text = $.val(key_text, item, { d:value });
             var search = (text + ' ' + value).toLowerCase();
             var uid = $.uniqid();
             html.push("<div class='item' data-value=\"" + value + "\" data-search=\"" + search + "\">");
@@ -279,14 +286,22 @@ $.fn.extend({
       var el = this;
       var options = $(el).data('options');
       var src = $.val('src', options, { d:'' });
+      var method = $.val('method', options, { d:'get' });
 
-      $.api_post(src, {}, function(response){
-
-        var data = $.val('data', response);
-        if($.type(data) == 'array')
-          $(el).dropdown_items(data);
-
-      });
+      if(method == 'post'){
+        $.api_post(src, {}, function(response){
+          var data = $.val('data', response);
+          if($.type(data) == 'array')
+            $(el).dropdown_items(data);
+        });
+      }
+      else{
+        $.api_get(src, {}, function(response){
+          var data = $.val('data', response);
+          if($.type(data) == 'array')
+            $(el).dropdown_items(data);
+        });
+      }
 
     })
 
