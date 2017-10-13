@@ -122,7 +122,7 @@ $.fn.extend({
           for(var key in newObj)
             currentObj[key] = newObj[key];
 
-          $(this).html($.grid_row(columns, currentObj));
+          $(this).html($.grid_row(columns, currentObj, options));
 
           var column_idx = 0;
           $('td', this).each(function(){
@@ -165,7 +165,7 @@ $.fn.extend({
       obj_key = obj_key.join('');
 
       var tr = document.createElement('tr');
-      $(tr).html($.grid_row(columns, obj)).attr('data-key', obj_key);
+      $(tr).html($.grid_row(columns, obj, options)).attr('data-key', obj_key);
 
       var trs = $('tr:not(.grid-size-tr)', this);
       var pivot_tr = null;
@@ -448,6 +448,9 @@ $.extend({
     var key = $.val('key', options, { d:'' });
     key = key.split(',');
 
+    var moveable = $.val('moveable', options, { d:false });
+    var moveable_html = moveable ? " draggable='true' ondragstart='$.grid_ondragstart.apply(this, arguments)'" : '';
+
     var html = [];
     for(var i = 0 ; i < data.length ; i++){
       var obj = data[i];
@@ -458,19 +461,22 @@ $.extend({
           obj_key.push(obj[key[j]]);
       obj_key = obj_key.join('');
 
-      var rowid = $.val('__rowid', obj, { d:-1 });
+      var cid = 'g' + $.uniqid();
 
-      html.push("<tr data-key=\"" + obj_key + "\" data-rowid='" + rowid + "'>");
-      html.push($.grid_row(columns, obj));
+      html.push("<tr data-key=\"" + obj_key + "\" data-cid='" + cid + "'" + moveable_html + ">");
+      html.push($.grid_row(columns, obj, options));
       html.push("</tr>");
     }
     return html.join('');
 
   },
 
-  grid_row:function(columns, obj){
+  grid_row:function(columns, obj, options){
 
     var html = [];
+
+    var moveable = $.val('moveable', options, { d:false });
+    var moveable_html = moveable ? " ondrop='$.grid_ondrop.apply(this, arguments)' ondragover='$.grid_ondragover.apply(this, arguments)' ondragleave='$.grid_ondragleave.apply(this, arguments)'" : '';
 
     for(var j = 0 ; j < columns.length ; j++){
 
@@ -530,12 +536,51 @@ $.extend({
 
       if(column_align != '') text_align = column_align;
 
-      html.push("<td data-column-type='" + column_type + "' class='" + td_class + "' style='text-align:" + text_align + "'>" + column_value + "</td>");
+      html.push("<td data-column-type='" + column_type + "' class='" + td_class + "' style='text-align:" + text_align + "'" + moveable_html + ">" + column_value + "</td>");
 
     }
 
-    html.push("<td></td>");
+    html.push("<td" + moveable_html + "></td>");
     return html.join('');
+
+  },
+
+  grid_ondrop:function(){
+
+    // console.log([ 'ondrop', this, arguments ]);
+    $(this).closest('tr').removeClass('drag-over');
+
+    var cid = $(this).closest('.grid').data('drag_cid');
+    if($("tr[data-cid=" + cid + "]").index() > $(this).closest('tr').index())
+      $("tr[data-cid=" + cid + "]").insertBefore($(this).closest('tr'));
+    else
+      $("tr[data-cid=" + cid + "]").insertAfter($(this).closest('tr'));
+
+  },
+
+  grid_ondragstart:function(){
+
+    // console.log([ 'dragstart', this, arguments ]);
+    var cid = $(this).closest('tr').attr('data-cid');
+    $(this).closest('.grid').data('drag_cid', cid);
+
+  },
+
+  grid_ondragleave:function(e){
+
+    // console.log([ 'dragleave', arguments, this ]);
+
+    $(this).closest('tr').removeClass('drag-over');
+
+  },
+
+  grid_ondragover:function(e){
+
+    // console.log([ 'dragover', arguments, this ]);
+
+    $(this).closest('tr').addClass('drag-over');
+
+    e.preventDefault();
 
   }
 

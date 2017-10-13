@@ -63,7 +63,7 @@ echo htmlentities($c);?>
     multiple: true,
     placeholder:"Country...",
     src:"/fa-ux/data/seo_country_filter.php",
-    mapping:{
+    map:{
       text:"code",
       value:"code"
     },
@@ -97,7 +97,7 @@ echo htmlentities($c);?>
       multiple: true,
       placeholder:"Country...",
       src:"/fa-ux/data/seo_country_filter.php",
-      mapping:{
+      map:{
         text:"code",
         value:"code"
       },

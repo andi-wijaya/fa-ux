@@ -22,6 +22,9 @@
   .grid .grid-size-label{
     padding: 0 8px;
   }
+  .grid .grid-content tr.drag-over{
+    background: #eee;
+  }
 
 
   /* BEGIN STYLE 1 */

@@ -6,7 +6,9 @@ $.fn.extend({
     var name = $.val('name', options, { d:'' });
     var src = $.val('src', options, { d:'' });
     var width = $.val('width', options);
+    var method = $.val('method', options, { d:"get" });
     var placeholder = $.val('placeholder', options, { d:"" });
+    var onbeforehint = $.val('onbeforehint', options, { d:null });
 
     var css = {};
     if(width != null) css['width'] = width;
@@ -33,43 +35,82 @@ $.fn.extend({
         var el = $(this).closest('.autocomplete');
         if($(el).hasClass('readonly')) return;
         var options = $(el).data('options');
-        var mapping = $.val('mapping', options, { d:null });
+        var map = $.val('map', options, { d:null });
         var readonly = $.val('readonly', options);
 
         if(!readonly && src.length > 0){
 
           var params = {};
           params['key'] = this.value;
+          var custom = $.fire_event(onbeforehint, [ this.value ], el);
+          if(typeof custom != 'undefined' || custom != null) params['custom'] = custom;
 
-          $.api_get(src, params, function(response){
+          if(method == 'post'){
 
-            var data = $.val('data', response);
-            var html = [];
-            if($.type(data) == 'array')
-              for(var i = 0 ; i < data.length ; i++){
-                var item = data[i];
+            $.api_post(src, params, function(response){
 
-                var value_key = $.val('value', mapping, { d:'value' });
-                var text_key = $.val('text', mapping, { d:'text' });
-                var value = $.val(value_key, item, { d:'' });
-                var text = $.val(text_key, item, { d:value });
-                
-                html.push("<div class='item' data-value=\"" + value + "\">");
-                html.push("<label>" + text + "</label>");
-                html.push("</div>");
-              }
-            $('.popup', el).html(html.join(''));
-            $('.item', $('.popup', el)).on('click',function(){
+              var data = $.val('data', response);
+              var html = [];
+              if($.type(data) == 'array')
+                for(var i = 0 ; i < data.length ; i++){
+                  var item = data[i];
 
-              var value = this.getAttribute('data-value');
-              var text = $('label', this).text();
-              var obj = { value:value, text:text };
+                  var value_key = $.val('value', map, { d:'value' });
+                  var text_key = $.val('text', map, { d:'text' });
+                  var value = $.val(value_key, item, { d:'' });
+                  var text = $.val(text_key, item, { d:value });
 
-              $(el).autocomplete_val(obj, true);
+                  html.push("<div class='item' data-value=\"" + value + "\">");
+                  html.push("<label>" + text + "</label>");
+                  html.push("</div>");
+                }
+              $('.popup', el).html(html.join(''));
+              $('.item', $('.popup', el)).on('click',function(){
+
+                var value = this.getAttribute('data-value');
+                var text = $('label', this).text();
+                var obj = { value:value, text:text };
+
+                $(el).autocomplete_val(obj, true);
+              });
+              $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
+
             });
-            $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
 
-          });
+          }
+          else{
+
+            $.api_get(src, params, function(response){
+
+              var data = $.val('data', response);
+              var html = [];
+              if($.type(data) == 'array')
+                for(var i = 0 ; i < data.length ; i++){
+                  var item = data[i];
+
+                  var value_key = $.val('value', map, { d:'value' });
+                  var text_key = $.val('text', map, { d:'text' });
+                  var value = $.val(value_key, item, { d:'' });
+                  var text = $.val(text_key, item, { d:value });
+
+                  html.push("<div class='item' data-value=\"" + value + "\">");
+                  html.push("<label>" + text + "</label>");
+                  html.push("</div>");
+                }
+              $('.popup', el).html(html.join(''));
+              $('.item', $('.popup', el)).on('click',function(){
+
+                var value = this.getAttribute('data-value');
+                var text = $('label', this).text();
+                var obj = { value:value, text:text };
+
+                $(el).autocomplete_val(obj, true);
+              });
+              $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
+
+            });
+
+          }
         }
 
       });
