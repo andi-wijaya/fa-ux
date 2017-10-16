@@ -148,8 +148,6 @@ $.fn.extend({
         var key_text = $.val('text', map, { d:'text' });
         var value_text = $.val('value', map, { d:'value' });
 
-        items = $.array_merge(static_items, items);
-
         // Generate popup content
         var html = [];
         if(searchable == true){

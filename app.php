@@ -29,13 +29,13 @@ session_start();
 <div class="sidebar padding10">
   <ul class="nav" style="width:150px;">
     <?php $files = glob(__DIR__ . '/components/*.php'); foreach($files as $file){ ?>
-    <li><a href="<?=base_url() . '/components/' . str_replace('.php', '', basename($file))?>"><?=ucwords(basename(str_replace('.php', '', $file)))?></a></li>
+    <li><a href="<?=base_url() . '/components/' . str_replace('.php', '', basename($file))?>"><?=ucwords(str_replace('_', ' ', basename(str_replace('.php', '', $file))))?></a></li>
     <?php } ?>
   </ul>
   <div class="height20"></div>
   <ul class="nav width200">
     <?php $files = glob(__DIR__ . '/workspaces/*.php'); foreach($files as $file){ ?>
-    <li><a href="<?=base_url() . '/workspaces/' . str_replace('.php', '', basename($file))?>"><?=ucwords(basename(str_replace('.php', '', $file)))?></a></li>
+    <li><a href="<?=base_url() . '/workspaces/' . str_replace('.php', '', basename($file))?>"><?=ucwords(str_replace('_', ' ', basename(str_replace('.php', '', $file))))?></a></li>
     <?php } ?>
   </ul>
 </div>

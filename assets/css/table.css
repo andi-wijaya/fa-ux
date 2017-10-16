@@ -1,0 +1,16 @@
+@media screen{
+
+  .table1{
+    border-collapse: collapse;
+
+  }
+  .table1 td{
+    border: solid 1px #ededed;
+    padding: 3px;
+    vertical-align: top;
+  }
+  .table1 td *[data-type]{
+    border-color: transparent;
+  }
+
+}

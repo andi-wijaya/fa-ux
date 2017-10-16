@@ -62,7 +62,8 @@
   }
 
   .textbox.invalid{
-    border-color: red;
+    border-color: red !important;
+    background: #ffc9c3 !important;
   }
 
 

@@ -32,7 +32,7 @@
     display: inline-block;
     font-weight: 100;
     margin: 0;
-    padding: 0;
+    padding: 6px;
   }
   h1, h1 *, .h1, .h1 *{
     font-size: 24px;
@@ -84,6 +84,11 @@
 
   b{
     font-weight: 700;
+  }
+
+  p{
+    padding: 6px;
+    margin: 0;
   }
 
   .pane{

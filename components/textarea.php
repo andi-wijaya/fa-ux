@@ -20,7 +20,8 @@
 
     $('#textarea1').textarea({
       placeholder:"Simple textarea",
-      width:"80px"
+      width:"300px",
+      default_value:"Hello World, remove this to reveal placeholder",
     });
 
     $('#textarea2').textarea({

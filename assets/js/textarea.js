@@ -2,20 +2,21 @@ $.fn.extend({
 
   textarea:function(options){
 
-    var placeholder = $.val('placeholder', options, { d:'' });
     var className = $.val('class', options, { d:'' });
-    var name = $.val('name', options, { d:'' });
-    var height = $.val('height', options, { d:"1em" });
-    var width = $.val('width', options);
+    var default_value = $.val('default_value', options, { d:'' });
     var maxlength = $.val('maxlength', options, { d:'' });
+    var name = $.val('name', options, { d:'' });
     var onblur = $.val('onblur', options);
-    var onkeyup = $.val('onkeyup', options);
     var onchange = $.val('onchange', options);
-    var value = $.val('value', options, { d:'' });
+    var onkeyup = $.val('onkeyup', options);
+    var placeholder = $.val('placeholder', options, { d:'' });
+    var readonly = $.val('readonly', options, { d:false });
+    var height = $.val('height', options, { d:"1em" });
+    var width = $.val('width', options, { d:'' });
+    var value = $.val('value', options, { d:default_value });
 
-    var css = {
-      width:width
-    };
+    var css = {};
+    if(width != '') css['width'] = width;
 
     this.each(function(){
 
@@ -24,11 +25,11 @@ $.fn.extend({
       var html = [];
       html.push("<textarea rows='1' placeholder='" + placeholder + "' style='height:" + height + ";' maxlength='" + maxlength + "'></textarea>");
       html.push("<span class='icon fa hidden'></span>");
+      $(el).html(html.join(''));
 
       $(el).addClass('textarea');
       $(el).addClass(className);
       $(el).css(css);
-      $(el).html(html.join(''));
       $(el).attr('data-type', 'textarea');
       $(el).attr('data-name', name);
       $(el).data('options', options);
@@ -40,11 +41,11 @@ $.fn.extend({
       })
       .keyup(function(e){
 
-        $.fire_event(onkeyup, [ this.value ], el);
+        $.fire_event(onkeyup, [ e, this.value ], el);
         if($(this).data('last_value') != this.value){
-          $.fire_event(onchange, [ this.value ], el);
+          $.fire_event(onchange, [ e, this.value ], el);
         }
-        $(this).data('last_value', this.value);
+        $(this).data('last_value', e, this.value);
 
       });
 
@@ -107,7 +108,13 @@ $.fn.extend({
 
   textarea_reset:function(){
 
-    $(this).textarea_val('');
+    $(this).each(function(){
+
+      var options = $(this).data('options');
+      var default_value = $.val('default_value', options, { d:'' });
+      $(this).textarea_val(default_value);
+
+    });
 
   },
 
@@ -116,8 +123,9 @@ $.fn.extend({
     $(this).each(function(){
 
       var options = $(this).data('options');
+      var name = $.val('name', options, { d:'Field' });
       var required = $.val('required', options, { d:false });
-      var required_text = $.val('required_text', options, { d:'Field required.' });
+      var required_text = $.val('required_text', options, { d:name + ' required.' });
       var validation = $.val('validation', options, { d:'' });
       var validation_text = $.val('validation_text', options, { d:'Validation error.' });
       var value = $(this).textarea_val();
