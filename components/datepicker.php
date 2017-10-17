@@ -8,6 +8,29 @@
 
 </div>
 
+<script type="text/javascript">
+
+  $(function(){
+
+    $('#datepicker1').datepicker({
+      onchange:function(value){
+        console.log([ 'changed', value ]);
+      },
+      value:''
+    });
+
+    $('#datepicker2').datepicker({
+      mode:'range',
+      onchange:function(value){
+        console.log([ 'changed', value ]);
+      },
+      value:""
+    });
+
+  })
+
+</script>
+
 <div class="codebar">
   <pre>
 <?php $c =
@@ -40,24 +63,3 @@ EOT;
 echo htmlentities($c);?>
   </pre>
 </div>
-
-<script type="text/javascript">
-
-  $(function(){
-
-    $('#datepicker1').datepicker({
-      onchange:function(value){
-        console.log([ 'changed', value ]);
-      }
-    });
-
-    $('#datepicker2').datepicker({
-      mode:'range',
-      onchange:function(value){
-        console.log([ 'changed', value ]);
-      }
-    });
-
-  })
-
-</script>

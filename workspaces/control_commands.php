@@ -53,7 +53,7 @@
       name:"Textarea1",
       required:1,
       items:[
-        { text:"worlD", value:"world" }
+        { text:"World", value:"world" }
       ]
     });
 

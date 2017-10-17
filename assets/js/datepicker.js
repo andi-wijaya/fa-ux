@@ -89,14 +89,17 @@ $.fn.extend({
         var text = '';
         value = $.date_parse(value);
 
-        if(value.indexOf('-') >= 0){
+        if(mode == 'range'){
           var d = value.split('-');
-          var d1 = $.date('M j, Y', $.strtotime(d[0]));
-          var d2 = $.date('M j, Y', $.strtotime(d[1]));
-          text = mode == 'range' ? d1 + ' - ' + d2 : d1;
+          var d1 = d.length != 2 && $.strtotime(d[0]) == false ? $.date('M j, Y') : $.date('M j, Y', $.strtotime(d[0]));
+          var d2 = d.length != 2 && $.strtotime(d[1]) == false ? $.date('M j, Y') : $.date('M j, Y', $.strtotime(d[1]));
+          text = d1 + ' - ' + d2;
         }
         else{
-          var d = $.date('M j, Y', $.strtotime(value));
+          if($.strtotime(value) == false)
+            var d = $.date('M j, Y');
+          else
+            var d = $.date('M j, Y', $.strtotime(value));
           text = d;
         }
 
