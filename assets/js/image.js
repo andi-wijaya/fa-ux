@@ -14,9 +14,10 @@ $.fn.extend({
       var el = this;
 
       var html = [];
-      html.push("<img />");
+      html.push("<img class='image-img'/>");
       html.push("<input type='file' accept='image/*'/>");
       html.push("<span class='image-upload glyphicons glyphicons-folder-open'></span>");
+      html.push("<span class='popup'><img class='image-popup-img'/></span>");
 
       $(el).attr('data-type', 'image');
       $(el).attr('data-name', name);
@@ -25,19 +26,24 @@ $.fn.extend({
       if(readonly) $(el).addClass('readonly');
       $(el).html(html.join(''));
       $(el).data('options', options);
-      $('img', el).css({ width:width, height:height });
+      $('.image-img', el).css({ width:width, height:height });
+      $('.image-popup-img', this).css({ 'max-width':window.innerWidth * .8, 'max-height':window.innerHeight * .8 });
 
       $('.image-upload', this).on('click', function(e){
         e.preventDefault();
         $(this).prev().click();
-      })
+      });
 
-      $('img', this).on('click', function(){
+      $('.image-img', this).on('click', function(e){
 
-        //$('.popup', $(this).closest('.image')).html('123');
-        //$.popup_open($('.popup', $(this).closest('.image')), $(this).closest('.image'));
+        e.preventDefault();
+        e.stopPropagation();
 
-      })
+        var popup = $('.popup', $(this).closest('.image'));
+        $('.image-popup-img', popup).attr('src', $(this).attr('src'));
+        $.popup_open(popup);
+
+      });
 
       $('input[type=file]', this).on('change', function(e){
 
@@ -48,18 +54,15 @@ $.fn.extend({
           var fr = new FileReader();
           fr.onload = function () {
             input.previousElementSibling.src = fr.result;
-
-
-
           }
           fr.readAsDataURL(this.files[0]);
         }
 
-      })
+      });
 
-      $('img', this).error(function(){
+      $('.image-img', this).error(function(){
         $(this).parent().addClass('no-image');
-      })
+      });
 
       if(value != '') $(this).image_val(value);
 
@@ -82,7 +85,7 @@ $.fn.extend({
     else{
 
       this.each(function(){
-        $('img', this).attr('src', value);
+        $('.image-img', this).attr('src', value);
       })
 
     }

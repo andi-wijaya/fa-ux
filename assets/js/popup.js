@@ -11,20 +11,33 @@ $.extend({
     $(el).addClass('on');
 
     var css = {};
-    var offset = $(refEl).offset();
-    var max_width = offset.left + el.clientWidth;
+    if(typeof refEl == 'undefined'){
 
-    var top = offset.top - $(window).scrollTop() + $(refEl).outerHeight() + 1;
-    var max_height = window.innerHeight - top - 10;
+      var width = $(el).outerWidth();
+      var height = $(el).outerHeight();
+      css['left'] = Math.round((window.innerWidth - width) / 2);
+      css['top'] = Math.round((window.innerHeight - height) / 2);
 
-    css['top'] = top;
-    css['max-height'] = max_height;
+    }
+    else{
 
-    if(max_width > window.innerWidth) offset.left = window.innerWidth - el.clientWidth;
-    css['left'] = offset.left;
+      var offset = $(refEl).offset();
+      var max_width = offset.left + el.clientWidth;
 
-    var min_width = $.val('min_width', options);
-    if(!isNaN(parseInt(min_width))) css['min-width'] = min_width;
+      var top = offset.top - $(window).scrollTop() + $(refEl).outerHeight() + 1;
+      var max_height = window.innerHeight - top - 10;
+
+      css['top'] = top;
+      css['max-height'] = max_height;
+
+      if(max_width > window.innerWidth) offset.left = window.innerWidth - el.clientWidth;
+      css['left'] = offset.left;
+
+      var min_width = $.val('min_width', options);
+      if(!isNaN(parseInt(min_width))) css['min-width'] = min_width;
+
+    }
+
     $(el).css(css);
 
   },

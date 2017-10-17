@@ -38,10 +38,14 @@
     object-fit: cover;
 
   }
-  .image.no-image img{
+  .image.no-image>img{
     background: url('https://www.nflfullhd.com/wp-content/themes/watchzaa/images/no-image-landscape.png') no-repeat;
     background-size: 100% auto;
     background-position: center;
+  }
+  .image-popup-img{
+    width: 400px;
+    height: 400px;
   }
 
 }
