@@ -27,8 +27,16 @@ $.fn.extend({
       $(el).data('options', options);
       $('img', el).css({ width:width, height:height });
 
-      $('.image-upload', this).on('click', function(){
+      $('.image-upload', this).on('click', function(e){
+        e.preventDefault();
         $(this).prev().click();
+      })
+
+      $('img', this).on('click', function(){
+
+        //$('.popup', $(this).closest('.image')).html('123');
+        //$.popup_open($('.popup', $(this).closest('.image')), $(this).closest('.image'));
+
       })
 
       $('input[type=file]', this).on('change', function(e){
