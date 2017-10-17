@@ -14,7 +14,7 @@ $.fn.extend({
       var el = this;
 
       var html = [];
-      html.push("<img src=\"" + value + "\"/>");
+      html.push("<img />");
       html.push("<input type='file' accept='image/*'/>");
       html.push("<span class='image-upload glyphicons glyphicons-folder-open'></span>");
 
@@ -27,7 +27,7 @@ $.fn.extend({
       $(el).data('options', options);
       $('img', el).css({ width:width, height:height });
 
-      $('.image-upload').on('click', function(){
+      $('.image-upload', this).on('click', function(){
         $(this).prev().click();
       })
 
@@ -52,6 +52,8 @@ $.fn.extend({
       $('img', this).error(function(){
         $(this).parent().addClass('no-image');
       })
+
+      if(value != '') $(this).image_val(value);
 
     });
 

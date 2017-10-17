@@ -10,7 +10,7 @@
     vertical-align: middle;
   }
   .dropdown:hover, .dropdown:active{
-    border-color: #aaa;
+    /*border-color: #aaa;*/
   }
   .dropdown>input{
     background: transparent;
