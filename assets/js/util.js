@@ -673,14 +673,27 @@ $.extend({
 
   api_get:function(url, data, callback, errcallback){
 
-    var qs = $.http_build_query(data);
-    url += url.indexOf('?') > 0 ? (qs.length > 0 ? '&' + qs : '') : (qs.length > 0 ? '?' + qs : '');
+    $.ajax({
+      url:url,
+      type:"get",
+      data:data,
+      success:function(response){
 
-    // Process
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open('GET', url, true);
-    xmlhttp.addEventListener('load', function(){
-      if(this.readyState == 4){
+        var error = $.val('error', response, { d:0, datatype:"integer" });
+        var error_message = $.val('error_message', response, { d:'' });
+
+        if(error > 0){
+          if(errcallback != null)
+            $.fire_event(errcallback, [ this.responseText ], this);
+          else
+            alert(error_message);
+        }
+        else{
+          $.fire_event(callback, [ response ], this);
+        }
+
+      },
+      error:function(xhr){
 
         var obj = $.eval_as_object(this.responseText);
         var error = $.val('error', obj, { d:0, datatype:"integer" });
@@ -688,25 +701,16 @@ $.extend({
 
         if(error > 0){
           if(errcallback != null)
-            $.fire_event(errcallback, [ this.responseText ], xmlhttp);
+            $.fire_event(errcallback, [ this.responseText ], xhr);
           else
             alert(error_message);
         }
         else{
-          $.fire_event(callback, [ obj ], xmlhttp);
+          $.fire_event(callback, [ obj ], xhr);
         }
 
       }
     });
-    xmlhttp.addEventListener('error', function(){
-      if(typeof errcallback != 'undefined' || errcallback != null)
-        $.fire_event(errcallback);
-      else
-        console.log(this.responseText);
-    });
-    xmlhttp.send();
-
-    return xmlhttp;
 
   },
   api_post:function(url, data, callback, errcallback){

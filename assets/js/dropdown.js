@@ -10,6 +10,7 @@ $.fn.extend({
     var width = $.val('width', options, { d:[] });
     var src = $.val('src', options, { d:'' });
     var placeholder = $.val('placeholder', options, { d:'' });
+    options['static_items'] = items;
 
     var html = [];
     html.push("<input class='text' placeholder=\"" + placeholder + "\" readonly/>");
@@ -26,7 +27,6 @@ $.fn.extend({
       $(el).data('options', options);
       $(el).attr('data-type', 'dropdown');
       $(el).attr('data-name', name);
-      $(el).dropdown_attr(options);
 
       $('.icon, .text', el).click(function(e){
         e.preventDefault();
@@ -48,6 +48,7 @@ $.fn.extend({
         }
       });
 
+      if($.type(items) == 'array' && items.length > 0) $(this).dropdown_items(items);
       if(value != '') $(el).dropdown_val(value);
       if(src.length > 0)
         $(this).dropdown_load();
@@ -141,7 +142,6 @@ $.fn.extend({
         var el = this;
         var options = $(el).data('options');
         var searchable = $.val('searchable', options, { d:false });
-        var static_items = $.val('items', options, { d:[] });
         var multiple = $.val('multiple', options, { d:false });
         var onchange = $.val('onchange', options);
         var map = $.val('map', options, { d:null });
@@ -171,8 +171,6 @@ $.fn.extend({
         html = html.join('');
 
         $('.popup', el).html(html);
-        $(el).data('options', options);
-
         $('.item', $('.popup', el)).click(function(e){
 
           if(multiple) e.stopPropagation();
@@ -200,7 +198,6 @@ $.fn.extend({
           $.fire_event(onchange, [ e, obj ], el);
 
         });
-
         $(".item>input[type='checkbox']", $('.popup', el)).on('change', function(){
 
           var text = this.nextElementSibling.innerHTML; // Text from label
@@ -208,12 +205,10 @@ $.fn.extend({
           $(el).dropdown_val({ text:text, value:value }, true);
 
         });
-
         $('.popup .search-item input', el).click(function(e){
           e.preventDefault();
           e.stopPropagation();
         });
-
         $('.popup .search-item input', el).keyup(function(e){
 
           var key = this.value;
@@ -234,49 +229,6 @@ $.fn.extend({
 
   },
 
-  dropdown_attr:function(obj){
-    
-    this.each(function(){
-
-      var options = $(this).data('options');
-
-      if($.type(obj) == 'object'){
-        for(var key in obj){
-          var value = obj[key];
-          var css = {};
-          switch(key){
-            case 'items':
-              $(this).dropdown_items(value);
-              break;
-            case 'readonly':
-              if(value){
-                $(this).addClass('readonly');
-                options['readonly'] = true;
-              }
-              else{
-                $(this).removeClass('readonly');
-                options['readonly'] = false;
-              }
-              break;
-            case 'value':
-              $(this).dropdown_val(value);
-              break;
-            case 'width':
-              css['width'] = parseInt(value);
-              break;
-
-          }
-          $(this).css(css);
-
-        }
-      }
-
-      $(this).data('options', options);
-
-    })
-
-  },
-
   dropdown_load:function(){
 
     this.each(function(){
@@ -288,16 +240,74 @@ $.fn.extend({
 
       if(method == 'post'){
         $.api_post(src, {}, function(response){
-          var data = $.val('data', response);
-          if($.type(data) == 'array')
-            $(el).dropdown_items(data);
+
+          var items = $.val('data', response);
+          if($.type(items) == 'array'){
+
+            var map = $.val('map', options, { d:null });
+            var key_text = $.val('text', map, { d:'text' });
+            var value_text = $.val('value', map, { d:'value' });
+            var static_items = $.val('static_items', options, { d:[] });
+
+            // Generate items
+            var temp = [];
+            if($.type(static_items) == 'array') {
+              for (var i = 0; i < static_items.length; i++) {
+                var item = static_items[i];
+                var value = $.val(value_text, item, { d:'' });
+                var text = $.val(key_text, item, { d:value });
+                temp.push({ text:text, value:value });
+              }
+            }
+            if($.type(items) == 'array') {
+              for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                var value = $.val(value_text, item, { d:'' });
+                var text = $.val(key_text, item, { d:value });
+                temp.push({ text:text, value:value });
+              }
+            }
+            items = temp;
+            $(el).dropdown_items(items);
+
+          }
+
         });
       }
       else{
         $.api_get(src, {}, function(response){
-          var data = $.val('data', response);
-          if($.type(data) == 'array')
-            $(el).dropdown_items(data);
+
+          var items = $.val('data', response);
+          if($.type(items) == 'array'){
+
+            var map = $.val('map', options, { d:null });
+            var key_text = $.val('text', map, { d:'text' });
+            var value_text = $.val('value', map, { d:'value' });
+            var static_items = $.val('static_items', options, { d:[] });
+
+            // Generate items
+            var temp = [];
+            if($.type(static_items) == 'array') {
+              for (var i = 0; i < static_items.length; i++) {
+                var item = static_items[i];
+                var value = $.val(value_text, item, { d:'' });
+                var text = $.val(key_text, item, { d:value });
+                temp.push({ text:text, value:value });
+              }
+            }
+            if($.type(items) == 'array') {
+              for (var i = 0; i < items.length; i++) {
+                var item = items[i];
+                var value = $.val(value_text, item, { d:'' });
+                var text = $.val(key_text, item, { d:value });
+                temp.push({ text:text, value:value });
+              }
+            }
+            items = temp;
+            $(el).dropdown_items(items);
+
+          }
+
         });
       }
 

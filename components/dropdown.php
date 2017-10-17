@@ -86,7 +86,7 @@
       src:"/fa-ux/data/sample_dropdown.php"
     });
     $('#dropdown4').dropdown({
-      width:"600px",
+      width:"300px",
       placeholder:"Multiple Dropdown",
       multiple:true,
       items:[
@@ -96,6 +96,8 @@
         { text:"Dropdown-4", value:"4" },
         { text:"Dropdown-5", value:"5" },
       ],
+      src:"/fa-ux/data/sample_dropdown.php",
+      map:{ text:"text", value:"value" }
     });
   })
 </script>

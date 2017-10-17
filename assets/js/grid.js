@@ -275,6 +275,8 @@ $.fn.extend({
         };
         if(search != '') el_params['search'] = search;
 
+        console.log([ 'grid_load.el_params', el_params ]);
+
         if(method.toString().toLowerCase() == 'get'){
           $.api_get(src, el_params, function(response){
 
