@@ -33,9 +33,9 @@ $.fn.extend({
 
   },
 
-  modal_close:function(exp){
+  modal_close:function(){
 
-    $(exp).each(function(){
+    $(this).each(function(){
       $(this).removeClass('on');
     });
 

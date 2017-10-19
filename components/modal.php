@@ -38,6 +38,14 @@
     $('#button2').on('click', function(){ $('#modal1').modal_open({ width:"600px" }); });
     $('#button3').on('click', function(){ $('#modal1').modal_open({ width:"600px", height:window.innerHeight * .8 }); });
 
+    $('#modal1').droppable({
+      ondrop:function(e, obj){
+
+
+
+      }
+    })
+
   })
 
 </script>
