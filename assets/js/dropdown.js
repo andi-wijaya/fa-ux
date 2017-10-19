@@ -144,9 +144,6 @@ $.fn.extend({
         var searchable = $.val('searchable', options, { d:false });
         var multiple = $.val('multiple', options, { d:false });
         var onchange = $.val('onchange', options);
-        var map = $.val('map', options, { d:null });
-        var key_text = $.val('text', map, { d:'text' });
-        var value_text = $.val('value', map, { d:'value' });
 
         // Generate popup content
         var html = [];
@@ -158,9 +155,8 @@ $.fn.extend({
         if($.type(items) == 'array')
           for(var i = 0 ; i < items.length ; i++){
             var item = items[i];
-
-            var value = $.val(value_text, item, { d:'' });
-            var text = $.val(key_text, item, { d:value });
+            var value = $.val('value', item, { d:'' });
+            var text = $.val('text', item, { d:value });
             var search = (text + ' ' + value).toLowerCase();
             var uid = $.uniqid();
             html.push("<div class='item' data-value=\"" + value + "\" data-search=\"" + search + "\">");

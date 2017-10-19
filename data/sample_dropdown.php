@@ -3,24 +3,24 @@
 
 $data = [
   [
-    'text'=>'Lorem ipsum',
-    'value'=>'1',
+    'title'=>'Lorem ipsum',
+    'code'=>'1',
   ],
   [
-    'text'=>'dolor sit amet',
-    'value'=>'2',
+    'title'=>'dolor sit amet',
+    'code'=>'2',
   ],
   [
-    'text'=>'consectetur adipiscing',
-    'value'=>'3',
+    'title'=>'consectetur adipiscing',
+    'code'=>'3',
   ],
   [
-    'text'=>'Ut risus ipsum',
-    'value'=>'4',
+    'title'=>'Ut risus ipsum',
+    'code'=>'4',
   ],
   [
-    'text'=>'gravida ultricies',
-    'value'=>'5',
+    'title'=>'gravida ultricies',
+    'code'=>'5',
   ],
 ];
 
