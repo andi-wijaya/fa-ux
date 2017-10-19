@@ -66,5 +66,14 @@
     background: #ffc9c3 !important;
   }
 
+  .textbox.underlined{
+    border-color: transparent;
+    border-bottom-color: #eee;
+  }
+  .textbox.underlined.invalid{
+    border-color: transparent !important;
+    border-bottom-color: red !important;
+    background: #ffc9c3 !important;
+  }
 
 }

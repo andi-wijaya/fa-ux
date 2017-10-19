@@ -45,6 +45,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
       $('#gridhead1').gridhead({
         columns:columns,
+        oncolumnresize:function(obj){
+          console.log($(this).gridhead_columns());
+        },
         grid:"#grid1"
       });
 
@@ -54,7 +57,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         method:"post",
         key:"id",
         row_per_page:5,
-        scroll_cont:'window'
+        scroll_cont:'window',
+        moveable:true,
+        onmove:function(){
+          console.log([ arguments, this ]);
+        }
       });
 
       $('#button1').on('click', function(){

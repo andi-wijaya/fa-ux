@@ -174,53 +174,63 @@ $.fn.extend({
 
   },
 
-  gridhead_modify_column:function(columns){
+  gridhead_columns:function(columns){
 
-    $(this).each(function(){
+    if(typeof columns == 'undefined'){
 
-      if(!$(this).hasClass('gridhead')) return;
+      return $.val('columns', $(this).data('options'), { d:[] });
 
-      var options = $(this).data('options');
-      var grid = $.val('grid', options);
-      var options_columns = $.val('columns', options);
+    }
+    else{
 
-      for(var i = 0 ; i < options_columns.length ; i++){
-        var options_column = options_columns[i];
-        var options_column_name = $.val('name', options_column, { d:'' });
-        var options_column_width = $.val('width', options_column, { d:'' });
+      $(this).each(function(){
 
-        if(options_column_name == '') continue;
+        if(!$(this).hasClass('gridhead')) return;
 
-        for(var j = 0 ; j < columns.length ; j++){
-          var column = columns[j];
-          var column_name = $.val('name', column, { d:'' });
-          var column_active = $.val('active', column, { d:1 });
+        var options = $(this).data('options');
+        var grid = $.val('grid', options);
+        var options_columns = $.val('columns', options);
 
-          if(options_column_name == column_name){
+        for(var i = 0 ; i < options_columns.length ; i++){
 
-            if(column_active){
+          var options_column = options_columns[i];
+          var options_column_name = $.val('name', options_column, { d:'' });
+          var options_column_width = $.val('width', options_column, { d:'' });
 
-              $(".label[data-key='" + column_name + "']", this).removeClass('inactive');
-              $(".grid-size-label[data-key='" + column_name + "']", $(grid)).removeClass('inactive');
+          if(options_column_name == '') continue;
+
+          for(var j = 0 ; j < columns.length ; j++){
+            var column = columns[j];
+            var column_name = $.val('name', column, { d:'' });
+            var column_active = $.val('active', column, { d:1 });
+
+            if(options_column_name == column_name){
+
+              if(column_active){
+
+                $(".label[data-key='" + column_name + "']", this).removeClass('inactive');
+                $(".grid-size-label[data-key='" + column_name + "']", $(grid)).removeClass('inactive');
+
+              }
+              else{
+
+                $(".label[data-key='" + column_name + "']", this).addClass('inactive');
+                $(".grid-size-label[data-key='" + column_name + "']", $(grid)).addClass('inactive');
+
+              }
+
+              options['columns'][i]['active'] = column_active;
+              column_exists = true;
 
             }
-            else{
-
-              $(".label[data-key='" + column_name + "']", this).addClass('inactive');
-              $(".grid-size-label[data-key='" + column_name + "']", $(grid)).addClass('inactive');
-
-            }
-
-            options['columns'][i]['active'] = column_active;
-            column_exists = true;
-
           }
         }
-      }
 
-      $(this).data('options', options);
+        $(this).data('options', options);
 
-    });
+      });
+
+    }
 
   }
 

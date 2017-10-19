@@ -32,7 +32,7 @@ $offset = ($page - 1) * $row_per_page;
 
 $data = [];
 for($i = 0 ; $i < $row_per_page ; $i++){
-  $obj = $sample_data[rand(0, count($sample_data) - 1)];
+  $obj = $sample_data[$i % (count($sample_data))];
   $obj['id'] = $offset + $i;
   $data[] = $obj;
 }

@@ -33,13 +33,10 @@ $.fn.extend({
 
   },
 
-  modal_close:function(exp, options){
+  modal_close:function(exp){
 
-    this.each(function(){
-
-      var instance = this;
-      $(instance).removeClass('on');
-
+    $(exp).each(function(){
+      $(this).removeClass('on');
     });
 
     if($('.modal.on').length == 0){

@@ -19,15 +19,20 @@ $.fn.extend({
 
       var el = this;
 
-      var html = [];
-
       // content
-      html.push("<table class='grid-body'>");
-      html.push("<tbody class='grid-size'></tbody>");
-      html.push("</table>");
-      html.push("<div class='grid-footer'></div>");
+      var html = [];
+      if($(el).html().length == 0){
+        html.push("<table class='grid-body'>");
+        html.push("<tbody class='grid-size'></tbody>");
+        html.push("</table>");
+        html.push("<div class='grid-footer'></div>");
+        $(el).html(html.join(''));
+      }
 
       var ctlid = 'grid' + $.uniqid();
+
+      var css = {};
+      if(width != '') css['width'] = width;
 
       $(el).attr('data-type', 'grid');
       $(el).attr('data-cid', ctlid);
@@ -36,10 +41,6 @@ $.fn.extend({
       $(el).addClass(className);
       $(el).data('options', options);
 
-      $(el).html(html.join(''));
-
-      var css = {};
-      if(width != '') css['width'] = width;
       $(el).css(css);
 
       $.fire_event(footer, [], $('.grid-footer', el));
@@ -558,21 +559,29 @@ $.extend({
     else
       $("tr[data-cid=" + cid + "]").insertAfter($(this).closest('tr'));
 
+    var options = $(this).closest('.grid').data('options');
+    var onmove = $.val('onmove', options, { d:null });
+    var tr1 = $("tr[data-cid=" + cid + "]")[0];
+    var tr2 = $(this).closest('tr')[0];
+    $.fire_event(onmove, [ tr1, tr2 ], $(this).closest('.grid')[0]);
+
   },
 
-  grid_ondragstart:function(){
+  grid_ondragstart:function(e){
 
     // console.log([ 'dragstart', this, arguments ]);
     var cid = $(this).closest('tr').attr('data-cid');
+    $(this).closest('tr').addClass('dragging');
     $(this).closest('.grid').data('drag_cid', cid);
+    e.dataTransfer.setData('cid', cid);
 
   },
 
   grid_ondragleave:function(e){
 
-    // console.log([ 'dragleave', arguments, this ]);
-
     $(this).closest('tr').removeClass('drag-over');
+    var cid = $(this).closest('.grid').data('drag_cid');
+    $("tr[data-cid=" + cid + "]").removeClass('dragging');
 
   },
 

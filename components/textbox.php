@@ -22,6 +22,7 @@
       });
 
       $('#textbox2').textbox({
+        class:"underlined",
         placeholder:"Textbox (required)",
         required:true
       });

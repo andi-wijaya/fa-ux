@@ -25,7 +25,9 @@
   .grid .grid-content tr.drag-over{
     background: #eee;
   }
-
+  .grid .grid-content tr.dragging{
+    background: #fff;
+  }
 
   /* BEGIN STYLE 1 */
   .grid.style1 td{
