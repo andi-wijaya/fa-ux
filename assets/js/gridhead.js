@@ -70,7 +70,7 @@ $.fn.extend({
         var className = 'label' + (!column_active ? ' inactive' : '');
 
         html.push("<td class='" + className + "' style='width:" + column_width + ";text-align:" + text_align + "' data-key=\"" + column_name + "\">" + column_text +
-          "<span class='separator'><span class='dot'></span><span class='dot'></span><span class='dot'></span></span></td>");
+          "<span class='separator'></span></td>");
 
       }
       html.push("<td style='width:100%'></td>");

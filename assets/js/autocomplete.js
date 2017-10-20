@@ -5,6 +5,7 @@ $.fn.extend({
     var className = $.val('class', options, { d:'' });
     var name = $.val('name', options, { d:'' });
     var src = $.val('src', options, { d:'' });
+    var value = $.val('value', options, { d:'' });
     var width = $.val('width', options);
     var method = $.val('method', options, { d:"get" });
     var placeholder = $.val('placeholder', options, { d:"" });
@@ -117,6 +118,8 @@ $.fn.extend({
       $(el).on('click', function(e){
         $('input', this).select();
       })
+
+      if(value.length > 0) $(this).autocomplete_val(value);
 
     });
 

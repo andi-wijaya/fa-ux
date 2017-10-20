@@ -14,6 +14,7 @@ $.fn.extend({
     var height = $.val('height', options, { d:"1em" });
     var width = $.val('width', options, { d:'' });
     var value = $.val('value', options, { d:default_value });
+    var droppable = $.val('droppable', options, { d:true });
 
     var css = {};
     if(width != '') css['width'] = width;
@@ -59,7 +60,17 @@ $.fn.extend({
 
       if(value != '') $(this).textarea_val(value);
 
+      if(droppable){
+        $(this).droppable({
+          ondrop:function(e, value){
+            $(this).val(value);
+          }
+        });
+      }
+
     });
+
+    return this;
 
   },
 

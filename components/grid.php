@@ -44,6 +44,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       ];
 
       $('#gridhead1').gridhead({
+        class:"grid-style1",
         columns:columns,
         oncolumnresize:function(obj){
           console.log($(this).gridhead_columns());
@@ -52,6 +53,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       });
 
       $('#grid1').grid({
+        class:"grid-style1",
         columns:columns,
         src:"/fa-ux/data/sample_grid.php",
         method:"post",
@@ -83,9 +85,11 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     col0:function(obj){
 
       var html = [];
+      html.push("<div class='align-center'>");
       html.push("<span class='glyphicons glyphicons-menu-hamburger padding5 selectable'></span>");
       html.push("<span class='glyphicons glyphicons-remove padding5 selectable'></span>");
       html.push("<span class='glyphicons glyphicons-play padding5 selectable'></span>");
+      html.push("</div>");
       $(this).html(html.join(''));
 
       $('.glyphicons-remove', this).on('click', function(){
@@ -109,7 +113,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       $(this).html("<div class='align-center padding5'><span class='image'></span></div>");
       $('.image', this).image({
         value:obj['imageurl'],
-        height: "40px"
+        height: "40px",
+        readonly: true,
       })
 
     },

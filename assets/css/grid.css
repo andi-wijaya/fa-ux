@@ -1,5 +1,62 @@
 @media screen{
 
+  .gridhead{
+    display: block;
+    overflow-x: hidden;
+  }
+  .gridhead *{
+  }
+  .grid-head{
+  }
+  .gridhead>table{
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border-bottom: solid 1px #ddd;
+  }
+  .gridhead td{
+    white-space: nowrap;
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+  }
+  .gridhead td.label{
+    padding: 6px;
+    cursor: pointer;
+    -moz-transition: background-color 300ms ease-in;
+    -webkit-transition: background-color 300ms ease-in;
+    position: relative;
+    color: #aaa;
+  }
+  .gridhead td.label:first-child{
+    border-left: none;
+  }
+  .gridhead td.label:last-child{
+    border-right: none;
+  }
+  .gridhead td.inactive{
+    width: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none 0px !important;
+  }
+  .grid-head td.label .separator{
+    position: absolute;
+    top: 5px;
+    bottom: 5px;
+    right: 0;
+    cursor: e-resize;
+    border-right: dotted 2px #eee;
+  }
+  .grid-head td.label .separator .dot{
+    width: 2px;
+    height: 2px;
+    margin: 2px;
+    border-radius: 4px;
+    background: #ddd;
+    display: block;
+  }
+
   .grid{
     overflow-x: hidden;
     display: block;
@@ -28,38 +85,31 @@
   .grid .grid-content tr.dragging{
     background: #fff;
   }
+  .grid *[data-type]{
+    border-color: transparent;
+  }
 
   /* BEGIN STYLE 1 */
-  .grid.style1 td{
-    border: solid 1px transparent;
+  .grid-style1{
+
   }
-  .grid.style1 td:first-child{
-    border-left: none;
+  .grid-style1 td{
+    border: solid 1px #eee;
   }
-  .grid.style1 td:last-child{
-    border-right: none;
+  .grid-style1 td.label .separator{
+    border:none;
+    width: 5px;
+    background: transparent;
   }
-  .grid.style1 .grid-body td{
-    border-bottom: solid 1px #eee;
+  .grid-style1 .grid-size td{
+    border-color: transparent;
+    border-top-color: #eee;
   }
-  .grid.style1 .grid-size td{
-    border-bottom-color: transparent;
+  .gridhead.grid-style1 td.label:first-child{
+    border-left: solid 1px #eee;
   }
-  .grid.style1 .grid-body tr.active{
-    background: #f5f5f5;
-  }
-  .grid.style1 .grid-body tr.highlight{
-    background: #e8f4f8;
-  }
-  .grid.style1 .grid-more{
-    text-align: center;
-    border: none;
-    padding: 10px 20px 10px 20px;
-  }
-  .grid.style1 .grid-size-label.inactive{
-    width: 0 !important;
-    border: none !important;
-    padding: 0 !important;
+  .gridhead.grid-style1 td.label:last-child{
+    border-right: solid 1px #eee;
   }
   /* END STYLE 1 */
 

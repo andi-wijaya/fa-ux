@@ -1542,47 +1542,6 @@ $.extend({
 
 });
 
-$.fn.extend({
-
-  droppable:function(options){
-
-    $(this).each(function(){
-
-      $(this).attr('draggable', true);
-      $(this).on('dragover', function(e){
-        e.preventDefault();
-      });
-      $(this).on('drop', function(e){
-        e.preventDefault();
-
-        var instance = this;
-
-        var dt = e.originalEvent.dataTransfer;
-
-        if(dt.files.length > 0){
-
-          for(var i = 0 ; i < dt.files.length ; i++){
-
-            var file = dt.files[i];
-            var reader = new FileReader();
-            reader.onload = function(event) {
-              var text = event.target.result;
-              $.fire_event($.val('ondrop', options), [ e, text ], instance);
-            };
-            reader.readAsText(file);
-
-          }
-
-        }
-
-      });
-
-    })
-
-  }
-
-})
-
 var oldVal = $.fn.val;
 $.fn.val = function(value) {
 
