@@ -9,6 +9,7 @@ $.fn.extend({
     var width = $.val('width', options, { d:'' });
     var grid = $.val('grid', options, { d:null });
     var height = $.val('height', options, { d:null });
+    var droppable = $.val('droppable', options, { d:false });
 
     this.each(function(){
 
@@ -27,6 +28,37 @@ $.fn.extend({
       $(el).css(css);
 
       $(this).gridhead_set(columns);
+
+      if(droppable){
+        $(this).droppable({
+          accept:"text/csv, application/csv",
+          ondrop:function(e, value){
+            try{
+              var csv = $.csv.toArrays(value);
+              var options = $(this).data('options');
+              var columns = $.val('columns', options, { d:[] });
+              var grid = $.val('grid', options, { d:null });
+
+              var value = [];
+              if($.type(columns) == 'array'){
+                for(var i = 0 ; i < csv.length ; i++){
+                  var csv1 = csv[i];
+                  var obj = {};
+                  for(var j = 0 ; j < columns.length && typeof csv[j] != 'undefined' ; j++){
+                    var column = columns[j];
+                    var column_name = column['name'];
+                    obj[column_name] = csv1[j];
+                  }
+                  value.push(obj);
+                }
+              }
+              $(grid).grid_val(value);
+
+            }
+            catch(e){}
+          }
+        });
+      }
 
     });
 

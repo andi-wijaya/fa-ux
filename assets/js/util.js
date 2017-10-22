@@ -1588,5 +1588,13 @@ $.fn.reset = function(){
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
+String.prototype.split_and_trim = function(separator){
+
+  var splits = this.split(separator);
+  for(var i = 0 ; i < splits.length ; i++)
+    splits[i] = splits[i].trim();
+  return splits;
+
+}
 
 $($.ux_init);

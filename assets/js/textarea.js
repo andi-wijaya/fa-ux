@@ -12,12 +12,14 @@ $.fn.extend({
     var placeholder = $.val('placeholder', options, { d:'' });
     var readonly = $.val('readonly', options, { d:false });
     var height = $.val('height', options, { d:"1em" });
+    var max_height = $.val('max-height', options, { d:"" });
     var width = $.val('width', options, { d:'' });
     var value = $.val('value', options, { d:default_value });
     var droppable = $.val('droppable', options, { d:true });
 
     var css = {};
     if(width != '') css['width'] = width;
+    if(max_height != '') css['max-height'] = max_height;
 
     this.each(function(){
 
@@ -62,6 +64,7 @@ $.fn.extend({
 
       if(droppable){
         $(this).droppable({
+          accept:$.val('accept', options),
           ondrop:function(e, value){
             $(this).val(value);
           }

@@ -4,6 +4,10 @@ $.fn.extend({
 
     $(this).each(function(){
 
+      var accept = $.val('accept', options, { d:undefined });
+      if(accept == undefined) accept = 'text/plain';
+      var accepts = accept.split_and_trim(',');
+
       $(this).addClass('droppable');
       $(this).on('dragover', function(e){
         e.preventDefault();
@@ -28,7 +32,9 @@ $.fn.extend({
             var file = files[i];
             var file_type = file.type;
 
-            if($.in_array(file_type, [ 'text/plain' ])){
+            console.log([ 'file_type', file_type, accepts ]);
+
+            if($.in_array(file_type, accepts)){
 
               var reader = new FileReader();
               reader.onload = function(event) {
