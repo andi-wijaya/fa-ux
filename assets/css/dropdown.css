@@ -18,6 +18,7 @@
     padding: 6px;
     vertical-align: middle;
     cursor: pointer;
+    width: 100%;
   }
   .dropdown .icon{
     color: #aaa;
@@ -58,6 +59,11 @@
   .dropdown.no-border{
     border-color: transparent;
 
+  }
+
+  .dropdown.invalid{
+    border-color: red !important;
+    background: #ffc9c3 !important;
   }
 
   .dropdown.readonly{

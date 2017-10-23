@@ -73,6 +73,8 @@ $.fn.extend({
                 var obj = { value:value, text:text };
 
                 $(el).autocomplete_val(obj, true);
+                $(el).autocomplete_validate();
+
               });
               $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
 
@@ -118,6 +120,9 @@ $.fn.extend({
       $(el).on('click', function(e){
         $('input', this).select();
       })
+      $("input[type='text']", el).on('blur', function(e){
+        $(this).closest('.autocomplete').autocomplete_validate();
+      });
 
       if(value.length > 0) $(this).autocomplete_val(value);
 
@@ -231,12 +236,17 @@ $.fn.extend({
       }
     }
 
-
   },
 
   autocomplete_reset:function(){
 
     $(this).autocomplete_val('', true);
+
+  },
+
+  autocomplete_validate:function(){
+
+    return $(this).element_validate();
 
   }
 

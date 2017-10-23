@@ -93,14 +93,19 @@ $.fn.extend({
           var d = value.split('-');
           var d1 = d.length != 2 && $.strtotime(d[0]) == false ? $.date('M j, Y') : $.date('M j, Y', $.strtotime(d[0]));
           var d2 = d.length != 2 && $.strtotime(d[1]) == false ? $.date('M j, Y') : $.date('M j, Y', $.strtotime(d[1]));
+          var v1 = d.length != 2 && $.strtotime(d[0]) == false ? $.date('Ymd') : $.date('Ymd', $.strtotime(d[0]));
+          var v2 = d.length != 2 && $.strtotime(d[1]) == false ? $.date('Ymd') : $.date('Ymd', $.strtotime(d[1]));
           text = d1 + ' - ' + d2;
+          value = v1 + '-' + v2;
         }
         else{
-          if($.strtotime(value) == false)
-            var d = $.date('M j, Y');
-          else
-            var d = $.date('M j, Y', $.strtotime(value));
-          text = d;
+          if($.strtotime(value) == false){
+            text = $.date('M j, Y');
+            value = $.date('Ymd');
+          }
+          else{
+            text = $.date('M j, Y', $.strtotime(value));
+          }
         }
 
         $('input', this).val(text);
@@ -110,6 +115,12 @@ $.fn.extend({
       
     }
     
+  },
+
+  datepicker_validate:function() {
+
+    return $(this).element_validate();
+
   },
 
 });

@@ -100,14 +100,14 @@ $.fn.extend({
             if(item.value == value){
               text = item.text;
               value = item.value;
+              $(this).attr('data-value', value);
+              $('input', this).val(text);
+              $('.text', this).html(text);
               break;
             }
           }
         }
 
-        $(this).attr('data-value', value);
-        $('input', this).val(text);
-        $('.text', this).html(text);
 
       });
 
@@ -191,6 +191,7 @@ $.fn.extend({
           $('.text', el).html(text);
           $(el).attr('data-value', value);
 
+          $(el).textbox_validate();
           $.fire_event(onchange, [ e, obj ], el);
 
         });
@@ -331,6 +332,12 @@ $.fn.extend({
       else $(this).removeClass('readonly');
 
     })
+
+  },
+
+  dropdown_validate:function(){
+
+    return $(this).element_validate();
 
   }
 

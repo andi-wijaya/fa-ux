@@ -98,6 +98,12 @@ $.fn.extend({
 
 
 
+  },
+
+  checkbox_validate:function(){
+
+
+
   }
 
 });

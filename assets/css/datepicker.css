@@ -28,6 +28,11 @@
     right: 0;
   }
 
+  .datepicker.invalid{
+    border-color: red !important;
+    background: #ffc9c3 !important;
+  }
+
   /* READONLY */
   .datepicker.readonly, .datepicker.readonly:hover{
     border-color: transparent;

@@ -48,6 +48,25 @@ $.fn.extend({
 
     });
 
+  },
+
+  container_validate:function(){
+
+    var invalid = false;
+    $("*[data-type]", this).each(function(){
+
+      var type = $(this).attr('data-type');
+      if(type != null && typeof $(this)[type + '_validate'] != 'undefined'){
+        var valid = $(this)[type + '_validate'].apply(this, arguments);
+        console.warn([ type, valid ]);
+        if(!valid){
+          invalid = true;
+        }
+      }
+
+    });
+    return !invalid;
+
   }
 
 });
