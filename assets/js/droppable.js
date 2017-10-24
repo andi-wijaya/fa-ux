@@ -32,8 +32,6 @@ $.fn.extend({
             var file = files[i];
             var file_type = file.type;
 
-            console.log([ 'file_type', file_type, accepts ]);
-
             if($.in_array(file_type, accepts)){
 
               var reader = new FileReader();

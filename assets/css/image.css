@@ -38,6 +38,10 @@
     object-fit: cover;
 
   }
+  .image.invalid{
+    border-color: red !important;
+    background: #ffc9c3 !important;
+  }
   .image.no-image>img{
     background: url('https://www.nflfullhd.com/wp-content/themes/watchzaa/images/no-image-landscape.png') no-repeat;
     background-size: 100% auto;

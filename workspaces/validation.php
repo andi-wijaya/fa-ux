@@ -21,12 +21,20 @@
       <td><div id="autocomplete1"></div></td>
     </tr>
     <tr>
-      <td class="width100"><label class="padding6">Checkbox</label></td>
-      <td>
-        <div id="checkbox1"></div>
-        <div id="checkbox2"></div>
-        <div id="checkbox3"></div>
-      </td>
+      <td class="width100"><label class="padding6">Checkbox 1</label></td>
+      <td><div id="checkbox1"></div></td>
+    </tr>
+    <tr>
+      <td class="width100"><label class="padding6">Checkbox 2</label></td>
+      <td><div id="checkbox2"></div></td>
+    </tr>
+    <tr>
+      <td class="width100"><label class="padding6">Checkbox 3</label></td>
+      <td><div id="checkbox3"></div></td>
+    </tr>
+    <tr>
+      <td class="width100"><label class="padding6">Image</label></td>
+      <td><div id="image1"></div></td>
     </tr>
     <tr>
       <td class="width100"><label class="padding6">Datepicker</label></td>
@@ -117,6 +125,13 @@
       ],
       required:1,
       value:"hello"
+    });
+
+    $('#image1').image({
+      height:"120px",
+      width:"120px",
+      readonly:false,
+      required:true
     });
 
     $('#button1').click(function(){

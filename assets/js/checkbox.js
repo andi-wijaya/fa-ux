@@ -96,13 +96,36 @@ $.fn.extend({
 
     }
 
-
-
   },
 
   checkbox_validate:function(){
 
+    var valid = true;
+    $(this).each(function(){
 
+      var options = $(this).data('options');
+      var required = $.val('required', options, { d:false });
+      var items = $.val('items', options, { d:null });
+
+      var item_count = 0;
+      var el_valid = 0;
+      $('.item', this).each(function(){
+        var checked = $('input[type=checkbox]', this).is(':checked');
+        if(checked) el_valid++;
+        item_count++;
+      });
+
+      if((required == 1 || required == true) && el_valid < 1){
+        valid = false;
+        $(this).addClass('invalid');
+      }
+      else{
+        $(this).removeClass('invalid');
+      }
+
+    })
+
+    return valid;
 
   }
 

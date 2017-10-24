@@ -96,6 +96,30 @@ $.fn.extend({
 
     $(this).image_val('');
 
+  },
+
+  image_validate:function(){
+
+    console.log([ 'image_validate' ]);
+
+    var valid = true;
+    $(this).each(function(){
+
+      var options = $(this).data('options');
+      var required = $.val('required', options, { d:false });
+
+      var value = $('.image-img', this).attr('src');
+      if(required && value == ''){
+        valid = false;
+        $(this).addClass('invalid');
+      }
+      else{
+        $(this).removeClass('invalid');
+      }
+
+    })
+    return valid;
+
   }
 
 });

@@ -16,5 +16,9 @@
     vertical-align: middle;
     margin: 0 12px 0 6px;
   }
+  .checkbox.invalid{
+    border-color: red !important;
+    background: #ffc9c3 !important;
+  }
 
 }
