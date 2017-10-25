@@ -31,4 +31,13 @@
     background: #ffc9c3 !important;
   }
 
+  /* READONLY */
+  .textarea.readonly{
+    background: transparent;
+    border-color: transparent;
+  }
+  .textarea.readonly .icon{
+    display: none;
+  }
+
 }

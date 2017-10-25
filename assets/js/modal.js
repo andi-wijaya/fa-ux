@@ -24,7 +24,8 @@ $.fn.extend({
       $('.modal-bg').addClass('on');
 
       var reset = $.val('reset', options, { d:false });
-      if(reset === true) $(instance).reset();
+      if(reset === true || reset === 1)
+        $(instance).reset();
 
       var value = $.val('value', options, { d:null });
       if(value != null) $(instance).val(options['value']);

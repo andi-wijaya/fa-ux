@@ -33,11 +33,12 @@ $.fn.extend({
 
       // Initialize html content
       var html = [];
-      html.push($.p('<input type="$1" placeholder="$1" maxlength="$1"/>', [ mode, placeholder, maxlength ]));
+      html.push($.p('<input type="$1" placeholder="$1" maxlength="$1" $1/>', [ mode, placeholder, maxlength, readonly ? 'readonly' : '' ]));
       html.push("<span class='icon fa hidden'></span>");
 
       // Default attributes
       $(el).addClass('textbox');
+      if(readonly) $(el).addClass('readonly');
       $(el).addClass(className);
       $(el).css(css);
       $(el).html(html.join(''));
@@ -116,6 +117,36 @@ $.fn.extend({
       $(this).textbox_val(default_value);
 
     });
+
+  },
+
+  textbox_readonly:function(readonly){
+
+    if(typeof readonly == 'undefined'){
+
+      return $(this).hasClass('readonly') ? 1 : 0;
+
+    }
+
+    else{
+
+      $(this).each(function(){
+
+        var options = $(this).data('options');
+        options['readonly'] = readonly === true || readonly === 1 ? true : false;
+        $(this).data('options', options);
+        if(readonly === true || readonly === 1){
+          $(this).addClass('readonly');
+          $('input[type=text]', this).attr('readonly', true);
+        }
+        else{
+          $(this).removeClass('readonly');
+          $('input[type=text]', this).attr('readonly', false);
+        }
+
+      })
+
+    }
 
   },
 

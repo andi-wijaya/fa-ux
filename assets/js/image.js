@@ -64,6 +64,17 @@ $.fn.extend({
         $(this).parent().addClass('no-image');
       });
 
+      $('.image-img', this).droppable({
+        accept:"image/jpg,image/jpeg,image/png",
+        ondrop:function(e, data){
+          var instance = $(this).closest('.image');
+          var options = $(instance).data('options');
+          var readonly = $.val('readonly', options, { d:false });
+          if(readonly || readonly === 1) return;
+          this.src = data;
+        }
+      });
+
       if(value != '') $(this).image_val(value);
 
     });

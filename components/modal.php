@@ -3,10 +3,14 @@
   <button id="button2">Sized Modal</button>
   <button id="button3">Sized Modal 2</button>
 </div>
-<div class="modal" id="modal1">
+<div class="modal container" id="modal1">
   <div class="modal-head padding10"><h1>Full Size Modal</h1></div>
   <div class="modal-body padding10">
     <h1>Lorem Ipsum</h1>
+    <br /><br />
+    <span id="textbox1"></span>
+    <br />
+    <span id="textbox2"></span>
     <br /><br />
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ornare efficitur neque in suscipit. Maecenas imperdiet, nulla at congue elementum, turpis ligula sodales augue, eget efficitur lectus ex vel orci. Vestibulum lacinia ultrices nibh nec facilisis. Fusce vel arcu a justo auctor fringilla. Quisque cursus tristique erat nec dapibus. Nunc lacinia ipsum dictum, feugiat odio eget, pharetra libero. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut eros erat.</p>
     <br />
@@ -34,9 +38,11 @@
 
   $(function(){
 
+    $('#textbox1').textbox({ name:"name" });
+    $('#textbox2').textbox({ name:"password", mode:"password" });
     $('#button1').on('click', function(){ $('#modal1').modal_open(); });
     $('#button2').on('click', function(){ $('#modal1').modal_open({ width:"600px" }); });
-    $('#button3').on('click', function(){ $('#modal1').modal_open({ width:"600px", height:window.innerHeight * .8 }); });
+    $('#button3').on('click', function(){ $('#modal1').modal_open({ width:"600px", height:window.innerHeight * .8, reset:1 }); });
 
     $('#modal1').droppable({
       ondrop:function(e, obj){

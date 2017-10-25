@@ -50,6 +50,19 @@ $.fn.extend({
 
   },
 
+  container_readonly:function(){
+
+    var this_arguments = arguments;
+    $("*[data-type]", this).each(function(){
+
+      var type = $(this).attr('data-type');
+      if(type != null && typeof $(this)[type + '_readonly'] != 'undefined')
+        $(this)[type + '_readonly'].apply(this, this_arguments);
+
+    });
+
+  },
+
   container_validate:function(){
 
     var invalid = false;

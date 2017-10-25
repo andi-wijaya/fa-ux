@@ -39,7 +39,10 @@ $.fn.extend({
                 var text = event.target.result;
                 $.fire_event($.val('ondrop', options), [ e, text ], instance);
               };
-              reader.readAsText(file);
+              if(file_type.indexOf('image/') >= 0)
+                reader.readAsDataURL(file);
+              else
+                reader.readAsText(file);
               values.push(file);
 
             }

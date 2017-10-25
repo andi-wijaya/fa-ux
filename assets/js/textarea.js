@@ -26,7 +26,7 @@ $.fn.extend({
       var el = this;
 
       var html = [];
-      html.push("<textarea rows='1' placeholder='" + placeholder + "' style='height:" + height + ";' maxlength='" + maxlength + "'></textarea>");
+      html.push("<textarea rows='1' placeholder='" + placeholder + "' style='height:" + height + ";' maxlength='" + maxlength + "'" + (readonly ? ' readonly' : '') + "></textarea>");
       html.push("<span class='icon fa hidden'></span>");
       $(el).html(html.join(''));
 
@@ -129,6 +129,36 @@ $.fn.extend({
       $(this).textarea_val(default_value);
 
     });
+
+  },
+
+  textarea_readonly:function(readonly){
+
+    if(typeof readonly == 'undefined'){
+
+      return $(this).hasClass('readonly') ? 1 : 0;
+
+    }
+
+    else{
+
+      $(this).each(function(){
+
+        var options = $(this).data('options');
+        options['readonly'] = readonly === true || readonly === 1 ? true : false;
+        $(this).data('options', options);
+        if(readonly === true || readonly === 1){
+          $(this).addClass('readonly');
+          $('textarea', this).attr('readonly', true);
+        }
+        else{
+          $(this).removeClass('readonly');
+          $('textarea', this).attr('readonly', false);
+        }
+
+      })
+
+    }
 
   },
 
