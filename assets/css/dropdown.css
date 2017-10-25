@@ -8,6 +8,7 @@
     border-radius: 3px;
     position: relative;
     vertical-align: middle;
+    min-width: 150px;
   }
   .dropdown:hover, .dropdown:active{
     /*border-color: #aaa;*/
