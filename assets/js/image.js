@@ -97,6 +97,7 @@ $.fn.extend({
 
       this.each(function(){
         $('.image-img', this).attr('src', value);
+        $('input[type=file]', this).val('');
       })
 
     }

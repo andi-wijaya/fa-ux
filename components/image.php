@@ -52,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $('#image1').image({
       height:"120px",
       width:"120px",
-      readonly:true
+      readonly:false
     });
 
     $('#button1').on('click', function(){

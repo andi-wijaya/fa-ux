@@ -8,6 +8,8 @@
   <div class="modal-body padding10">
     <h1>Lorem Ipsum</h1>
     <br /><br />
+    <button id="alert1" class="blue width100">Alert</button>
+    <br /><br />
     <span id="textbox1"></span>
     <br />
     <span id="textbox2"></span>
@@ -50,7 +52,11 @@
 
 
       }
-    })
+    });
+
+    $('#alert1').click(function(){
+      $.alert('An error occured while trying to save invoice. Please try again.');
+    });
 
   })
 

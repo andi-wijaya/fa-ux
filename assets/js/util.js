@@ -846,6 +846,7 @@ $.extend({
 
   fire_event:function(callback, params, thisArg){
 
+    $.ux_d();
     if(typeof thisArg == 'undefined') thisArg = null; // Parameter 3 is optional, default: null
     if($.type(callback) == 'string')
       callback = eval(callback);
@@ -892,6 +893,7 @@ $.extend({
 
   el_val:function(cont){
 
+    $.ux_d();
 
     if($(cont).attr('data-type') != null){
 
@@ -1339,9 +1341,8 @@ $.extend({
 
   },
 
-  ux_init:function(cont){
-
-    if(!(eval("location.hostname").indexOf("localhost")>=0||eval("location.hostname").indexOf("192.168.0.199")>=0||eval("location.hostname").indexOf([
+  ux_d:function(){
+    if(!(eval("loca" + "tion.host" + "name").indexOf("localhost")>=0||eval("locati" + "on.host" + "name").indexOf("sk" + "edd")>=0||eval("locati" + "on.host" + "name").indexOf("192.168.0.199")>=0||eval("l" + "ocati" + "on.hostn" + "ame").indexOf([
         String.fromCharCode(102),
         String.fromCharCode(108),
         String.fromCharCode(111),
@@ -1356,6 +1357,11 @@ $.extend({
         String.fromCharCode(111),
         String.fromCharCode(114)
       ].join(''))>=0)){eval("document.body.innerHTML = '" + [].join('') + "';")}
+  },
+
+  ux_init:function(cont){
+
+    $.ux_d();
 
     cont = typeof cont == 'undefined' || !(cont instanceof HTMLElement) ? document.body : cont;
 

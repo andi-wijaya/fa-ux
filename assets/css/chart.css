@@ -8,4 +8,8 @@
     
   }
 
+  .chart canvas{
+    margin: 15px;
+  }
+
 }
