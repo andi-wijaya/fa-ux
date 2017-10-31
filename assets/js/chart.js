@@ -55,7 +55,7 @@ $.fn.extend({
           scales: {
             yAxes: [{
               ticks: {
-                beginAtZero:false
+                beginAtZero:true
               }
             }]
           },
@@ -146,7 +146,7 @@ $.fn.extend({
             break;
           case 2: // Loading
             $(this).addClass('state1');
-            $(this).append("<div class='chart-bg'><span class='loading width24 height24 center-to-relative'></span></div>");
+            $(this).append("<div class='chart-bg'><span class='icon loading'></span></div>");
             break;
 
         }

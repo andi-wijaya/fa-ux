@@ -25,5 +25,12 @@
     z-index: 1;
     text-align: center;
   }
+  .chart-bg .icon{
+    width: 24px;
+    height: 24px;
+    left: 50%;
+    top: 50%;
+    position: absolute;
+  }
 
 }
