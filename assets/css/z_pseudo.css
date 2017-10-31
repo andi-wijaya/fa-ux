@@ -34,11 +34,20 @@
 
   .border-radius4{ border-radius: 4px; }
 
+  .center-to-relative{
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    position: absolute;
+  }
+
   .height5{ height: 5px }
   .height10{ height: 10px }
   .height16{ height: 16px }
   .height20{ height: 20px }
+  .height24{ height: 24px }
   .height30{ height: 30px }
+  .height32{ height: 32px }
   .height50{ height: 50px }
   .height100{ height: 100px }
   .height125{ height: 125px }
@@ -89,7 +98,9 @@
 
   .width10{ width: 10px }
   .width16{ width: 16px }
+  .width24{ width: 24px }
   .width30{ width: 30px }
+  .width32{ width: 32px }
   .width50{ width: 50px }
   .width100{ width: 100px }
   .width200{ width: 200px }

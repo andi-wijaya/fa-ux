@@ -2,9 +2,11 @@ $.fn.extend({
 
   chart:function(options){
 
+    var autoload = $.val('autoload', options, { d:false });
     var name = $.val('name', options);
     var height = $.val('height', options);
     var value = $.val('value', options, { d:null });
+    var src = $.val('src', options, { d:'' });
     var width = $.val('width', options);
 
     this.each(function(){
@@ -27,6 +29,7 @@ $.fn.extend({
       $(el).data('options', options);
 
       if($.type(value) == 'object') $(this).chart_val(value);
+      if((autoload === true || autoload === 1) && src != '') $(this).chart_load();
 
     });
 
@@ -90,6 +93,67 @@ $.fn.extend({
   chart_reset:function(){
 
     $(this).chart_val(null);
+
+  },
+
+  chart_load:function(params){
+
+    if(typeof params == 'undefined') params = {};
+
+    $(this).each(function(){
+
+      var options = $(this).data('options');
+      var src = $.val('src', [ params, options ], { d:'' });
+      var method = $.val('method', [ params, options ], { d:'get' });
+      var data = $.val('data', [ params, options ], { d:null });
+      var instance = this;
+
+      if(src != ''){
+
+        $['api_' + method.toLowerCase()](src, data,
+          function(response){
+            var data = $.val('data', response, { d:null });
+            $(instance).chart_val(data);
+            $(instance).chart_state(1);
+          },
+          function(response){
+            $(instance).chart_state(1);
+          }
+        );
+        $(instance).chart_state(2);
+
+      }
+
+    })
+
+  },
+
+  chart_state:function(state){
+
+    if(typeof state == 'undefined'){
+
+    }
+
+    else{
+
+      $(this).each(function(){
+
+        switch(state){
+
+          case 1: // Normal
+            $(this).removeClass('state1');
+            $('.chart-bg', this).remove();
+            break;
+          case 2: // Loading
+            $(this).addClass('state1');
+            $(this).append("<div class='chart-bg'><span class='loading width24 height24 center-to-relative'></span></div>");
+            break;
+
+        }
+
+      })
+
+    }
 
   }
 

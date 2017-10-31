@@ -1,6 +1,8 @@
 <div class="content">
 
   <span id="chart1"></span>
+  <div class="height20"></div>
+  <span id="chart2"></span>
 
 </div>
 
@@ -45,6 +47,16 @@
         ]
       },
     });
+
+    $('#chart2').chart({
+      width:"300px",
+      height:"200px",
+      type:"bar",
+      title:"Title",
+      src:"/fa-ux/data/sample_chart.php",
+      autoload:false
+    });
+    $('#chart2').chart_load({ data:null });
 
   })
 

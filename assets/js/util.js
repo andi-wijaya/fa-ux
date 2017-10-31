@@ -236,68 +236,83 @@ $.extend({
   val:function(key, obj, options){
 
     if(typeof options == 'undefined' || $.type(options) != 'object') options = {};
+    if(typeof key == 'undefined' || typeof obj == 'undefined') return null;
 
     var value = null;
     var default_value = typeof options['default_value'] != 'undefined' ? options['default_value'] : (typeof options['d'] != 'undefined' ? options['d'] : null)
-    var datatype = typeof options['t'] != 'undefined' ? options['t'] : (typeof options['datatype'] != 'undefined' ? options['datatype'] : 'string');
-    var required = typeof options['required'] != 'undefined' && required == 1 ? true : false;
 
-    if($.type(obj) == 'object'){
+    if($.type(obj) == 'array' && obj.length > 0 && $.type(obj[0]) == 'object'){
 
-      if($.type(key) == 'array'){
+      for(var i = 0 ; i < obj.length ; i++){
+        var o = obj[i];
+        var oval = $.val(key, o, { d:null });
+        if(oval != null){ value = oval; break; }
+      }
+      value = value == null && default_value != null ? default_value : value;
 
-        value = null;
-        for(var i = 0 ; i < key.length ; i++){
+    }
+    else if($.type(obj) == 'object' || $.type(obj) == 'array'){
 
-          var k = key[i];
-          v = $.val(k, obj, { default_value:null });
-          if(v != null){
-            value = v;
-            break;
+      var datatype = typeof options['t'] != 'undefined' ? options['t'] : (typeof options['datatype'] != 'undefined' ? options['datatype'] : 'string');
+      var required = typeof options['required'] != 'undefined' && required == 1 ? true : false;
+
+      if($.type(obj) == 'object'){
+
+        if($.type(key) == 'array'){
+
+          value = null;
+          for(var i = 0 ; i < key.length ; i++){
+
+            var k = key[i];
+            v = $.val(k, obj, { default_value:null });
+            if(v != null){
+              value = v;
+              break;
+            }
+
           }
+
+        }
+        else if($.type(key) == 'string' || $.type(key) == 'number'){
+
+          if(typeof obj[key] != 'undefined')
+            value = obj[key];
 
         }
 
       }
-      else if($.type(key) == 'string' || $.type(key) == 'number'){
+      else if($.type(obj) == 'array'){
 
         if(typeof obj[key] != 'undefined')
           value = obj[key];
 
       }
 
-    }
-    else if($.type(obj) == 'array'){
+      if(required){
 
-      if(typeof obj[key] != 'undefined')
-        value = obj[key];
+        if(value == null){
 
-    }
+        }
 
-    if(required){
+      }
+      else{
 
-      if(value == null){
+        value = value == null && default_value != null ? default_value : value;
+
+      }
+
+      switch(datatype){
+
+        case 'number':
+        case 'integer':
+        case 'float':
+        case 'double':
+          value = parseFloat(value);
+          break;
 
       }
 
     }
-    else{
-
-      value = value == null && default_value != null ? default_value : value;
-
-    }
-
-    switch(datatype){
-
-      case 'number':
-      case 'integer':
-      case 'float':
-      case 'double':
-        value = parseFloat(value);
-        break;
-
-    }
-
 
     return value;
 
