@@ -2,7 +2,6 @@ $.fn.extend({
 
   gridhead:function(options) {
 
-    var autoload = $.val('autoload', options, { d:true });
     var columns = $.val('columns', options, { d:[] });
     var className = $.val('class', options, { d:null });
     var name = $.val('name', options, { d:'' });

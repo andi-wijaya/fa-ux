@@ -18,8 +18,10 @@ session_start();
   <?php } } ?>
   <link rel="stylesheet" href="<?=base_url() . '/assets/'?>app.css" />
   <link rel="stylesheet" href="<?=base_url() . '/assets/'?>playground.css" />
+  <link rel="stylesheet" href="<?=base_url() . '/assets/'?>jquery.gridster.min.css" />
   <script type="text/javascript" src="<?=base_url() . '/'?>assets/jquery-2.2.3.min.js"></script>
   <script type="text/javascript" src="<?=base_url() . '/'?>assets/jquery.csv.min.js"></script>
+  <script type="text/javascript" src="<?=base_url() . '/'?>assets/jquery.gridster.min.js"></script>
   <script type="text/javascript" src="<?=base_url() . '/'?>assets/Chart.min.js"></script>
 <!--  <script type="text/javascript" src="--><?//=base_url() . '/'?><!--assets/js/script.min.js"></script>-->
   <?php $files = glob('assets/js/*.js'); foreach($files as $file){  if(strpos($file, 'script.') === false){ ?>

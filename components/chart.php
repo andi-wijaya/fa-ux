@@ -54,7 +54,39 @@
       type:"bar",
       title:"Title",
       src:"/fa-ux/data/sample_chart.php",
-      autoload:false
+      autoload:false,
+      options:{
+        scales: {
+          xAxes: [{
+            ticks: {
+              callback: function(value) {
+                return value.toString().substr(0, 3);//truncate
+              },
+            }
+          }],
+          yAxes: [{}]
+        },
+        tooltips: {
+          enabled: true,
+          mode: 'label',
+          callbacks: {
+            title: function(tooltipItems, data) {
+              var idx = tooltipItems[0].index;
+//              console.log(arguments);
+              return 'Title:' + data.labels[idx];//do something with title
+            },
+            label: function(tooltipItems, data) {
+              //var idx = tooltipItems.index;
+              //return data.labels[idx] + ' €';
+              console.log(arguments);
+              return tooltipItems.xLabel;
+            }
+          }
+        },
+        legend: {
+          display: false
+        }
+      }
     });
     $('#chart2').chart_load({ data:null });
 

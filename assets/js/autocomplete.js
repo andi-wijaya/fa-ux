@@ -4,10 +4,11 @@ $.fn.extend({
 
     var className = $.val('class', options, { d:'' });
     var name = $.val('name', options, { d:'' });
-    var src = $.val('src', options, { d:'' });
+    var src = $.val('src', options, { d:'' });                      // Remote URL
     var value = $.val('value', options, { d:'' });
     var width = $.val('width', options);
     var method = $.val('method', options, { d:"get" });
+    var minlength = $.val('minlength', options, { d:3 });           // Minimum key length to fetch remote src
     var placeholder = $.val('placeholder', options, { d:"" });
     var onbeforehint = $.val('onbeforehint', options, { d:null });
 
@@ -33,88 +34,100 @@ $.fn.extend({
 
       $("input[type='text']", el).on('keyup', function(e){
 
-        var el = $(this).closest('.autocomplete');
         if($(el).hasClass('readonly')) return;
-        var options = $(el).data('options');
-        var map = $.val('map', options, { d:null });
-        var readonly = $.val('readonly', options);
 
-        if(!readonly && src.length > 0){
+        var input = this;
+        var key = this.value;
+        window.setTimeout(function(){
 
-          var params = {};
-          params['key'] = this.value;
-          var custom = $.fire_event(onbeforehint, [ this.value ], el);
-          if(typeof custom != 'undefined' || custom != null) params['custom'] = custom;
+          if(key.length >= minlength && input.value == key && $(el).data('key') != key){
 
-          if(method == 'post'){
+            $(el).data('key', key);
+            var options = $(el).data('options');
+            var map = $.val('map', options, { d:null });
 
-            $.api_post(src, params, function(response){
+            if(src.length > 0){
 
-              var data = $.val('data', response);
-              var html = [];
-              if($.type(data) == 'array')
-                for(var i = 0 ; i < data.length ; i++){
-                  var item = data[i];
+              var params = {};
+              params['key'] = key;
+              var custom = $.fire_event(onbeforehint, [ this.value ], el);
+              if(typeof custom != 'undefined' || custom != null) params['custom'] = custom;
 
-                  var value_key = $.val('value', map, { d:'value' });
-                  var text_key = $.val('text', map, { d:'text' });
-                  var value = $.val(value_key, item, { d:'' });
-                  var text = $.val(text_key, item, { d:value });
+              if(method == 'post'){
 
-                  html.push("<div class='item' data-value=\"" + value + "\">");
-                  html.push("<label>" + text + "</label>");
-                  html.push("</div>");
-                }
-              $('.popup', el).html(html.join(''));
-              $('.item', $('.popup', el)).on('click',function(){
+                $.api_post(src, params, function(response){
 
-                var value = this.getAttribute('data-value');
-                var text = $('label', this).text();
-                var obj = { value:value, text:text };
+                  var data = $.val('data', response);
+                  var html = [];
+                  if($.type(data) == 'array')
+                    for(var i = 0 ; i < data.length ; i++){
+                      var item = data[i];
 
-                $(el).autocomplete_val(obj, true);
-                $(el).autocomplete_validate();
+                      var value_key = $.val('value', map, { d:'value' });
+                      var text_key = $.val('text', map, { d:'text' });
+                      var value = $.val(value_key, item, { d:'' });
+                      var text = $.val(text_key, item, { d:value });
 
-              });
-              $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
+                      html.push("<div class='item' data-value=\"" + value + "\">");
+                      html.push("<label>" + text + "</label>");
+                      html.push("</div>");
+                    }
+                  $('.popup', el).html(html.join(''));
+                  $('.item', $('.popup', el)).on('click',function(){
 
-            });
+                    var value = this.getAttribute('data-value');
+                    var text = $('label', this).text();
+                    var obj = { value:value, text:text };
+
+                    $(el).autocomplete_val(obj, true);
+                    $(el).autocomplete_validate();
+
+                  });
+                  $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
+                  $(el).data('key', null);
+
+                });
+
+              }
+              else{
+
+                $.api_get(src, params, function(response){
+
+                  var data = $.val('data', response);
+                  var html = [];
+                  if($.type(data) == 'array')
+                    for(var i = 0 ; i < data.length ; i++){
+                      var item = data[i];
+
+                      var value_key = $.val('value', map, { d:'value' });
+                      var text_key = $.val('text', map, { d:'text' });
+                      var value = $.val(value_key, item, { d:'' });
+                      var text = $.val(text_key, item, { d:value });
+
+                      html.push("<div class='item' data-value=\"" + value + "\">");
+                      html.push("<label>" + text + "</label>");
+                      html.push("</div>");
+                    }
+                  $('.popup', el).html(html.join(''));
+                  $('.item', $('.popup', el)).on('click',function(){
+
+                    var value = this.getAttribute('data-value');
+                    var text = $('label', this).text();
+                    var obj = { value:value, text:text };
+
+                    $(el).autocomplete_val(obj, true);
+                  });
+                  $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
+                  $(el).data('key', null);
+
+                });
+
+              }
+            }
 
           }
-          else{
 
-            $.api_get(src, params, function(response){
-
-              var data = $.val('data', response);
-              var html = [];
-              if($.type(data) == 'array')
-                for(var i = 0 ; i < data.length ; i++){
-                  var item = data[i];
-
-                  var value_key = $.val('value', map, { d:'value' });
-                  var text_key = $.val('text', map, { d:'text' });
-                  var value = $.val(value_key, item, { d:'' });
-                  var text = $.val(text_key, item, { d:value });
-
-                  html.push("<div class='item' data-value=\"" + value + "\">");
-                  html.push("<label>" + text + "</label>");
-                  html.push("</div>");
-                }
-              $('.popup', el).html(html.join(''));
-              $('.item', $('.popup', el)).on('click',function(){
-
-                var value = this.getAttribute('data-value');
-                var text = $('label', this).text();
-                var obj = { value:value, text:text };
-
-                $(el).autocomplete_val(obj, true);
-              });
-              $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
-
-            });
-
-          }
-        }
+        }, 350);
 
       });
       $(el).on('click', function(e){
@@ -240,7 +253,7 @@ $.fn.extend({
 
   autocomplete_reset:function(){
 
-    $(this).autocomplete_val('', true);
+    $(this).autocomplete_val('', false);
 
   },
 

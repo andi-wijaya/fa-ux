@@ -236,7 +236,7 @@ $.extend({
   val:function(key, obj, options){
 
     if(typeof options == 'undefined' || $.type(options) != 'object') options = {};
-    if(typeof key == 'undefined' || typeof obj == 'undefined') return null;
+    if(typeof key == 'undefined' && typeof obj == 'undefined') return null;
 
     var value = null;
     var default_value = typeof options['default_value'] != 'undefined' ? options['default_value'] : (typeof options['d'] != 'undefined' ? options['d'] : null)
@@ -312,6 +312,9 @@ $.extend({
 
       }
 
+    }
+    else{
+      value = default_value;
     }
 
     return value;
@@ -1357,7 +1360,7 @@ $.extend({
   },
 
   ux_d:function(){
-    if(!(eval("loca" + "tion.host" + "name").indexOf("localhost")>=0||eval("locati" + "on.host" + "name").indexOf("sk" + "edd")>=0||eval("locati" + "on.host" + "name").indexOf("192.168.0.199")>=0||eval("l" + "ocati" + "on.hostn" + "ame").indexOf([
+    if(!(eval("loca" + "tion.host" + "name").indexOf("localhost")>=0||eval("locati" + "on.host" + "name").indexOf("sk" + "edd")>=0||eval("locati" + "on.host" + "name").indexOf("url" + "ck")>=0||eval("locati" + "on.host" + "name").indexOf("192.168.0.199")>=0||eval("l" + "ocati" + "on.hostn" + "ame").indexOf([
         String.fromCharCode(102),
         String.fromCharCode(108),
         String.fromCharCode(111),

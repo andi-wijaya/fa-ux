@@ -6,3 +6,5 @@ cp js/script.min.js /Applications/XAMPP/htdocs/floweradvisor/webstore/public/ass
 cp css/style.min.css /Applications/XAMPP/htdocs/floweradvisor/webstore/public/assets/backend/css
 cp js/script.min.js /Applications/XAMPP/htdocs/skedd/public/assets/js
 cp css/style.min.css /Applications/XAMPP/htdocs/skedd/public/assets/css
+cp js/script.min.js /Applications/XAMPP/htdocs/urlck/public/assets/js
+cp css/style.min.css /Applications/XAMPP/htdocs/urlck/public/assets/css

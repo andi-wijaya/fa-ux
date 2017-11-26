@@ -45,46 +45,46 @@
 
 <script id="script1">
   $(function(){
-//    $('#dropdown1').dropdown({
-//      width:"200px",
-//      items:[
-//        { text:"Dropdown-1", value:"1" },
-//        { text:"Dropdown-2", value:"2" },
-//        { text:"Dropdown-3", value:"3" },
-//        { text:"Dropdown-4", value:"4" },
-//        { text:"Dropdown-5", value:"5" },
-//      ],
-//      placeholder:"Select Value"
-//    });
-//    $('#dropdown5').dropdown({
-//      width:"200px",
-//      items:[
-//        { text:"Dropdown-1", value:"1" },
-//        { text:"Dropdown-2", value:"2" },
-//        { text:"Dropdown-3", value:"3" },
-//        { text:"Dropdown-4", value:"4" },
-//        { text:"Dropdown-5", value:"5" },
-//      ],
-//      value:"5"
-//    });
-//    $('#dropdown2').dropdown({
-//      width:"75px",
-//      items:[
-//        { text:"Dropdown-1", value:"1" },
-//        { text:"Dropdown-2", value:"2" },
-//        { text:"Dropdown-3", value:"3" },
-//        { text:"Dropdown-4", value:"4" },
-//        { text:"Dropdown-5", value:"5" },
-//      ],
-//      placeholder:"Select Value",
-//      searchable:true
-//    });
-//    $('#dropdown3').dropdown({
-//      width:"300px",
-//      placeholder:"Select Value",
-//      searchable:true,
-//      src:"/fa-ux/data/sample_dropdown.php"
-//    });
+    $('#dropdown1').dropdown({
+      width:"200px",
+      items:[
+        { text:"Dropdown-1", value:"1" },
+        { text:"Dropdown-2", value:"2" },
+        { text:"Dropdown-3", value:"3" },
+        { text:"Dropdown-4", value:"4" },
+        { text:"Dropdown-5", value:"5" },
+      ],
+      placeholder:"Select Value"
+    });
+    $('#dropdown5').dropdown({
+      width:"200px",
+      items:[
+        { text:"Dropdown-1", value:"1" },
+        { text:"Dropdown-2", value:"2" },
+        { text:"Dropdown-3", value:"3" },
+        { text:"Dropdown-4", value:"4" },
+        { text:"Dropdown-5", value:"5" },
+      ],
+      value:"5"
+    });
+    $('#dropdown2').dropdown({
+      width:"75px",
+      items:[
+        { text:"Dropdown-1", value:"1" },
+        { text:"Dropdown-2", value:"2" },
+        { text:"Dropdown-3", value:"3" },
+        { text:"Dropdown-4", value:"4" },
+        { text:"Dropdown-5", value:"5" },
+      ],
+      placeholder:"Select Value",
+      searchable:true
+    });
+    $('#dropdown3').dropdown({
+      width:"300px",
+      placeholder:"Select Value",
+      searchable:true,
+      src:"/fa-ux/data/sample_dropdown.php"
+    });
     $('#dropdown4').dropdown({
       width:"300px",
       placeholder:"Multiple Dropdown",
