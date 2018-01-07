@@ -24,6 +24,9 @@
   $(function(){
 
     $('#autocomplete1').autocomplete({
+      onchange:function(obj){
+        console.log([ this, obj ]);
+      },
       src:"/fa-ux/data/seo_country_filter.php",
       width:"200px",
     })

@@ -11,6 +11,7 @@ $.fn.extend({
     var minlength = $.val('minlength', options, { d:3 });           // Minimum key length to fetch remote src
     var placeholder = $.val('placeholder', options, { d:"" });
     var onbeforehint = $.val('onbeforehint', options, { d:null });
+    var onchange = $.val('onchange', options, { d:null });
 
     var css = {};
     if(width != null) css['width'] = width;
@@ -81,6 +82,7 @@ $.fn.extend({
 
                     $(el).autocomplete_val(obj, true);
                     $(el).autocomplete_validate();
+                    $.fire_event(onchange, [ obj ], el);
 
                   });
                   $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
@@ -111,14 +113,22 @@ $.fn.extend({
                   $('.popup', el).html(html.join(''));
                   $('.item', $('.popup', el)).on('click',function(){
 
+                    var data = $(el).data('data');
                     var value = this.getAttribute('data-value');
                     var text = $('label', this).text();
-                    var obj = { value:value, text:text };
+                    var index = $(this).index();
+                    var obj = data[index];
+                    obj['value'] = value;
+                    obj['text'] = text;
 
                     $(el).autocomplete_val(obj, true);
+                    $(el).autocomplete_validate();
+                    $.fire_event(onchange, [ obj ], el);
+
                   });
                   $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
                   $(el).data('key', null);
+                  $(el).data('data', data);
 
                 });
 

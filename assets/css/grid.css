@@ -86,7 +86,7 @@
     background: #fff;
   }
   .grid *[data-type]{
-    border-color: transparent;
+    /*border-color: transparent;*/
   }
 
   /* BEGIN STYLE 1 */
