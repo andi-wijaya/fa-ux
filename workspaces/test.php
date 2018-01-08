@@ -11,7 +11,6 @@
       $('#grid1').grid({
         columns:[
           { text:"N.A.M.E", name:"name", width:"100px" },
-          { text:"", name:"", width:"50px", type:"html", html:"qwe" },
         ],
         moveable:true,
         value:[
@@ -26,13 +25,6 @@
       })
 
     })
-
-    function qwe(){
-
-      $(this).html("<span class='textbox1'></span>");
-      $('.textbox1', this).textbox({ placeholder:"Textbox1", width:"50px" });
-
-    }
 
   </script>
 
