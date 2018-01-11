@@ -277,8 +277,6 @@ $.fn.extend({
         };
         if(search != '') el_params['search'] = search;
 
-        console.log([ 'grid_load.el_params', el_params ]);
-
         if(method.toString().toLowerCase() == 'get'){
           $.api_get(src, el_params, function(response){
 
@@ -290,12 +288,10 @@ $.fn.extend({
 
             // Check if next page exists
             var next_page = $.val('next_page', response, { d:page });
-            alert(next_page);
             if(next_page > page){
               $('.grid-footer', instance).html("<div class='load-more align-center padding5'>Load More...</div>");
               $('.load-more', instance).on('click', function(){
                 params['page'] = next_page;
-                console.log(params);
                 $(instance).grid_load(params);
               });
             }
@@ -320,7 +316,6 @@ $.fn.extend({
               $('.grid-footer', instance).html("<div class='load-more align-center padding10'>Load More...</div>");
               $('.load-more', instance).on('click', function(){
                 params['page'] = next_page;
-                console.log(params);
                 $(instance).grid_load(params);
               });
             }
@@ -552,7 +547,6 @@ $.extend({
 
   grid_ondrop:function(){
 
-    // console.log([ 'ondrop', this, arguments ]);
     $(this).closest('tr').removeClass('drag-over');
 
     var cid = $(this).closest('.grid').data('drag_cid');
