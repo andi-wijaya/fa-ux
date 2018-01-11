@@ -259,6 +259,7 @@ $.fn.extend({
       var options = $(instance).data('options');
       var src = $.val('src', options, { d:'' });
       var method = $.val('method', options, { d:'post' });
+      if(!params) params = {};
 
       if(src.length > 0){
 
@@ -289,8 +290,9 @@ $.fn.extend({
 
             // Check if next page exists
             var next_page = $.val('next_page', response, { d:page });
+            alert(next_page);
             if(next_page > page){
-              $('.grid-footer', instance).html("<div class='load-more align-center padding10'>Load More...</div>");
+              $('.grid-footer', instance).html("<div class='load-more align-center padding5'>Load More...</div>");
               $('.load-more', instance).on('click', function(){
                 params['page'] = next_page;
                 console.log(params);

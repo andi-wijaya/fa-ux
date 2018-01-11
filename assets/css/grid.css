@@ -90,14 +90,21 @@
 
   /* BEGIN STYLE 1 */
   .style1{
-
+    border: solid 1px #eee;
+    border-bottom: none;
   }
   .style1 .grid-head td{
     border-bottom: solid 1px transparent;
     font-weight: 600;
+    border-right: solid 1px #eee;
   }
   .style1 td{
-    border: solid 1px #eee;
+    border: solid 1px transparent;
+    border-right: solid 1px #eee;
+    border-bottom: solid 1px #eee;
+  }
+  .style1 td:last-child{
+    border-right-color: transparent;
   }
   .style1 td.label .separator{
     border:none;
@@ -106,13 +113,9 @@
   }
   .style1 .grid-size td{
     border-color: transparent;
-    border-top-color: #eee;
   }
-  .gridhead.style1 td.label:first-child{
-    border-left: solid 1px #eee;
-  }
-  .gridhead.style1 td.label:last-child{
-    border-right: solid 1px #eee;
+  .style1 .grid-footer{
+    border-bottom: solid 1px #eee;
   }
   /* END STYLE 1 */
 
