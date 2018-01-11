@@ -5,7 +5,7 @@ $pdo_logs = array();
 
 $mysqlpdo_database = '';
 $mysqlpdo_username = 'root';
-$mysqlpdo_password = 'fa2014';
+$mysqlpdo_password = 'webapp';
 $mysqlpdo_host = '127.0.0.1';
 
 function pdo_con($emulate_prepare = true, $forceinit = false){

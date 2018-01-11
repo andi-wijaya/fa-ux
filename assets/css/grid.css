@@ -26,7 +26,6 @@
     -moz-transition: background-color 300ms ease-in;
     -webkit-transition: background-color 300ms ease-in;
     position: relative;
-    color: #aaa;
   }
   .gridhead td.label:first-child{
     border-left: none;
@@ -90,25 +89,29 @@
   }
 
   /* BEGIN STYLE 1 */
-  .grid-style1{
+  .style1{
 
   }
-  .grid-style1 td{
+  .style1 .grid-head td{
+    border-bottom: solid 1px transparent;
+    font-weight: 600;
+  }
+  .style1 td{
     border: solid 1px #eee;
   }
-  .grid-style1 td.label .separator{
+  .style1 td.label .separator{
     border:none;
     width: 5px;
     background: transparent;
   }
-  .grid-style1 .grid-size td{
+  .style1 .grid-size td{
     border-color: transparent;
     border-top-color: #eee;
   }
-  .gridhead.grid-style1 td.label:first-child{
+  .gridhead.style1 td.label:first-child{
     border-left: solid 1px #eee;
   }
-  .gridhead.grid-style1 td.label:last-child{
+  .gridhead.style1 td.label:last-child{
     border-right: solid 1px #eee;
   }
   /* END STYLE 1 */
