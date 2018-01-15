@@ -30,7 +30,7 @@ $.fn.extend({
       }
 
       var ctlid = 'grid' + $.uniqid();
-
+¶
       var css = {};
       if(width != '') css['width'] = width;
 
