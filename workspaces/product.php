@@ -1,58 +1,125 @@
 <div class="content padding20">
-
-  <h1>Hello Product</h1>
-  <div></div>
-  <button id="loadme">Load Me</button>
-  <button id="getvalue">Get Value In Console</button>
-
+  <div>
+    <button>Customize Views...</button>
+    <button id="test1">Open Modal</button>
+  </div>
   <div class="height10"></div>
-
   <span id="grid1head"></span>
   <span id="grid1"></span>
+</div>
 
-  <script>
+<div class="modal" id="modal1">
+  <span id="grid1option" class="padding10">
 
-    var mod = {
+    <ul data-type="tab" data-container="#tabcont1" data-default_index="1">
+      <li>Properties</li>
+      <li>Columns</li>
+      <li>Filters</li>
+    </ul>
 
-      columns:[
-        { name:"code", text:"Code", width:"100px" },
-        { name:"title", text:"Title", width:"200px" },
-        { name:"description", text:"Description", width:"300px" },
-        { name:"createdon", text:"Created ON", width:"100px" },
-      ],
+    <div class="height10"></div>
 
-      init:function(){
+    <div id="tabcont1">
+      <div><h1>Tab 1</h1></div>
 
-        $('#grid1head').gridhead({
-          class:"style1",
-          columns:mod.columns,
-          grid:"#grid1",
-        });
+      <div>
+        <table>
+          <tr>
+            <td width="30%" valign="top"><span id="grid1optioncolumn"></span></td>
+            <td width="10px"></td>
+            <td width="70%" valign="top">
+              <table class="form">
+                <tr>
+                  <th><label class="padding5 width100">Name</label></th>
+                  <td><span data-type="textbox"></span></td>
+                </tr>
+                <tr>
+                  <th><label class="padding5">Text</label></th>
+                  <td><span data-type="textbox"></span></td>
+                </tr>
+                <tr>
+                  <th><label class="padding5">Width</label></th>
+                  <td><span data-type="textbox"></span></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </div>
 
-        // Initialize grid1 with given attributes
-        $('#grid1').grid({
-          autoload:true,
-          class:"style1",
-          columns:mod.columns,
-          method:"get",
-          src:"../data/play1_datasource1.php",
-          row_per_page:20,
-          scroll_cont:'window',
-          moveable:true,
-          onselect:function(){
-            console.log(arguments);
-          },
-        });
+      <div><h1>Tab 3</h1></div>
+    </div>
 
-        $('#loadme').click(function(){ $('#grid1').grid_load(); }); // Load me button click handler
-        $('#getvalue').click(function(){ console.log($('#grid1').val()); }); // Get value button click handler
+    <div class="height10"></div>
 
-      }
+    <div class="align-right">
+      <button>Save</button>
+      <button>Close</button>
+    </div>
+
+  </span>
+</div>
+
+<script>
+
+  var mod = {
+
+    columns:[
+      { name:"code", text:"Code", width:"100px" },
+      { name:"title", text:"Title", width:"200px" },
+      { name:"description", text:"Description", width:"300px" },
+      { name:"createdon", text:"Created ON", width:"140px" },
+    ],
+
+    init:function(){
+
+      $('#grid1head').gridhead({
+        class:"style1",
+        columns:mod.columns,
+        grid:"#grid1",
+      });
+
+      // Initialize grid1 with given attributes
+      $('#grid1').grid({
+        autoload:true,
+        class:"style1",
+        columns:mod.columns,
+        method:"get",
+        src:"../data/play1_datasource1.php",
+        row_per_page:20,
+        scroll_cont:'window',
+        moveable:true,
+        onselect:function(){
+          console.log(arguments);
+        },
+      });
+
+      $('#grid1option').gridoption({
+
+      });
+
+      $('#grid1optioncolumn').grid({
+        columns:[
+          { name:"text", text:"Title", width:"300px" },
+        ],
+        moveable:true,
+        onselect:function(){
+          console.log(arguments);
+        },
+        value:mod.columns
+      })
+
+      $('#loadme').click(function(){ $('#grid1').grid_load(); }); // Load me button click handler
+      $('#getvalue').click(function(){ console.log($('#grid1').val()); }); // Get value button click handler
+
+      $('#test1').click(function(){
+        $('#modal1').modal_open({ width:"800px", height:"80%" });
+      });
 
     }
 
-    $(mod.init);
+  }
 
-  </script>
+  $(mod.init);
 
-</div>
+</script>

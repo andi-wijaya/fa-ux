@@ -23,8 +23,10 @@ $.fn.extend({
         if(index == default_index){
           this.classList.add('active');
         }
-        else
+        else {
           this.classList.remove('active');
+          $(container + ">*:eq(" + index + ")").addClass('off');
+        }
 
         index++;
       });
@@ -77,6 +79,6 @@ $.fn.extend({
 
     });
 
-  }
+  },
 
 });

@@ -2,7 +2,7 @@
 
   .modal{
     background: #fff;
-    border: solid 1px #ccc;
+    outline: solid 5px rgba(0, 0, 0, .2);
     display: none;
     position: fixed;
     z-index: 3;
