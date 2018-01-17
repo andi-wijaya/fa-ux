@@ -33,6 +33,7 @@ $.fn.extend({
 
       var css = {};
       if(width != '') css['width'] = width;
+      if(height != '') css['height'] = height;
 
       $(el).attr('data-type', 'grid');
       $(el).attr('data-cid', ctlid);
