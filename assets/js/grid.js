@@ -194,10 +194,14 @@ $.fn.extend({
 
         $(this).removeClass('highlight');
 
+        var s_obj = $(this).data('value');
+        var d_obj = $.el_val(this);
+        var obj = $.array_merge(s_obj, d_obj);
+
         var table = $(this).closest('table');
         $('.active', table).removeClass('active');
         $(this).addClass('active');
-        $.fire_event(onselect, [ e, this ], instance);
+        $.fire_event(onselect, [ e, this, obj ], instance);
 
       })
       .addClass('highlight')
@@ -406,7 +410,12 @@ $.fn.extend({
           var table = $(this).closest('table');
           $('.active', table).removeClass('active');
           $(this).addClass('active');
-          $.fire_event(onselect, [ e, this ], instance);
+
+          var s_obj = $(this).data('value');
+          var d_obj = $.el_val(this);
+          var obj = $.array_merge(s_obj, d_obj);
+
+          $.fire_event(onselect, [ e, this, obj ], instance);
 
         });
 
