@@ -13,23 +13,16 @@ $.fn.extend({
         default_index:0
       });
 
-      var sample_presets = [
-       { name:"Default" },
-       { name:"Preset-1" },
-       { name:"Preset-2" },
-       { name:"Preset-3" },
-       ];
-
        $('.gridoptionpreset', this).grid({
          class:"style1",
          columns:[
-           { name:"name", text:"Preset Name", width:"300px" },
+           { name:"text", text:"Name", width:"200px" },
+           { name:"name", text:"ID", width:"100px" },
          ],
          moveable:true,
-         onselect:function(){
-           console.log(arguments);
+         onselect:function(e, tr, obj){
+           $($(this).closest('.gridoption')).gridoption_onpresetclick(obj);
          },
-         value:sample_presets,
          width:"300px",
          height:"270px"
        });
@@ -47,9 +40,9 @@ $.fn.extend({
            $('.goc_name', gridoption).textbox_val($.val('name', obj));
            $('.goc_text', gridoption).textbox_val($.val('text', obj));
            $('.goc_width', gridoption).textbox_val($.val('width', obj));
+           $('.goc_datatype', gridoption).dropdown_val($.val('datatype', obj));
 
          },
-         value:mod.columns,
          width:"240px"
        });
 
@@ -73,6 +66,24 @@ $.fn.extend({
            console.log([ this, arguments ]);
          }
        });
+
+       $('.goc_datatype',  this).dropdown({
+         items:[
+           { text:"Text", value:"text" },
+           { text:"Number", value:"number" },
+         ],
+         onchange:function(){
+           console.log([ this, arguments ]);
+         }
+       });
+
+       $('.gridoption-save').click(function(){
+
+       })
+
+       $('.gridoption-close').click(function(){
+
+       })
 
     })
 
@@ -112,6 +123,10 @@ $.fn.extend({
     c += '<td><span class="goc_name"></span></td>';
     c += '</tr>';
     c += '<tr>';
+    c += '<th><label class="padding5 width100">Type</label></th>';
+    c += '<td><span class="goc_datatype"></span></td>';
+    c += '</tr>';
+    c += '<tr>';
     c += '<th><label class="padding5">Text</label></th>';
     c += '<td><span class="goc_text"></span></td>';
     c += '</tr>';
@@ -134,8 +149,8 @@ $.fn.extend({
     c += '<div class="height10"></div>'; // SPACER
 
     c += '<div class="align-right padding5">'; // BEGIN ROW 3
-    c += '<button>Save</button>';
-    c += '<button>Close</button>';
+    c += '<button class="gridoption-save">Save</button>';
+    c += '<button class="gridoption-close">Close</button>';
     c += '</div>';  // END ROW 3
 
     return c;
@@ -146,11 +161,28 @@ $.fn.extend({
 
     $(this).each(function(){
 
-      var columns = obj['columns'];
+      $(this).data('value', obj);
 
-      $('.grid1optioncolumn', this).grid_val(columns);
+      var presets = obj['presets'];
+      $('.gridoptionpreset', this).grid_val(presets);
+
 
     });
+
+  },
+
+
+  gridoption_onpresetclick:function(preset){
+
+    var obj = $(this).data('value');
+    var presets = obj['presets'];
+    for(var i = 0 ; i < presets.length ; i++){
+      if(presets[i]['name'] == preset['name']){
+        preset = presets[i];
+        var columns = preset['columns'];
+        $('.grid1optioncolumn', this).grid_val(columns);
+      }
+    }
 
   }
 

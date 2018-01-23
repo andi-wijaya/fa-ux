@@ -54,10 +54,18 @@
       $('#test1').click(function(){
         $('#modal1').modal_open({ width:"800px", height:"80%" });
         $('#grid1option').gridoption_set({
-          columns:[
-            { name:"code", text:"Code", width:"100px" },
-            { name:"title", text:"Title", width:"300px" },
+
+          presets:[
+            {
+              text:"Sample Preset 1",
+              name:"sample_preset_1",
+              columns:[
+                { name:"code", text:"Code", width:"100px", datatype:"text" },
+                { name:"title", text:"Title", width:"300px", datatype:"text" },
+              ],
+            },
           ]
+
         })
       });
 
