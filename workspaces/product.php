@@ -66,7 +66,9 @@
               name:"sample_preset_1",
               columns:[
                 { name:"code", text:"Code", width:"100px", datatype:"text" },
-                { name:"title", text:"Title", width:"300px", datatype:"text" },
+                { name:"title", text:"Title", width:"200px", datatype:"text" },
+                { name:"description", text:"Description", width:"300px", datatype:"text" },
+                { name:"createdon", text:"Created ON", width:"140px", datatype:"date" },
               ],
             }
           ]
@@ -76,6 +78,7 @@
 
       $('.gridoption-save').click(function(){
         var presets = $('#grid1option').gridoption_val();
+        console.log(presets);
       })
 
       $('.gridoption-close').click(function(){

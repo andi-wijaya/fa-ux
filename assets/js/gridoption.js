@@ -70,6 +70,7 @@ $.fn.extend({
          items:[
            { text:"Text", value:"text" },
            { text:"Number", value:"number" },
+           { text:"Date", value:"date" },
          ],
          onchange:function(){
            var selected_column = $('.grid1optioncolumn', $(this).closest('.gridoption')).grid_selected();
@@ -147,20 +148,21 @@ $.fn.extend({
 
     if(typeof obj == 'undefined'){
 
+      var presets = null;
       $(this).each(function(){
 
         var columns = $('.grid1optioncolumn', this).grid_val();
         var selected_preset = $('.gridoptionpreset', this).grid_selected();
         selected_preset['columns'] = columns;
 
-        var presets = $(this).data('presets');
+        presets = $(this).data('presets');
         for(var i = 0 ; i < presets.length ; i++){
           if(presets[i]['name'] == selected_preset['name'])
             presets[i] = selected_preset;
         }
-        console.log(presets);
 
       })
+      return presets;
 
     }
 

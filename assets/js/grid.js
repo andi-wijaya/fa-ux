@@ -457,8 +457,10 @@ $.fn.extend({
         counter++;
         if(this.classList.contains('active')) index = counter;
       });
-      obj = data[index];
-      obj['_index'] = index;
+      if(typeof data[index] != 'undefined'){
+        obj = data[index];
+        obj['_index'] = index;
+      }
 
     });
     return obj;
