@@ -47,25 +47,24 @@ $.fn.extend({
        });
 
        $('.goc_name',  this).textbox({
-         onchange:function(){
-
-
-
-           console.log([ this, arguments ]);
-         }
+         readonly:1
        });
 
        $('.goc_text',  this).textbox({
          onchange:function(){
-           console.log([ this, arguments ]);
+           var selected_column = $('.grid1optioncolumn', $(this).closest('.gridoption')).grid_selected();
+           selected_column['text'] = $(this).val();
+           $('.grid1optioncolumn', $(this).closest('.gridoption')).grid_modify(selected_column, selected_column);
          }
        });
 
-       $('.goc_width',  this).textbox({
-         onchange:function(){
-           console.log([ this, arguments ]);
-         }
-       });
+      $('.goc_width',  this).textbox({
+        onchange:function(){
+          var selected_column = $('.grid1optioncolumn', $(this).closest('.gridoption')).grid_selected();
+          selected_column['width'] = $(this).val();
+          $('.grid1optioncolumn', $(this).closest('.gridoption')).grid_modify(selected_column, selected_column);
+        }
+      });
 
        $('.goc_datatype',  this).dropdown({
          items:[
@@ -73,17 +72,11 @@ $.fn.extend({
            { text:"Number", value:"number" },
          ],
          onchange:function(){
-           console.log([ this, arguments ]);
+           var selected_column = $('.grid1optioncolumn', $(this).closest('.gridoption')).grid_selected();
+           selected_column['datatype'] = $(this).val();
+           $('.grid1optioncolumn', $(this).closest('.gridoption')).grid_modify(selected_column, selected_column);
          }
        });
-
-       $('.gridoption-save').click(function(){
-
-       })
-
-       $('.gridoption-close').click(function(){
-
-       })
 
     })
 
@@ -146,28 +139,44 @@ $.fn.extend({
 
     c += '</div>'; // END TAB CONT, ROW 2
 
-    c += '<div class="height10"></div>'; // SPACER
-
-    c += '<div class="align-right padding5">'; // BEGIN ROW 3
-    c += '<button class="gridoption-save">Save</button>';
-    c += '<button class="gridoption-close">Close</button>';
-    c += '</div>';  // END ROW 3
-
     return c;
 
   },
 
-  gridoption_set:function(obj){
+  gridoption_val:function(obj){
 
-    $(this).each(function(){
+    if(typeof obj == 'undefined'){
 
-      $(this).data('value', obj);
+      $(this).each(function(){
 
-      var presets = obj['presets'];
-      $('.gridoptionpreset', this).grid_val(presets);
+        var columns = $('.grid1optioncolumn', this).grid_val();
+        var selected_preset = $('.gridoptionpreset', this).grid_selected();
+        selected_preset['columns'] = columns;
 
+        var presets = $(this).data('presets');
+        for(var i = 0 ; i < presets.length ; i++){
+          if(presets[i]['name'] == selected_preset['name'])
+            presets[i] = selected_preset;
+        }
+        console.log(presets);
 
-    });
+      })
+
+    }
+
+    else{
+
+      $(this).each(function(){
+
+        $(this).data('value', obj);
+
+        var presets = obj['presets'];
+        $('.gridoptionpreset', this).grid_val(presets);
+        $(this).data('presets', obj);
+
+      });
+
+    }
 
   },
 

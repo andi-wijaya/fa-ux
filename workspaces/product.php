@@ -10,6 +10,11 @@
 
 <div class="modal" id="modal1">
   <div id="grid1option"></div>
+  <div class="height10"></div>
+  <div class="align-right padding5">
+    <button class="gridoption-save">Save</button>
+    <button class="gridoption-close">Close</button>
+  </div>
 </div>
 
 <script>
@@ -53,7 +58,7 @@
 
       $('#test1').click(function(){
         $('#modal1').modal_open({ width:"800px", height:"80%" });
-        $('#grid1option').gridoption_set({
+        $('#grid1option').gridoption_val({
 
           presets:[
             {
@@ -63,11 +68,19 @@
                 { name:"code", text:"Code", width:"100px", datatype:"text" },
                 { name:"title", text:"Title", width:"300px", datatype:"text" },
               ],
-            },
+            }
           ]
 
         })
       });
+
+      $('.gridoption-save').click(function(){
+        var presets = $('#grid1option').gridoption_val();
+      })
+
+      $('.gridoption-close').click(function(){
+        $('#modal1').modal_close();
+      })
 
     }
 

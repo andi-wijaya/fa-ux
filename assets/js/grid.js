@@ -342,6 +342,8 @@ $.fn.extend({
 
   grid_val:function(value, append){
 
+    append = typeof append == 'undefined' ? false : append;
+
     // Getter
     if(typeof value == 'undefined'){
 
@@ -419,6 +421,15 @@ $.fn.extend({
 
         });
 
+        if(append == 1 || append == true){
+          if(!options['data']) options['data'] = [];
+          options['data'] = $.array_merge(options['data'], value);
+        }
+        else
+          options['data'] = value;
+
+        $(instance).data('options', options);
+
       })
 
     }
@@ -431,15 +442,23 @@ $.fn.extend({
 
   },
 
-  grid_get_selected_value:function(){
+  grid_selected:function(){
 
     var obj = null;
     $(this).each(function(){
 
       var options = $(this).data('options');
       var data = $.val('data', options);
-      var idx = $("tr[class='active']").attr('data-idx');
-      obj = $.val(idx, data);
+
+      var counter = -1;
+      var index = -1;
+      $('tr', this).each(function(){
+        if(this.classList.contains('grid-size-tr')) return;
+        counter++;
+        if(this.classList.contains('active')) index = counter;
+      });
+      obj = data[index];
+      obj['_index'] = index;
 
     });
     return obj;
