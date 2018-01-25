@@ -14,7 +14,7 @@ $.fn.extend({
       });
 
        $('.gridoptionpreset', this).grid({
-         class:"style1",
+         "class":"style1",
          columns:[
            { name:"text", text:"Name", width:"200px" },
            { name:"name", text:"ID", width:"100px" },
@@ -28,7 +28,7 @@ $.fn.extend({
        });
 
        $('.grid1optioncolumn', this).grid({
-         class:"style1",
+         "class":"style1",
          columns:[
            { name:"text", text:"Title", width:"300px" },
          ],
@@ -197,4 +197,4 @@ $.fn.extend({
 
   }
 
-})
+});

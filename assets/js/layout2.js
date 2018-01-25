@@ -6,7 +6,7 @@ $.extend({
 
   }
 
-})
+});
 
 $.fn.extend({
 
