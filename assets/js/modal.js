@@ -28,7 +28,9 @@ $.fn.extend({
         $(instance).reset();
 
       var value = $.val('value', options, { d:null });
-      if(value != null) $(instance).val(options['value']);
+      if(value != null){
+        $(instance).val(value);
+      }
 
     })
 

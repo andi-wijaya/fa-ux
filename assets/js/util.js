@@ -1572,7 +1572,7 @@ $.fn.val = function(value) {
   var type = $(this).attr('data-type');
   if(type != null && typeof $(this)[type + '_val'] != 'undefined')
     return $(this)[type + '_val'].apply(this, arguments);
-  else if($(this).hasClass('container'))
+  else if($(this).hasClass('container') || $(this).hasClass('modal'))
     return $(this).container_val.apply(this, arguments);
   else
     return oldVal.apply(this, arguments);

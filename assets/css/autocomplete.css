@@ -90,4 +90,8 @@
     display: none;
   }
 
+  .autocomplete.borderless{
+    border-color: transparent;
+  }
+
 }

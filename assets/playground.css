@@ -6,28 +6,7 @@
 
   .content{
     margin-left: 150px;
-    width: calc(100% - 450px);
-  }
-
-  .codebar{
-    position: fixed;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background: #333;
-    padding: 15px;
-    width: 300px;
-  }
-
-  .codebar pre{
-    color: #eee;
-    font-family: 'Ubuntu Mono', monospace;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-    word-break: break-all;
-    white-space: pre-wrap;
+    width: calc(100% - 150px);
   }
 
   body{

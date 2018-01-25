@@ -8,7 +8,6 @@
     white-space: nowrap;
     vertical-align: middle;
     overflow: hidden;
-    border-radius: 3px;
   }
   .textbox input{
     border: none;
@@ -74,6 +73,10 @@
     border-color: transparent !important;
     border-bottom-color: red !important;
     background: #ffc9c3 !important;
+  }
+
+  .textbox.borderless{
+    border-color: transparent;
   }
 
 }
