@@ -54,85 +54,45 @@ $.fn.extend({
               var custom = $.fire_event(onbeforehint, [ this.value ], el);
               if(typeof custom != 'undefined' || custom != null) params['custom'] = custom;
 
-              if(method == 'post'){
+              $['api_' + method](src, params, function(response){
 
-                $.api_post(src, params, function(response){
+                var data = $.val('data', response);
+                var html = [];
+                if($.type(data) == 'array')
+                  for(var i = 0 ; i < data.length ; i++){
+                    var item = data[i];
 
-                  var data = $.val('data', response);
-                  var html = [];
-                  if($.type(data) == 'array')
-                    for(var i = 0 ; i < data.length ; i++){
-                      var item = data[i];
+                    var value_key = $.val('value', map, { d:'value' });
+                    var text_key = $.val('text', map, { d:'text' });
+                    var value = $.val(value_key, item, { d:'' });
+                    var text = $.val(text_key, item, { d:value });
 
-                      var value_key = $.val('value', map, { d:'value' });
-                      var text_key = $.val('text', map, { d:'text' });
-                      var value = $.val(value_key, item, { d:'' });
-                      var text = $.val(text_key, item, { d:value });
+                    html.push("<div class='item' data-value=\"" + value + "\">");
+                    html.push("<label>" + text + "</label>");
+                    html.push("</div>");
+                  }
+                $('.popup', el).html(html.join(''));
+                $('.item', $('.popup', el)).on('click',function(){
 
-                      html.push("<div class='item' data-value=\"" + value + "\">");
-                      html.push("<label>" + text + "</label>");
-                      html.push("</div>");
-                    }
-                  $('.popup', el).html(html.join(''));
-                  $('.item', $('.popup', el)).on('click',function(){
+                  var data = $(el).data('data');
+                  var value = this.getAttribute('data-value');
+                  var text = $('label', this).text();
+                  var index = $(this).index();
+                  var obj = data[index];
+                  obj['value'] = value;
+                  obj['text'] = text;
 
-                    var value = this.getAttribute('data-value');
-                    var text = $('label', this).text();
-                    var obj = { value:value, text:text };
-
-                    $(el).autocomplete_val(obj, true);
-                    $(el).autocomplete_validate();
-                    $.fire_event(onchange, [ obj ], el);
-
-                  });
-                  $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
-                  $(el).data('key', null);
+                  $(el).autocomplete_val(obj, true);
+                  $(el).autocomplete_validate();
+                  $.fire_event(onchange, [ obj ], el);
 
                 });
+                $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
+                $(el).data('key', null);
+                $(el).data('data', data);
 
-              }
-              else{
+              });
 
-                $.api_get(src, params, function(response){
-
-                  var data = $.val('data', response);
-                  var html = [];
-                  if($.type(data) == 'array')
-                    for(var i = 0 ; i < data.length ; i++){
-                      var item = data[i];
-
-                      var value_key = $.val('value', map, { d:'value' });
-                      var text_key = $.val('text', map, { d:'text' });
-                      var value = $.val(value_key, item, { d:'' });
-                      var text = $.val(text_key, item, { d:value });
-
-                      html.push("<div class='item' data-value=\"" + value + "\">");
-                      html.push("<label>" + text + "</label>");
-                      html.push("</div>");
-                    }
-                  $('.popup', el).html(html.join(''));
-                  $('.item', $('.popup', el)).on('click',function(){
-
-                    var data = $(el).data('data');
-                    var value = this.getAttribute('data-value');
-                    var text = $('label', this).text();
-                    var index = $(this).index();
-                    var obj = data[index];
-                    obj['value'] = value;
-                    obj['text'] = text;
-
-                    $(el).autocomplete_val(obj, true);
-                    $(el).autocomplete_validate();
-                    $.fire_event(onchange, [ obj ], el);
-
-                  });
-                  $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
-                  $(el).data('key', null);
-                  $(el).data('data', data);
-
-                });
-
-              }
             }
 
           }
@@ -187,8 +147,10 @@ $.fn.extend({
 
       $(this).each(function(){
 
+        var el = this;
         var options = $(this).data('options');
         var multiple = $.val('multiple', options, { d:false });
+        var onchange = $.val('onchange', options, { d:null });
 
         var text = value = '';
         if($.type(val) == 'object'){
@@ -218,6 +180,7 @@ $.fn.extend({
             if(!$.in_array(ivalue.toLowerCase(), current_val) && ivalue !== ''){
               $("<span class='text' data-value=\"" + ivalue + "\">" + itext + "<span class='icon-remove glyphicons glyphicons-remove'></span></span>").insertBefore($('input', this));
               $('.glyphicons-remove', $('input', this).prev()).on('click', function(){
+                $.fire_event(onchange, [ ], el);
                 $(this).parent().remove();
               })
             }

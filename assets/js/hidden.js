@@ -23,6 +23,7 @@ $.fn.extend({
 
       var results = [];
       $(this).each(function(){
+        if(typeof $(this).data('value') == 'undefined') return;
         results.push($(this).data('value'));
       });
       return results.length > 1 ? results : (results.length == 1 ? results[0] : '');
