@@ -5,16 +5,29 @@ include __DIR__ . '/assets/php/util.php';
 
 $properties = [
   'autocomplete'=>[
-    'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of autocomplete.' ],
-    'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of autocomplete.' ],
-    'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to autocomplete.' ],
-    'onchange'=>[ 'datatype'=>'closure', 'desc'=>'On change event handler. ' ],
-    'width'=>[ 'datatype'=>'string', 'desc'=>'Specify width of autocomplete, in css notation: px, pt, mm, etc...)' ],
+    'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to component.' ],
+    'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of component.' ],
+    'map'=>[ 'datatype'=>'object', 'desc'=>'Define mapping of datasource. component require text-value object' ],
     'multiple'=>[ 'datatype'=>'bool', 'desc'=>'Multiple value mode. value will be comma-separated' ],
-    'value'=>[ 'datatype'=>'string', 'desc'=>'Set the value of autocomplete. Single value string or comma separated string' ],
-    'placeholder'=>[ 'datatype'=>'string', 'desc'=>'Set the placeholder of autocomplete' ],
-    'map'=>[ 'datatype'=>'object', 'desc'=>'Define mapping of datasource. Autocomplete require text-value object' ],
-    'src'=>[ 'datatype'=>'string', 'desc'=>'Specify datasource of autocomplete.' ],
+    'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of component.' ],
+    'onchange'=>[ 'datatype'=>'closure', 'desc'=>'On change event handler. ' ],
+    'placeholder'=>[ 'datatype'=>'string', 'desc'=>'Set the placeholder of component' ],
+    'src'=>[ 'datatype'=>'string', 'desc'=>'Specify datasource of component.' ],
+    'value'=>[ 'datatype'=>'string', 'desc'=>'Set the value of component. Single value string or comma separated string' ],
+    'width'=>[ 'datatype'=>'string', 'desc'=>'Specify width of component, in css notation: px, pt, mm, etc...)' ],
+  ],
+  'dropdown'=>[
+    'default_value'=>[ 'datatype'=>'string', 'desc'=>'Default value of component' ],
+    'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of component.' ],
+    'items'=>[ 'datatype'=>'array', 'desc'=>'Dropdown items. ex: [ { text:text, value:value }, ... ]' ],
+    'map'=>[ 'datatype'=>'object', 'desc'=>'Define mapping of datasource. component require text-value object' ],
+    'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of component.' ],
+    'placeholder'=>[ 'datatype'=>'string', 'desc'=>'Set the placeholder of component' ],
+    'readonly'=>[ 'datatype'=>'bool', 'desc'=>'' ],
+    'src'=>[ 'datatype'=>'string', 'desc'=>'Specify datasource of component.' ],
+    'value'=>[ 'datatype'=>'string', 'desc'=>'Set the value of component. Single value string or comma separated string' ],
+    'width'=>[ 'datatype'=>'string', 'desc'=>'Specify width of component, in css notation: px, pt, mm, etc...)' ],
+
   ]
 ];
 
@@ -141,9 +154,14 @@ session_start();
         var desc = obj['desc'];
         var val = $.val(key, cookie, { d:'' });
 
+        switch(datatype){
+          case 'array': try{ val = eval('(' + val + ')'); }catch(e){ val = val; } break;
+        }
+        sample_prop[key] = val;
+
         html.push("<tr>");
         html.push("<td><label class='padding5'>" + key + "</label></td>");
-        html.push("<td><span class='samples_key " + datatype + "' data-key=\"" + key + "\"></span></td>");
+        html.push("<td><span class='samples_key " + datatype + "' data-key=\"" + key + "\" data-datatype=\"" + datatype + "\"></span></td>");
         html.push("</tr>");
       }
       html.push("</table>");
@@ -162,6 +180,8 @@ session_start();
         var key = $(this).attr('data-key');
         var val = $.val(key, sample_prop, { d:'' });
 
+        if(val instanceof Object) val = JSON.stringify(val);
+
         $(this).textbox({
           onblur:function(e, value){
 
@@ -171,8 +191,15 @@ session_start();
             var prop = {};
             $('.samples_key', el).each(function(){
               var key = $(this).attr('data-key');
+              var datatype = $(this).attr('data-datatype');
               var value = $(this).val();
-              if(value != '') prop[key] = value;
+
+              switch(datatype){
+                case 'array': try{ value = eval('(' + value + ')'); }catch(e){ value = value; } break;
+              }
+
+              if(value != '' && value != null)
+                prop[key] = value;
             });
             $('.doc-samples-control', el)[control_name](prop);
             $.cookie_setitem(control_name, JSON.stringify(prop));

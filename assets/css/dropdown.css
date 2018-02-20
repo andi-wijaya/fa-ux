@@ -1,13 +1,15 @@
 @media screen{
 
   .dropdown{
-    border: solid 1px #eee;
+    background: #fff;
+    border: solid 1px #ddd;
     white-space: nowrap;
     overflow: hidden;
     vertical-align: top;
     position: relative;
     vertical-align: middle;
     min-width: 150px;
+    border-radius: 4px;
   }
   .dropdown:hover, .dropdown:active{
     /*border-color: #aaa;*/
