@@ -3,6 +3,22 @@
 include __DIR__ . '/data/whitelist.php';
 include __DIR__ . '/assets/php/util.php';
 
+$properties = [
+  'autocomplete'=>[
+    'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of autocomplete.' ],
+    'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of autocomplete.' ],
+    'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to autocomplete.' ],
+    'onchange'=>[ 'datatype'=>'closure', 'desc'=>'On change event handler. ' ],
+    'width'=>[ 'datatype'=>'string', 'desc'=>'Specify width of autocomplete, in css notation: px, pt, mm, etc...)' ],
+    'multiple'=>[ 'datatype'=>'bool', 'desc'=>'Multiple value mode. value will be comma-separated' ],
+    'value'=>[ 'datatype'=>'string', 'desc'=>'Set the value of autocomplete. Single value string or comma separated string' ],
+    'placeholder'=>[ 'datatype'=>'string', 'desc'=>'Set the placeholder of autocomplete' ],
+    'map'=>[ 'datatype'=>'object', 'desc'=>'Define mapping of datasource. Autocomplete require text-value object' ],
+    'src'=>[ 'datatype'=>'string', 'desc'=>'Specify datasource of autocomplete.' ],
+  ]
+];
+
+
 session_start();
 ?>
 <html>
@@ -110,8 +126,11 @@ session_start();
       var control_name = options.name;
       var value = options.value;
 
+      var cookie = eval("(" + $.cookie_getitem(control_name) + ")");
+      var sample_prop = cookie;
+
       var html = [];
-      html.push("<div class='doc-samples'>");
+      html.push("<div class='doc-samples' data-name=\"" + control_name + "\">");
       html.push("<b class='padding5 inline-block'>Samples:</b>");
       html.push("<br />");
       html.push("<span class='doc-samples-sect1'>");
@@ -120,10 +139,11 @@ session_start();
         var obj = value[key];
         var datatype = obj['datatype'];
         var desc = obj['desc'];
+        var val = $.val(key, cookie, { d:'' });
 
         html.push("<tr>");
         html.push("<td><label class='padding5'>" + key + "</label></td>");
-        html.push("<td><span class='samples_key " + datatype + "'></span></td>");
+        html.push("<td><span class='samples_key " + datatype + "' data-key=\"" + key + "\"></span></td>");
         html.push("</tr>");
       }
       html.push("</table>");
@@ -137,8 +157,31 @@ session_start();
 
       $(this).html(html.join(''));
 
-      $('.samples_key', this).textbox();
-      $('.doc-samples-control', this)[control_name]();
+      $('.samples_key', this).each(function(){
+
+        var key = $(this).attr('data-key');
+        var val = $.val(key, sample_prop, { d:'' });
+
+        $(this).textbox({
+          onblur:function(e, value){
+
+            var el = $(this).closest('.doc-samples');
+            var control_name = $(el).attr('data-name');
+
+            var prop = {};
+            $('.samples_key', el).each(function(){
+              var key = $(this).attr('data-key');
+              var value = $(this).val();
+              if(value != '') prop[key] = value;
+            });
+            $('.doc-samples-control', el)[control_name](prop);
+            $.cookie_setitem(control_name, JSON.stringify(prop));
+
+          },
+          value:val
+        });
+      });
+      $('.doc-samples-control', this)[control_name](sample_prop);
 
     },
 
@@ -149,6 +192,9 @@ session_start();
 
 <div class="sidebar padding10">
   <ul class="nav" style="width:150px;">
+    <?php if(is_array($properties)) foreach($properties as $property_key=>$property){ ?>
+      <li><a href="<?=base_url() . '/components/' . str_replace('.php', '', $property_key)?>"><?=ucwords($property_key)?></a></li>
+    <?php } ?>
     <?php $files = glob(__DIR__ . '/components/*.php'); foreach($files as $file){ ?>
     <li><a href="<?=base_url() . '/components/' . str_replace('.php', '', basename($file))?>"><?=ucwords(str_replace('_', ' ', basename(str_replace('.php', '', $file))))?></a></li>
     <?php } ?>
@@ -162,9 +208,46 @@ session_start();
 </div>
 
 <?php
-  // Load views
-  if(file_exists($_GET['url'] . '.php'))
+
+  $key = $_GET['url'];
+  $key_exists = false;
+
+  if(strpos($key, 'component') !== false){
+    $component = str_replace('components/', '', $key);
+
+    if(isset($properties[$component])){
+      $component_properties = $properties[$component];
+      ksort($component_properties);
+    ?>
+      <div class="content padding20 bg-white">
+        <h1><?=ucwords($component)?></h1>
+        <div class="height20"></div>
+        <span class="ctl_prop"></span>
+        <div class="height30"></div>
+        <span class="ctl_samples"></span>
+      </div>
+
+      <script>
+
+        $(function(){
+
+          $('.ctl_prop').doc_properties({ name:"<?=$component?>", value:<?=json_encode($component_properties)?> });
+          $('.ctl_samples').doc_samples({ name:"<?=$component?>", value:<?=json_encode($component_properties)?> });
+
+        })
+
+      </script>
+    <?php
+
+      $key_exists = true;
+    }
+  }
+
+  if(!$key_exists && file_exists($_GET['url'] . '.php'))
     include $_GET['url'] . '.php';
+  else
+    echo "Unable to load view.";
+
 ?>
 
 </body>
