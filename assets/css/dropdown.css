@@ -23,6 +23,7 @@
     width: 100%;
   }
   .dropdown .icon{
+    background: #fff;
     color: #aaa;
     position: absolute;
     top: 0;
