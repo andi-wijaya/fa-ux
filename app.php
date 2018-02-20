@@ -140,6 +140,7 @@ session_start();
 
       var cookie = eval("(" + $.cookie_getitem(control_name) + ")");
       var sample_prop = cookie;
+      if($.type(sample_prop) != 'object') sample_prop = {};
 
       var html = [];
       html.push("<div class='doc-samples' data-name=\"" + control_name + "\">");

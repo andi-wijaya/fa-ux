@@ -8,16 +8,15 @@ $.extend({
   popup_open:function(el, refEl, options){
 
     $.popup_close_all();
-    $(el).addClass('on');
+
+    $(el).addClass('off');
 
     var css = {};
     if(typeof refEl == 'undefined'){
-
       var width = $(el).outerWidth();
       var height = $(el).outerHeight();
       css['left'] = Math.round((window.innerWidth - width) / 2);
       css['top'] = Math.round((window.innerHeight - height) / 2);
-
     }
     else{
 
@@ -37,8 +36,25 @@ $.extend({
       if(!isNaN(parseInt(min_width))) css['min-width'] = min_width;
 
     }
-
     $(el).css(css);
+
+    $(el).removeClass('off');
+    window.setTimeout(function(){
+      console.log(el);
+      $(el).addClass('on');
+    }, 100);
+
+    $(el).on('transitionend', function(){
+
+      if($(this).hasClass('on')){
+
+      }
+      else{
+        $(this).removeClass('on');
+        $(this).addClass('off');
+      }
+
+    })
 
   },
   popup_toggle:function(el, refEl, options){

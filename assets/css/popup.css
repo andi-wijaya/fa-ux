@@ -1,24 +1,23 @@
 @media screen{
 
   .popup{
-
     position: fixed;
     z-index: 4;
-    display: none;
     background: #fff;
     border: solid 1px #ddd;
     overflow-y: auto;
     overflow-x: hidden;
     border-radius: 3px;
-
+    transition: all .1s ease-in-out;
+    transform: scale(0.8);
+    opacity: 0;
   }
-
   .popup.on{
-
-    display: block;
-
+    transform: scale(1);
+    opacity: 1;
   }
-
-
+  .popup.off{
+    display: none;
+  }
 
 }
