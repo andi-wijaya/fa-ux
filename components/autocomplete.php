@@ -1,58 +1,35 @@
 <?php
 
+$autocomplete_properties = [
+  'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of autocomplete.' ],
+  'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of autocomplete.' ],
+  'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to autocomplete.' ],
+  'onchange'=>[ 'datatype'=>'closure', 'desc'=>'On change event handler. ' ],
+  'width'=>[ 'datatype'=>'string', 'desc'=>'Specify width of autocomplete, in css notation: px, pt, mm, etc...)' ],
+  'multiple'=>[ 'datatype'=>'bool', 'desc'=>'Multiple value mode. value will be comma-separated' ],
+  'value'=>[ 'datatype'=>'string', 'desc'=>'Set the value of autocomplete. Single value string or comma separated string' ],
+  'placeholder'=>[ 'datatype'=>'string', 'desc'=>'Set the placeholder of autocomplete' ],
+  'map'=>[ 'datatype'=>'object', 'desc'=>'Define mapping of datasource. Autocomplete require text-value object' ],
+  'src'=>[ 'datatype'=>'string', 'desc'=>'Specify datasource of autocomplete.' ],
+];
+
+ksort($autocomplete_properties);
 
 ?>
 <div class="content padding20 bg-white">
-
-  <label class="padding8">Simple Autocomplete</label><br />
-  <span id="autocomplete1"></span>
-
-  <div class="height10"></div>
-
-  <label class="padding8">Multiple Autocomplete</label><br />
-  <span id="autocomplete2"></span>
-
-  <div class="height10"></div>
-
-  <label class="padding8">Multiple Autocomplete with Mapping</label><br />
-  <span id="autocomplete3"></span>
-
+  <h1>Autocomplete</h1>
+  <div class="height20"></div>
+  <span class="ctl_prop"></span>
+  <div class="height30"></div>
+  <span class="ctl_samples"></span>
 </div>
 
 <script>
 
   $(function(){
 
-    $('#autocomplete1').autocomplete({
-      onchange:function(obj){
-        console.log([ this, obj ]);
-      },
-      src:"/fa-ux/data/seo_country_filter.php",
-      width:"200px",
-    })
-
-    $('#autocomplete2').autocomplete({
-      multiple: true,
-      placeholder:"Country...",
-      src:"/fa-ux/data/seo_country_filter.php",
-      width:"600px",
-      value:"",
-      onchange:function(){
-        console.log([ 'changed', this, arguments ]);
-      }
-    })
-
-    $('#autocomplete3').autocomplete({
-      multiple: true,
-      placeholder:"Country...",
-      src:"/fa-ux/data/seo_country_filter.php",
-      map:{
-        text:"code",
-        value:"code"
-      },
-      width:"600px",
-      value:""
-    })
+    $('.ctl_prop').doc_properties({ name:"autocomplete", value:<?=json_encode($autocomplete_properties)?> });
+    $('.ctl_samples').doc_samples({ name:"autocomplete", value:<?=json_encode($autocomplete_properties)?> });
 
   })
 

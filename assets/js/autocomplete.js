@@ -2,6 +2,7 @@ $.fn.extend({
 
   autocomplete:function(options){
 
+    var id = $.val('id', options, { d:'' });
     var className = $.val('class', options, { d:'' });
     var name = $.val('name', options, { d:'' });
     var src = $.val('src', options, { d:'' });                      // Remote URL
@@ -29,6 +30,7 @@ $.fn.extend({
       $(el).addClass(className);
       $(el).html(html.join(''));
       $(el).css(css);
+      if(id != '') $(el).attr('id', id);
       $(el).attr('data-name', name);
       $(el).attr('data-type', 'autocomplete');
       $(el).data('options', options);

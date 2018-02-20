@@ -2,18 +2,19 @@
 
   .autocomplete{
 
-    border: solid 1px #eee;
+    background: #fff;
+    border: solid 1px #ddd;
     position: relative;
     vertical-align: middle;
     overflow: hidden;
-    border-radius: 3px;
+    border-radius: 4px;
 
   }
 
   .autocomplete input{
 
     border: none;
-    padding: 6px;
+    padding: 8px;
     background: transparent;
     vertical-align: middle;
 
@@ -55,7 +56,7 @@
     cursor: pointer;
     background: transparent;
     vertical-align: middle;
-    padding: 7px;
+    padding: 10px;
     text-align: center;
     position: absolute;
     right: 0;

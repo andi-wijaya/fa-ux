@@ -4,7 +4,6 @@ include __DIR__ . '/data/whitelist.php';
 include __DIR__ . '/assets/php/util.php';
 
 session_start();
-
 ?>
 <html>
 <head>
@@ -29,6 +28,124 @@ session_start();
   <?php } } ?>
 </head>
 <body>
+
+<style>
+  .prop table{
+    border-collapse: collapse;
+  }
+  .prop tr td:nth-child(1){
+    width: 150px;
+  }
+  .prop tr td:nth-child(2){
+    width: 80px;
+  }
+  .prop tr td:nth-child(3){
+    min-width: 300px;
+  }
+  .prop td{
+    padding:10px;
+    border: solid 1px #eee;
+  }
+
+  .doc-samples table{
+    border-collapse: collapse;
+  }
+  .doc-samples td{
+    padding:0px;
+    border: solid 1px #eee;
+  }
+  .doc-samples td:nth-child(2)>*{
+    border: none;
+  }
+  .doc-samples .doc-samples-sect1{
+    display: inline-block;
+    vertical-align: top;
+  }
+  .doc-samples .doc-samples-sect2{
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 10px;
+  }
+  .doc-samples .doc-samples-control-space{
+    background: #eee;
+    padding: 20px;
+    min-width: 600px;
+  }
+
+</style>
+
+<script>
+
+  $.fn.extend({
+
+    doc_properties:function(options){
+
+      var value = options.value;
+
+      var html = [];
+      html.push("<div class='prop'>");
+      html.push("<b class='padding5 inline-block'>Properties:</b>");
+      html.push("<br />");
+      html.push("<table class='prop'>");
+      for(var key in value){
+        var obj = value[key];
+        var datatype = obj['datatype'];
+        var desc = obj['desc'];
+
+        html.push("<tr>");
+        html.push("<td>" + key + "</td>");
+        html.push("<td>" + datatype + "</td>");
+        html.push("<td>" + desc +  "</td>");
+        html.push("</tr>");
+      }
+      html.push("</table>");
+      html.push("</div>");
+
+      $(this).html(html.join(''));
+
+    },
+
+    doc_samples:function(options){
+
+      var control_name = options.name;
+      var value = options.value;
+
+      var html = [];
+      html.push("<div class='doc-samples'>");
+      html.push("<b class='padding5 inline-block'>Samples:</b>");
+      html.push("<br />");
+      html.push("<span class='doc-samples-sect1'>");
+      html.push("<table>");
+      for(var key in value){
+        var obj = value[key];
+        var datatype = obj['datatype'];
+        var desc = obj['desc'];
+
+        html.push("<tr>");
+        html.push("<td><label class='padding5'>" + key + "</label></td>");
+        html.push("<td><span class='samples_key " + datatype + "'></span></td>");
+        html.push("</tr>");
+      }
+      html.push("</table>");
+      html.push("</span>");
+      html.push("<span class='doc-samples-sect2'>");
+      html.push("<span class='doc-samples-control-space'>");
+      html.push("<span class='doc-samples-control'>");
+      html.push("</span>");
+      html.push("</span>");
+      html.push("</div>");
+
+      $(this).html(html.join(''));
+
+      $('.samples_key', this).textbox();
+      $('.doc-samples-control', this)[control_name]();
+
+    },
+
+  })
+
+
+</script>
 
 <div class="sidebar padding10">
   <ul class="nav" style="width:150px;">
