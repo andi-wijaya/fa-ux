@@ -27,7 +27,6 @@ $properties = [
     'src'=>[ 'datatype'=>'string', 'desc'=>'Specify datasource of component.' ],
     'value'=>[ 'datatype'=>'string', 'desc'=>'Set the value of component. Single value string or comma separated string' ],
     'width'=>[ 'datatype'=>'string', 'desc'=>'Specify width of component, in css notation: px, pt, mm, etc...)' ],
-
   ]
 ];
 
