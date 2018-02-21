@@ -17,9 +17,10 @@ $properties = [
     'width'=>[ 'datatype'=>'string', 'desc'=>'Specify width of component, in css notation: px, pt, mm, etc...)' ],
   ],
   'dropdown'=>[
+    'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to component.' ],
     'default_value'=>[ 'datatype'=>'string', 'desc'=>'Default value of component' ],
     'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of component.' ],
-    'items'=>[ 'datatype'=>'array', 'desc'=>'Dropdown items. ex: [ { text:text, value:value }, ... ]' ],
+    'items'=>[ 'datatype'=>'array', 'desc'=>'Component items. ex: [ { text:text, value:value }, ... ]' ],
     'map'=>[ 'datatype'=>'object', 'desc'=>'Define mapping of datasource. component require text-value object' ],
     'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of component.' ],
     'placeholder'=>[ 'datatype'=>'string', 'desc'=>'Set the placeholder of component' ],
@@ -27,6 +28,15 @@ $properties = [
     'src'=>[ 'datatype'=>'string', 'desc'=>'Specify datasource of component.' ],
     'value'=>[ 'datatype'=>'string', 'desc'=>'Set the value of component. Single value string or comma separated string' ],
     'width'=>[ 'datatype'=>'string', 'desc'=>'Specify width of component, in css notation: px, pt, mm, etc...)' ],
+  ],
+  'checkbox'=>[
+    'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to component.' ],
+    'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of component.' ],
+    'items'=>[ 'datatype'=>'array', 'desc'=>'Component items. ex: [ { text:text, value:value }, ... ]' ],
+    'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of component.' ],
+    'required'=>[ 'datatype'=>'bool', 'desc'=>'' ],
+    'text'=>[ 'datatype'=>'string', 'desc'=>'' ],
+    'value'=>[ 'datatype'=>'string', 'desc'=>'Set the value of component. Single value string or comma separated string' ],
   ]
 ];
 

@@ -8,6 +8,7 @@
   .checkbox .item{
     display: inline-block;
     vertical-align: top;
+    margin-left: 5px;
   }
   .checkbox input[type=checkbox]{
     vertical-align: middle;

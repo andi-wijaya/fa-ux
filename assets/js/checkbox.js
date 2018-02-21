@@ -7,6 +7,7 @@ $.fn.extend({
       var className = $.val('class', options, { d:'' });
       var items = $.val('items', options, { d:null });
       var name = $.val('name', options, { d:'' });
+      var id = $.val('id', options, { d:'' });
 
       var html = [];
       if($.type(items) == 'array')
@@ -27,6 +28,7 @@ $.fn.extend({
       $(this).addClass(className);
       $(this).attr('data-type', 'checkbox');
       $(this).attr('data-name', name);
+      if(id != '') $(this).attr('id', id);
       $(this).html(html.join(''));
       $(this).data('options', options);
       $(this).checkbox_val($.val('value', options, { d:false }));
@@ -43,6 +45,8 @@ $.fn.extend({
       $(this).each(function(){
 
         if(!$(this).hasClass('checkbox')) return;
+
+        $(this).checkbox_validate();
 
         var options = $(this).data('options');
         var items = $.val('items', options, { d:null });
@@ -106,7 +110,7 @@ $.fn.extend({
       var options = $(this).data('options');
       var required = $.val('required', options, { d:false });
       var items = $.val('items', options, { d:null });
-
+console.log([ 'required', required ]);
       var item_count = 0;
       var el_valid = 0;
       $('.item', this).each(function(){
