@@ -4,6 +4,7 @@ $.fn.extend({
 
     var className = $.val('class', options, { d:'' });
     var height = $.val('height', options, { d:'50px' });
+    var id = $.val('id', options, { d:'' });
     var name = $.val('name', options, { d:'' });
     var value = $.val('value', options, { d:'' });
     var width = $.val('width', options, { d:'50px' });
@@ -20,9 +21,11 @@ $.fn.extend({
       html.push("<span class='popup'><img class='image-popup-img'/></span>");
 
       $(el).attr('data-type', 'image');
-      $(el).attr('data-name', name);
+      if(id != '') $(el).attr('id', name);
+      if(name != '') $(el).attr('data-name', name);
       $(el).addClass('image');
       $(el).addClass(className);
+      console.log([ readonly, readonly == true ]);
       if(readonly) $(el).addClass('readonly');
       $(el).html(html.join(''));
       $(el).data('options', options);
@@ -87,7 +90,17 @@ $.fn.extend({
 
       var result = [];
       this.each(function(){
-        result.push($('input[type=file]', this)[0].files[0]);
+        $(this).image_validate();
+
+        var val = '';
+        if($('input[type=file]', this)[0].files.length == 1){
+          val = $('input[type=file]', this)[0].files[0];
+        }
+        else{
+          val = $('img', this).attr('src');
+        }
+        result.push(val);
+
       })
       return result.length > 1 ? result : (result.length == 1 ? result[0] : '');
 
@@ -112,8 +125,6 @@ $.fn.extend({
 
   image_validate:function(){
 
-    console.log([ 'image_validate' ]);
-
     var valid = true;
     $(this).each(function(){
 
@@ -135,3 +146,13 @@ $.fn.extend({
   }
 
 });
+
+function load_binary_resource(url) {
+  var req = new XMLHttpRequest();
+  req.open('GET', url, false);
+  //XHR binary charset opt by Marcus Granado 2006 [http://mgran.blogspot.com]
+  req.overrideMimeType('text\/plain; charset=x-user-defined');
+  req.send(null);
+  if (req.status != 200) return '';
+  return req.responseText;
+}

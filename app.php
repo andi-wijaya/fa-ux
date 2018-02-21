@@ -18,12 +18,24 @@ $components = [
       'width'=>[ 'datatype'=>'string', 'desc'=>'Specify width of component, in css notation: px, pt, mm)' ],
     ]
   ],
+  'checkbox'=>[
+    'properties'=>[
+      'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to component.' ],
+      'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of component.' ],
+      'items'=>[ 'datatype'=>'array', 'desc'=>'Component items. ex: [ { text:text, value:value }, ... ]' ],
+      'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of component.' ],
+      'required'=>[ 'datatype'=>'bool', 'desc'=>'' ],
+      'text'=>[ 'datatype'=>'string', 'desc'=>'' ],
+      'value'=>[ 'datatype'=>'string', 'desc'=>'Set the value of component. Single value string or comma separated string' ],
+    ]
+  ],
   'datepicker'=>[
     'properties'=>[
       'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to component.' ],
       'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of component.' ],
       'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of component.' ],
       'default_value'=>[ 'datatype'=>'string', 'desc'=>'Default value of component' ],
+      'readonly'=>[ 'datatype'=>'bool', 'desc'=>'' ],
       'onchange'=>[ 'datatype'=>'closure', 'desc'=>'On change event handler. param1=value' ],
       'width'=>[ 'datatype'=>'string', 'desc'=>'Specify width of component, in css notation: px, pt, mm)' ],
       'mode'=>[ 'datatype'=>'string', 'desc'=>'Datepicker mode, can be "normal" or "range"' ],
@@ -45,17 +57,17 @@ $components = [
       'width'=>[ 'datatype'=>'string', 'desc'=>'Specify width of component, in css notation: px, pt, mm)' ],
     ]
   ],
-  'checkbox'=>[
+  'image'=>[
     'properties'=>[
       'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to component.' ],
       'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of component.' ],
-      'items'=>[ 'datatype'=>'array', 'desc'=>'Component items. ex: [ { text:text, value:value }, ... ]' ],
       'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of component.' ],
-      'required'=>[ 'datatype'=>'bool', 'desc'=>'' ],
-      'text'=>[ 'datatype'=>'string', 'desc'=>'' ],
-      'value'=>[ 'datatype'=>'string', 'desc'=>'Set the value of component. Single value string or comma separated string' ],
+      'readonly'=>[ 'datatype'=>'bool', 'desc'=>'' ],
+      'height'=>[ 'datatype'=>'string', 'desc'=>'height of component, in css notation: px, pt, mm)' ],
+      'width'=>[ 'datatype'=>'string', 'desc'=>'width of component, in css notation: px, pt, mm)' ],
+      'value'=>[ 'datatype'=>'string', 'desc'=>'' ],
     ]
-  ],
+  ]
 ];
 
 
