@@ -67,6 +67,16 @@ $components = [
       'width'=>[ 'datatype'=>'string', 'desc'=>'width of component, in css notation: px, pt, mm)' ],
       'value'=>[ 'datatype'=>'string', 'desc'=>'' ],
     ]
+  ],
+  'radio'=>[
+    'properties'=>[
+      'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to component.' ],
+      'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of component.' ],
+      'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of component.' ],
+      'items'=>[ 'datatype'=>'array', 'desc'=>'Component items. ex: [ { text:text, value:value }, ... ]' ],
+      'readonly'=>[ 'datatype'=>'bool', 'desc'=>'TODO' ],
+      'text'=>[ 'datatype'=>'string', 'desc'=>'' ],
+    ]
   ]
 ];
 

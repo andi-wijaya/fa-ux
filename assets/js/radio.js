@@ -7,6 +7,7 @@ $.fn.extend({
       var items = $.val('items', options, { d:null });
       var className = $.val('class', options, { d:'' });
       var text = $.val('text', options, { d:'' });
+      var id = $.val('id', options, { d:'' });
       var name = $.val('name', options, { d:'' });
       var value = $.val('value', options, { d:'' });
 
@@ -31,12 +32,14 @@ $.fn.extend({
         html.push("<label for='" + uid + "'>" + text + "</label>");
       }
 
+      var attr = {};
+      attr['data-type'] = 'radio';
+      if(id != '') attr['id'] = id;
+      if(name != '') attr['data-name'] = id;
+
       $(this).addClass('radio');
       $(this).addClass(className);
-      $(this).attr({
-        'data-type':'radio',
-        'data-name':name
-      });
+      $(this).attr(attr);
       $(this).html(html.join(''));
 
     })
