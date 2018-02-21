@@ -5,3 +5,7 @@
   <span class="loading width32 height32"></span>
 
 </div>
+
+<div class="height20"></div>
+
+<pre class="code"></pre>
