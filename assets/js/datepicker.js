@@ -2,19 +2,21 @@ $.fn.extend({
 
   datepicker: function (options) {
 
+    var className = $.val('class', options, { d:'' });
     var mode = $.val('mode', options, { d:'' }); // <empty>, range
+    var id = $.val('id', options, { d:'' });
     var name = $.val('name', options, { d:'' });
     var width = $.val('width', options, { d:'' });
 
-    var defaultvalue = $.val('defaultvalue', options, { d:'' });
-    if(defaultvalue == ''){
+    var default_value = $.val('default_value', options, { d:'' });
+    if(default_value == ''){
       if(mode == 'range')
-        defaultvalue = $.date('Ymd') + '-' + $.date('Ymd', $.mktime(0, 0, 0, parseInt($.date('m')) + 1, 0, parseInt($.date('Y'))));
+        default_value = $.date('Ymd') + '-' + $.date('Ymd', $.mktime(0, 0, 0, parseInt($.date('m')) + 1, 0, parseInt($.date('Y'))));
       else
-        defaultvalue = $.date('Ymd');
+        default_value = $.date('Ymd');
     }
 
-    var value = $.val('value', options, { d:defaultvalue });
+    var value = $.val('value', options, { d:default_value });
 
     if(mode == 'range' && width == '') width = '240px'; // Default width for range mode
 
@@ -27,16 +29,18 @@ $.fn.extend({
       html.push("<span class='icon fa fa-calendar'></span>");
 
       $(el).addClass('datepicker');
+      $(el).addClass(className);
       $(el).html(html.join(''));
       $(el).attr('data-type', 'datepicker');
       if(name != '') $(el).attr('data-name', name);
+      if(id != '') $(el).attr('id', id);
       $(el).data('options', options);
 
       var css = {};
       if(!isNaN(parseInt(width))) css['width'] = width;
       $(el).css(css);
 
-      $('.icon', this).click(function(e){
+      $('.icon, input', this).click(function(e){
         e.preventDefault();
         e.stopPropagation();
 

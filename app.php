@@ -3,41 +3,59 @@
 include __DIR__ . '/data/whitelist.php';
 include __DIR__ . '/assets/php/util.php';
 
-$properties = [
+$components = [
   'autocomplete'=>[
-    'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to component.' ],
-    'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of component.' ],
-    'map'=>[ 'datatype'=>'object', 'desc'=>'Define mapping of datasource. component require text-value object' ],
-    'multiple'=>[ 'datatype'=>'bool', 'desc'=>'Multiple value mode. value will be comma-separated' ],
-    'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of component.' ],
-    'onchange'=>[ 'datatype'=>'closure', 'desc'=>'On change event handler. ' ],
-    'placeholder'=>[ 'datatype'=>'string', 'desc'=>'Set the placeholder of component' ],
-    'src'=>[ 'datatype'=>'string', 'desc'=>'Specify datasource of component.' ],
-    'value'=>[ 'datatype'=>'string', 'desc'=>'Set the value of component. Single value string or comma separated string' ],
-    'width'=>[ 'datatype'=>'string', 'desc'=>'Specify width of component, in css notation: px, pt, mm, etc...)' ],
+    'properties'=>[
+      'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to component.' ],
+      'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of component.' ],
+      'map'=>[ 'datatype'=>'object', 'desc'=>'Define mapping of datasource. component require text-value object' ],
+      'multiple'=>[ 'datatype'=>'bool', 'desc'=>'Multiple value mode. value will be comma-separated' ],
+      'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of component.' ],
+      'onchange'=>[ 'datatype'=>'closure', 'desc'=>'On change event handler. ' ],
+      'placeholder'=>[ 'datatype'=>'string', 'desc'=>'Set the placeholder of component' ],
+      'src'=>[ 'datatype'=>'string', 'desc'=>'Specify datasource of component.' ],
+      'value'=>[ 'datatype'=>'string', 'desc'=>'Set the value of component. Single value string or comma separated string' ],
+      'width'=>[ 'datatype'=>'string', 'desc'=>'Specify width of component, in css notation: px, pt, mm)' ],
+    ]
+  ],
+  'datepicker'=>[
+    'properties'=>[
+      'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to component.' ],
+      'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of component.' ],
+      'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of component.' ],
+      'default_value'=>[ 'datatype'=>'string', 'desc'=>'Default value of component' ],
+      'onchange'=>[ 'datatype'=>'closure', 'desc'=>'On change event handler. param1=value' ],
+      'width'=>[ 'datatype'=>'string', 'desc'=>'Specify width of component, in css notation: px, pt, mm)' ],
+      'mode'=>[ 'datatype'=>'string', 'desc'=>'Datepicker mode, can be "normal" or "range"' ],
+      'value'=>[ 'datatype'=>'string', 'desc'=>'Set the value of component. Single value string or comma separated string' ],
+    ]
   ],
   'dropdown'=>[
-    'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to component.' ],
-    'default_value'=>[ 'datatype'=>'string', 'desc'=>'Default value of component' ],
-    'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of component.' ],
-    'items'=>[ 'datatype'=>'array', 'desc'=>'Component items. ex: [ { text:text, value:value }, ... ]' ],
-    'map'=>[ 'datatype'=>'object', 'desc'=>'Define mapping of datasource. component require text-value object' ],
-    'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of component.' ],
-    'placeholder'=>[ 'datatype'=>'string', 'desc'=>'Set the placeholder of component' ],
-    'readonly'=>[ 'datatype'=>'bool', 'desc'=>'' ],
-    'src'=>[ 'datatype'=>'string', 'desc'=>'Specify datasource of component.' ],
-    'value'=>[ 'datatype'=>'string', 'desc'=>'Set the value of component. Single value string or comma separated string' ],
-    'width'=>[ 'datatype'=>'string', 'desc'=>'Specify width of component, in css notation: px, pt, mm, etc...)' ],
+    'properties'=>[
+      'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to component.' ],
+      'default_value'=>[ 'datatype'=>'string', 'desc'=>'Default value of component' ],
+      'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of component.' ],
+      'items'=>[ 'datatype'=>'array', 'desc'=>'Component items. ex: [ { text:text, value:value }, ... ]' ],
+      'map'=>[ 'datatype'=>'object', 'desc'=>'Define mapping of datasource. component require text-value object' ],
+      'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of component.' ],
+      'placeholder'=>[ 'datatype'=>'string', 'desc'=>'Set the placeholder of component' ],
+      'readonly'=>[ 'datatype'=>'bool', 'desc'=>'' ],
+      'src'=>[ 'datatype'=>'string', 'desc'=>'Specify datasource of component.' ],
+      'value'=>[ 'datatype'=>'string', 'desc'=>'Set the value of component. Single value string or comma separated string' ],
+      'width'=>[ 'datatype'=>'string', 'desc'=>'Specify width of component, in css notation: px, pt, mm)' ],
+    ]
   ],
   'checkbox'=>[
-    'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to component.' ],
-    'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of component.' ],
-    'items'=>[ 'datatype'=>'array', 'desc'=>'Component items. ex: [ { text:text, value:value }, ... ]' ],
-    'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of component.' ],
-    'required'=>[ 'datatype'=>'bool', 'desc'=>'' ],
-    'text'=>[ 'datatype'=>'string', 'desc'=>'' ],
-    'value'=>[ 'datatype'=>'string', 'desc'=>'Set the value of component. Single value string or comma separated string' ],
-  ]
+    'properties'=>[
+      'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to component.' ],
+      'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of component.' ],
+      'items'=>[ 'datatype'=>'array', 'desc'=>'Component items. ex: [ { text:text, value:value }, ... ]' ],
+      'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of component.' ],
+      'required'=>[ 'datatype'=>'bool', 'desc'=>'' ],
+      'text'=>[ 'datatype'=>'string', 'desc'=>'' ],
+      'value'=>[ 'datatype'=>'string', 'desc'=>'Set the value of component. Single value string or comma separated string' ],
+    ]
+  ],
 ];
 
 
@@ -229,7 +247,7 @@ session_start();
 
 <div class="sidebar padding10">
   <ul class="nav" style="width:150px;">
-    <?php if(is_array($properties)) foreach($properties as $property_key=>$property){ ?>
+    <?php if(is_array($components)) foreach($components as $property_key=>$property){ ?>
       <li><a href="<?=base_url() . '/components/' . str_replace('.php', '', $property_key)?>"><?=ucwords($property_key)?></a></li>
     <?php } ?>
     <?php $files = glob(__DIR__ . '/components/*.php'); foreach($files as $file){ ?>
@@ -252,8 +270,8 @@ session_start();
   if(strpos($key, 'component') !== false){
     $component = str_replace('components/', '', $key);
 
-    if(isset($properties[$component])){
-      $component_properties = $properties[$component];
+    if(isset($components[$component])){
+      $component_properties = $components[$component]['properties'];
       ksort($component_properties);
     ?>
       <div class="content padding20 bg-white">
