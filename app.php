@@ -57,6 +57,23 @@ $components = [
       'width'=>[ 'datatype'=>'string', 'desc'=>'Specify width of component, in css notation: px, pt, mm)' ],
     ]
   ],
+  'grid'=>[
+    'properties'=>[
+      'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to component.' ],
+      'id'=>[ 'datatype'=>'string', 'desc'=>'Specify id of component.' ],
+      'name'=>[ 'datatype'=>'string', 'desc'=>'Specify name of component.' ],
+      'autoload'=>[ 'datatype'=>'bool', 'desc'=>'default:true' ],
+      'columns'=>[ 'datatype'=>'array', 'desc'=>'{ active:0|1, name:string, text:string, datatype:enum, width:string }' ],
+      'readonly'=>[ 'datatype'=>'bool', 'desc'=>'TODO' ],
+      'height'=>[ 'datatype'=>'string', 'desc'=>'height of component, in css notation: px, pt, mm)' ],
+      'method'=>[ 'datatype'=>'string', 'desc'=>'get|post, default:get' ],
+      'src'=>[ 'datatype'=>'string', 'desc'=>'Specify datasource of component.' ],
+      'width'=>[ 'datatype'=>'string', 'desc'=>'width of component, in css notation: px, pt, mm)' ],
+      'scroll_cont'=>[ 'datatype'=>'string', 'desc'=>'scroll container' ],
+      'value'=>[ 'datatype'=>'array', 'desc'=>'' ],
+      'footer'=>[ 'datatype'=>'closure', 'desc'=>'' ],
+    ]
+  ],
   'image'=>[
     'properties'=>[
       'class'=>[ 'datatype'=>'string', 'desc'=>'Add custom class to component.' ],
@@ -77,7 +94,7 @@ $components = [
       'readonly'=>[ 'datatype'=>'bool', 'desc'=>'TODO' ],
       'text'=>[ 'datatype'=>'string', 'desc'=>'' ],
     ]
-  ]
+  ],
 ];
 
 
@@ -147,7 +164,7 @@ session_start();
   .doc-samples .doc-samples-control-space{
     background: #eee;
     padding: 20px;
-    min-width: 600px;
+    width: 600px;
   }
 
 </style>

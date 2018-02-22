@@ -45,7 +45,7 @@
     bottom: 5px;
     right: 0;
     cursor: e-resize;
-    border-right: dotted 2px #eee;
+    border-right: dotted 2px #ddd;
   }
   .grid-head td.label .separator .dot{
     width: 2px;
@@ -61,6 +61,7 @@
     display: block;
   }
   .grid>table{
+    background: #fff;
     border-collapse: collapse;
     table-layout: fixed;
     width: 100%;
@@ -79,7 +80,7 @@
     padding: 0 8px;
   }
   .grid .grid-content tr.drag-over{
-    background: #eee;
+    background: #ddd;
   }
   .grid .grid-content tr.dragging{
     background: #fff;
@@ -90,21 +91,27 @@
 
   /* BEGIN STYLE 1 */
   .style1{
-    border: solid 1px #eee;
+    border: solid 1px #ddd;
     border-bottom: none;
   }
   .style1 .grid-head td{
     border-bottom: solid 1px transparent;
     font-weight: 600;
-    border-right: solid 1px #eee;
+    border-right: solid 1px #ddd;
   }
   .style1 td{
     border: solid 1px transparent;
-    border-right: solid 1px #eee;
-    border-bottom: solid 1px #eee;
+    border-right: solid 1px #ddd;
+    border-bottom: solid 1px #ddd;
+  }
+  .style1 td:first-child{
+    border-left-color: transparent;
   }
   .style1 td:last-child{
     border-right-color: transparent;
+  }
+  .style1 tr:last-child td{
+    border-bottom-color: transparent;
   }
   .style1 td.label .separator{
     border:none;
@@ -115,7 +122,7 @@
     border-color: transparent;
   }
   .style1 .grid-footer{
-    border-bottom: solid 1px #eee;
+    border-bottom: solid 1px #ddd;
   }
   /* END STYLE 1 */
 

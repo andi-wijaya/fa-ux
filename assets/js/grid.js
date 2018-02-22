@@ -4,7 +4,8 @@ $.fn.extend({
 
     var autoload = $.val('autoload', options, { d:true });
     var columns = $.val('columns', options, { d:[] });
-    var className = $.val('class', options, { d:'style1' });
+    var className = $.val('class', options, { d:'' });
+    var id = $.val('id', options, { d:'' });
     var name = $.val('name', options, { d:'' });
     var footer = $.val('footer', options, { d:'' });
     var value = $.val('value', options, { d:null });
@@ -35,13 +36,17 @@ $.fn.extend({
       if(width != '') css['width'] = width;
       if(height != '') css['height'] = height;
 
-      $(el).attr('data-type', 'grid');
-      $(el).attr('data-cid', ctlid);
-      $(el).attr('data-name', name);
+      var attr = {};
+      attr['data-type'] = 'grid';
+      attr['data-cid'] = ctlid;
+      if(name != '') attr['data-name'] = name;
+      if(id != '') attr['id'] = id;
+
       $(el).addClass('grid');
       $(el).addClass(className);
       $(el).data('options', options);
 
+      $(el).attr(attr);
       $(el).css(css);
 
       $.fire_event(footer, [], $('.grid-footer', el));
