@@ -18,7 +18,7 @@ $.fn.extend({
       html.push("<img class='image-img'/>");
       html.push("<input type='file' accept='image/*'/>");
       html.push("<span class='image-upload glyphicons glyphicons-folder-open'></span>");
-      html.push("<span class='popup'><img class='image-popup-img'/></span>");
+      html.push("<span class='popup off'><img class='image-popup-img'/></span>");
 
       $(el).attr('data-type', 'image');
       if(id != '') $(el).attr('id', name);

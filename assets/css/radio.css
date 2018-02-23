@@ -3,14 +3,27 @@
   .radio{
     padding: 6px;
   }
-  .radio>input{
+  .radio input{
     display: inline-block;
     vertical-align: middle;
     margin-right: 5px;
   }
-  .radio>label{
+  .radio label{
     margin-right: 10px;
     vertical-align: middle;
+  }
+
+  /* GROUP STYLE */
+  .radio-group{
+    border: solid 1px #ddd;
+    border-radius: 4px;
+    padding: 0;
+    white-space: nowrap;
+  }
+  .radio-group .item{
+    background: #eee;
+    padding: 6px;
+    white-space: nowrap;
   }
 
 }

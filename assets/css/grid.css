@@ -111,7 +111,6 @@
     border-right-color: transparent;
   }
   .style1 tr:last-child td{
-    border-bottom-color: transparent;
   }
   .style1 td.label .separator{
     border:none;

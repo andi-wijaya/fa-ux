@@ -18,7 +18,7 @@ $.fn.extend({
     var html = [];
     html.push("<input class='text' placeholder=\"" + placeholder + "\" readonly/>");
     html.push("<span class='icon fa fa-caret-down hoverable'></span>");
-    html.push("<span class='popup'></span>");
+    html.push("<span class='popup off'></span>");
 
     this.each(function(){
 

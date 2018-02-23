@@ -7,11 +7,11 @@
     outline: none;
     position: relative;
     display: inline-block;
-    border: solid 1px #eee;
+    border: solid 1px #ddd;
     margin: 0;
     background: transparent;
     padding: 6px;
-    border-radius: 3px;
+    border-radius: 4px;
     vertical-align: middle;
     white-space: nowrap;
   }
@@ -84,6 +84,12 @@
   button.gray:hover{
     background: rgba(0, 0, 0, .8);
     border-color: transparent;
+  }
+  button.icon{
+    padding: 7px 7px 7px 7px;
+  }
+  button.icon .fa, button.icon .glyphicons{
+    margin: 0;
   }
   
 }

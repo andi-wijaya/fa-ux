@@ -24,7 +24,7 @@ $.fn.extend({
       var html = [];
       html.push("<input type='text' placeholder=\"" + placeholder + "\"/>");
       html.push("<span class='icon fa fa-search hoverable selectable'></span>");
-      html.push("<span class='popup'></span>");
+      html.push("<span class='popup off'></span>");
 
       $(el).addClass('autocomplete');
       $(el).addClass(className);

@@ -107,4 +107,20 @@
     color: #333;
   }
 
+  .group-left{
+    border-right: solid 1px #ddd !important;
+    border-top-right-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+  }
+  .group-center{
+    border-left: none !important;
+    border-radius: 0 !important;
+    border-right: solid 1px #ddd !important;
+  }
+  .group-right{
+    border-left: none !important;
+    border-top-left-radius: 0 !important;
+    border-bottom-left-radius: 0 !important;
+  }
+
 }

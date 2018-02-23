@@ -8,7 +8,6 @@
     vertical-align: top;
     position: relative;
     vertical-align: middle;
-    min-width: 150px;
     border-radius: 4px;
   }
   .dropdown:hover, .dropdown:active{
@@ -75,5 +74,14 @@
   .dropdown.readonly .fa{
     display: none;
   }
+
+  /* BEGIN GRAY */
+  .dropdown.gray{
+    background: #eee;
+  }
+  .dropdown.gray .icon{
+    background: #eee;
+  }
+  /* END GRAY */
 
 }

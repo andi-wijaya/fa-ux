@@ -21,8 +21,10 @@ $.fn.extend({
           var checked = value != '' && value == i_value ? true : false;
 
           var uid = 'radio-' + $.uniqid();
+          html.push("<span class='item'>");
           html.push("<input type='radio' id='" + uid + "' value=\"" + i_value + "\" name='" + uname + "'" + (checked ? ' checked' : '') + "/>");
           html.push("<label for='" + uid + "'>" + i_text + "</label>");
+          html.push("</span>");
         }
       }
       else{

@@ -11,7 +11,7 @@ $.fn.extend({
       var html = [];
       html.push("<input type='text' value='" + value + "' readonly/>");
       html.push("<span class='icon fa fa-calendar'></span>");
-      html.push("<span class='popup'>Calendar</span>");
+      html.push("<span class='popup off'>Calendar</span>");
 
       $(el).addClass('calendar');
       $(el).html(html.join(''));
