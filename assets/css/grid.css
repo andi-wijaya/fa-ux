@@ -55,6 +55,12 @@
     background: #ddd;
     display: block;
   }
+  .grid-head .sort-icon{
+    position: absolute;
+    top: 6px;
+    bottom: 5px;
+    right: 8px;
+  }
 
   .grid{
     overflow-x: hidden;

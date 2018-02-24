@@ -27,8 +27,6 @@
 </div>
 <script>
 
-  var datasource = '../data/autocomplete.php';
-
   $(function(){
 
     var columns = [
@@ -56,17 +54,24 @@
       multiple:1,
       class:"group-center",
       width:"100%",
-      src:datasource,
+      src:'', // '../data/autocomplete.php',
+      onchange:function(){
+        console.log([ this, arguments ]);
+      },
       placeholder:"Filter..."
     });
 
     $('#radio1').radio({
       class:"radio-group group-right",
+      default_value:"all",
       items:[
         { text:"Active", value:"active" },
         { text:"Inactive", value:"inactive" },
         { text:"All", value:"all" },
-      ]
+      ],
+      onchange:function(){
+        console.log([ "radio changed", this, arguments ]);
+      }
     });
 
     $('#gridhead1').gridhead({

@@ -97,6 +97,33 @@ $.fn.extend({
 
             }
 
+            // If no datasource defined
+            else{
+
+              var data = [ { text:key, value:key } ];
+              var html = [];
+              html.push("<div class='item' data-value=\"" + key + "\">");
+              html.push("<label>" + key + "</label>");
+              html.push("</div>");
+              $('.popup', el).html(html.join(''));$('.item', $('.popup', el)).on('click',function(){
+                var data = $(el).data('data');
+                var value = this.getAttribute('data-value');
+                var text = $('label', this).text();
+                var index = $(this).index();
+                var obj = data[index];
+                obj['value'] = value;
+                obj['text'] = text;
+
+                $(el).autocomplete_val(obj, true);
+                $(el).autocomplete_validate();
+                $.fire_event(onchange, [ obj ], el);
+              });
+              $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
+              $(el).data('key', null);
+              $(el).data('data', data);
+
+            }
+
           }
 
         }, 350);
@@ -182,8 +209,8 @@ $.fn.extend({
             if(!$.in_array(ivalue.toLowerCase(), current_val) && ivalue !== ''){
               $("<span class='text' data-value=\"" + ivalue + "\">" + itext + "<span class='icon-remove glyphicons glyphicons-remove'></span></span>").insertBefore($('input', this));
               $('.glyphicons-remove', $('input', this).prev()).on('click', function(){
-                $.fire_event(onchange, [ ], el);
                 $(this).parent().remove();
+                $.fire_event(onchange, [ ], el);
               })
             }
 

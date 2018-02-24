@@ -25,7 +25,6 @@ $.fn.extend({
       if(name != '') $(el).attr('data-name', name);
       $(el).addClass('image');
       $(el).addClass(className);
-      console.log([ readonly, readonly == true ]);
       if(readonly) $(el).addClass('readonly');
       $(el).html(html.join(''));
       $(el).data('options', options);

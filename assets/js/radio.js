@@ -8,9 +8,21 @@ $.fn.extend({
       var className = $.val('class', options, { d:'' });
       var text = $.val('text', options, { d:'' });
       var id = $.val('id', options, { d:'' });
+      var default_value = $.val('default_value', options, { d:'' });
       var name = $.val('name', options, { d:'' });
-      var value = $.val('value', options, { d:'' });
+      var value = $.val('value', options, { d:default_value });
+      var onchange = $.val('onchange', options, { d:'' });
 
+      var attr = {};
+      attr['data-type'] = 'radio';
+      if(id != '') attr['id'] = id;
+      if(name != '') attr['data-name'] = id;
+
+      $(this).addClass('radio');
+      $(this).addClass(className);
+      $(this).attr(attr);
+
+      // Set items
       var html = [];
       if($.type(items) == 'array'){
         var uname = 'radio-name-' + $.uniqid();
@@ -33,16 +45,11 @@ $.fn.extend({
         html.push("<input type='radio' id='" + uid + "'" + (checked ? ' checked' : '') + "/>");
         html.push("<label for='" + uid + "'>" + text + "</label>");
       }
-
-      var attr = {};
-      attr['data-type'] = 'radio';
-      if(id != '') attr['id'] = id;
-      if(name != '') attr['data-name'] = id;
-
-      $(this).addClass('radio');
-      $(this).addClass(className);
-      $(this).attr(attr);
       $(this).html(html.join(''));
+      $("input[type=radio]", this).on('change', function(){
+        var el = $(this).closest('.radio');
+        $.fire_event(onchange, [ $(el).val() ], el[0]);
+      })
 
     })
 

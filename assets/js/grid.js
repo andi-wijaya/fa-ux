@@ -51,7 +51,7 @@ $.fn.extend({
 
       $.fire_event(footer, [], $('.grid-footer', el));
 
-      $(this).grid_set_columns(columns);
+      $(this).grid_columns(columns);
       if(value != null) $(el).grid_val(value);
       if(autoload) $(el).grid_load();
 
@@ -231,7 +231,7 @@ $.fn.extend({
 
   },
 
-  grid_set_columns:function(columns){
+  grid_columns:function(columns){
 
     $(this).each(function(){
 
@@ -268,7 +268,7 @@ $.fn.extend({
       var instance = this;
       var options = $(instance).data('options');
       var src = $.val('src', options, { d:'' });
-      var method = $.val('method', options, { d:'post' });
+      var method = $.val('method', options, { d:'post' }).toLowerCase();
       if(!params) params = {};
 
       if(src.length > 0){
@@ -287,54 +287,32 @@ $.fn.extend({
         };
         if(search != '') el_params['search'] = search;
 
-        if(method.toString().toLowerCase() == 'get'){
-          $.api_get(src, el_params, function(response){
+        // Load data
+        $['api_' + method](src, el_params, function(response){
 
-            // Render data
-            var data = $.val('data', response, { d:[] });
-            var page = $.val('page', response, { d:1 });
-            var append = page == 1 ? false : true;
-            $(instance).grid_val(data, append);
+          // Render data
+          var data = $.val('data', response, { d:[] });
+          var page = $.val('page', response, { d:1 });
+          var append = page == 1 ? false : true;
+          $(instance).grid_val(data, append);
 
-            // Check if next page exists
-            var next_page = $.val('next_page', response, { d:page });
-            if(next_page > page){
-              $('.grid-footer', instance).html("<div class='load-more align-center padding5'>Load More...</div>");
-              $('.load-more', instance).on('click', function(){
-                params['page'] = next_page;
-                $(instance).grid_load(params);
-              });
-            }
-            else{
-              $('.grid-footer', instance).html("");
-            }
+          // Check if next page exists
+          var next_page = $.val('next_page', response, { d:page });
+          if(next_page > page){
+            $('.grid-footer', instance).html("<div class='load-more align-center padding5'>Load More...</div>");
+            $('.load-more', instance).on('click', function(){
+              params['page'] = next_page;
+              $(instance).grid_load(params);
+            });
+          }
+          else{
+            $('.grid-footer', instance).html("");
+          }
 
-          });
-        }
-        else{
-          $.api_post(src, el_params, function(response){
+          // Save last load data
+          $(instance).data('last_load_data', el_params);
 
-            // Render data
-            var data = $.val('data', response, { d:[] });
-            var page = $.val('page', response, { d:1 });
-            var append = page == 1 ? false : true;
-            $(instance).grid_val(data, append);
-
-            // Check if next page exists
-            var next_page = $.val('next_page', response, { d:page });
-            if(next_page > page){
-              $('.grid-footer', instance).html("<div class='load-more align-center padding10'>Load More...</div>");
-              $('.load-more', instance).on('click', function(){
-                params['page'] = next_page;
-                $(instance).grid_load(params);
-              });
-            }
-            else{
-              $('.grid-footer', instance).html("");
-            }
-
-          });
-        }
+        });
 
         if(page == 1) $('.grid-content', this).remove();
         $('.grid-footer', this).html("<div class='align-center padding10'><span class='loading width16 height16'></span></div>");
@@ -343,6 +321,13 @@ $.fn.extend({
       
     });
     
+  },
+
+  grid_last_load_data:function(){
+
+    var last_load_data = $(this).data('last_load_data');
+    return typeof last_load_data == 'undefined' ? null : last_load_data;
+
   },
 
   grid_val:function(value, append){
