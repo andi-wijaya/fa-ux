@@ -3,7 +3,6 @@
   .modal{
     background: #fff;
     outline: solid 5px rgba(0, 0, 0, .2);
-    display: none;
     position: fixed;
     z-index: 3;
     left: 0;
@@ -11,9 +10,17 @@
     right: 0;
     bottom: 0;
     overflow-y: auto;
+    transition: all .1s ease-in-out;
+    transform: scale(0.8);
+    opacity: 0;
   }
   .modal.on{
     display: block;
+    transform: scale(1);
+    opacity: 1;
+  }
+  .modal.off{
+    display: none;
   }
   .modal-body{
     overflow-y: auto;
@@ -30,10 +37,12 @@
     left: 0;
     bottom: 0;
     right: 0;
-    background: rgba(0, 0, 0, .7);
+    background: rgba(0, 0, 0, .1);
+    transition: all .1s ease-in-out;
     z-index: 2;
   }
   .modal-bg.on{
+    background: rgba(0, 0, 0, .7);
     display: block;
   }
 

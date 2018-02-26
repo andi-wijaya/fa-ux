@@ -5,7 +5,7 @@ $.fn.extend({
     this.each(function(){
 
       var instance = this;
-      $(instance).addClass('on');
+      $(instance).removeClass('off');
 
       $(document.body).css({ overflow:'hidden' });
 
@@ -31,6 +31,17 @@ $.fn.extend({
       if(value != null){
         $(instance).val(value);
       }
+
+      window.setTimeout(function(){
+        $(instance).addClass('on');
+      }, 100);
+      $(instance).on('transitionend', function(){
+        if($(this).hasClass('on')){}
+        else{
+          $(this).removeClass('on');
+          $(this).addClass('off');
+        }
+      })
 
     })
 

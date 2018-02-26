@@ -40,7 +40,6 @@ $.extend({
 
     $(el).removeClass('off');
     window.setTimeout(function(){
-      console.log(el);
       $(el).addClass('on');
     }, 100);
 
