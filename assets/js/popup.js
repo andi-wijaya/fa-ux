@@ -2,7 +2,7 @@ $.extend({
 
   popup_close:function(el){
 
-    $(el).removeClass('on');
+    $(el).removeClass('on').addClass('off');
 
   },
   popup_open:function(el, refEl, options){

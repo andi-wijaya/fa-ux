@@ -61,3 +61,5 @@ $.fn.extend({
   }
 
 });
+
+$(function(){ $('.modall').addClass('off'); });
