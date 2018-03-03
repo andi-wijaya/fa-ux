@@ -13,12 +13,13 @@ $.fn.extend({
     this.each(function(){
 
       var el = this;
+      var popup_id = options['popup_id'] = 'p' + $.uniqid();
 
       var html = [];
       html.push("<img class='image-img'/>");
       html.push("<input type='file' accept='image/*'/>");
       html.push("<span class='image-upload glyphicons glyphicons-folder-open'></span>");
-      html.push("<span class='popup off'><img class='image-popup-img'/></span>");
+      html.push("<span id='" + popup_id + "' class='image-popup popup off'><img class='image-popup-img'/></span>");
 
       $(el).attr('data-type', 'image');
       if(id != '') $(el).attr('id', name);
@@ -40,8 +41,7 @@ $.fn.extend({
 
         e.preventDefault();
         e.stopPropagation();
-
-        var popup = $('.popup', $(this).closest('.image'));
+        var popup = $('#' + popup_id);
         $('.image-popup-img', popup).attr('src', $(this).attr('src'));
         $.popup_open(popup);
 
@@ -50,7 +50,6 @@ $.fn.extend({
       $('input[type=file]', this).on('change', function(e){
 
         var input = this;
-
         // FileReader support
         if (FileReader && this.files && this.files.length) {
           var fr = new FileReader();

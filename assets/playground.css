@@ -1,12 +1,8 @@
 @media screen{
 
-  .sidebar{
-    width: 150px;
-  }
-
   .content{
-    margin-left: 150px;
-    width: calc(100% - 150px);
+    margin-left: 240px;
+    width: calc(100% - 240px);
   }
 
   body{

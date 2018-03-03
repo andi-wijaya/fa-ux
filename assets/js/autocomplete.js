@@ -20,11 +20,12 @@ $.fn.extend({
     this.each(function(){
 
       var el = this;
+      var popup_id = options['popup_id'] = 'p' + $.uniqid();
 
       var html = [];
       html.push("<input type='text' placeholder=\"" + placeholder + "\"/>");
       html.push("<span class='icon fa fa-search hoverable selectable'></span>");
-      html.push("<span class='popup off'></span>");
+      html.push("<span id='" + popup_id + "' class='autocomplete-popup popup off'></span>");
 
       $(el).addClass('autocomplete');
       $(el).addClass(className);
@@ -73,8 +74,8 @@ $.fn.extend({
                     html.push("<label>" + text + "</label>");
                     html.push("</div>");
                   }
-                $('.popup', el).html(html.join(''));
-                $('.item', $('.popup', el)).on('click',function(){
+                $('#' + popup_id).html(html.join(''));
+                $('.item', $('#' + popup_id)).on('click',function(){
 
                   var data = $(el).data('data');
                   var value = this.getAttribute('data-value');
@@ -89,7 +90,7 @@ $.fn.extend({
                   $.fire_event(onchange, [ obj ], el);
 
                 });
-                $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
+                $.popup_open($('#' + popup_id), el, { min_width:$(el).outerWidth() });
                 $(el).data('key', null);
                 $(el).data('data', data);
 
@@ -105,7 +106,7 @@ $.fn.extend({
               html.push("<div class='item' data-value=\"" + key + "\">");
               html.push("<label>" + key + "</label>");
               html.push("</div>");
-              $('.popup', el).html(html.join(''));$('.item', $('.popup', el)).on('click',function(){
+              $('#' + popup_id).html(html.join(''));$('.item', $('#' + popup_id)).on('click',function(){
                 var data = $(el).data('data');
                 var value = this.getAttribute('data-value');
                 var text = $('label', this).text();
@@ -118,7 +119,7 @@ $.fn.extend({
                 $(el).autocomplete_validate();
                 $.fire_event(onchange, [ obj ], el);
               });
-              $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
+              $.popup_open($('#' + popup_id), el, { min_width:$(el).outerWidth() });
               $(el).data('key', null);
               $(el).data('data', data);
 

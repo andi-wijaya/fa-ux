@@ -11,6 +11,7 @@ $.fn.extend({
     var src = $.val('src', options, { d:'' });
     var placeholder = $.val('placeholder', options, { d:'' });
     options['static_items'] = items;
+    var popup_id = options['popup_id'] = 'p' + $.uniqid();
 
     var css = {};
     if(width != null) css['width'] = width;
@@ -18,7 +19,7 @@ $.fn.extend({
     var html = [];
     html.push("<input class='text' placeholder=\"" + placeholder + "\" readonly/>");
     html.push("<span class='icon fa fa-caret-down hoverable'></span>");
-    html.push("<span class='popup off'></span>");
+    html.push("<span id='" + popup_id + "' class='dropdown-popup popup off'></span>");
 
     this.each(function(){
 
@@ -40,14 +41,14 @@ $.fn.extend({
         var options = $(el).data('options');
         var readonly = $.val('readonly', options);
         if(!readonly){
-          if($('.popup', el).hasClass('on')){
-            $.popup_close($('.popup', el));
+          if($('#' + popup_id).hasClass('on')){
+            $.popup_close($('#' + popup_id));
           }
           else{
-            $.popup_open($('.popup', el), el, { min_width:$(el).outerWidth() });
-            $('.search-item input', $('.popup', el)).val('');
-            $('.search-item input', $('.popup', el)).focus();
-            $(".item", $('.popup', el)).show();
+            $.popup_open($('#' + popup_id), el, { min_width:$(el).outerWidth() });
+            $('.search-item input', $('#' + popup_id)).val('');
+            $('.search-item input', $('#' + popup_id)).focus();
+            $(".item", $('#' + popup_id)).show();
           }
         }
       });
@@ -147,6 +148,7 @@ $.fn.extend({
         var searchable = $.val('searchable', options, { d:false });
         var multiple = $.val('multiple', options, { d:false });
         var onchange = $.val('onchange', options);
+        var popup_id = options['popup_id'];
 
         // Generate popup content
         var html = [];
@@ -168,9 +170,10 @@ $.fn.extend({
             html.push("</div>");
           }
         html = html.join('');
+        console.warn(html);
 
-        $('.popup', el).html(html);
-        $('.item', $('.popup', el)).click(function(e){
+        $('#' + popup_id).html(html);
+        $('.item', $('#' + popup_id)).click(function(e){
 
           if(multiple) e.stopPropagation();
 
@@ -198,7 +201,7 @@ $.fn.extend({
           $.fire_event(onchange, [ e, obj ], el);
 
         });
-        $(".item>input[type='checkbox']", $('.popup', el)).on('change', function(){
+        $(".item>input[type='checkbox']", $('#' + popup_id)).on('change', function(){
 
           var text = this.nextElementSibling.innerHTML; // Text from label
           var value = this.parentNode.getAttribute("data-value"); // Value from item data-value

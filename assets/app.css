@@ -9,17 +9,4 @@
     background: #f5f5f5;
   }
 
-  .sidebar{
-    position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background: #666;
-  }
-  .sidebar *{
-    color: #eee;
-  }
-
 }

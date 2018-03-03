@@ -9,6 +9,8 @@ $.extend({
 
     $.popup_close_all();
 
+    $(el).appendTo(document.body);
+
     $(el).addClass('off');
 
     var css = {};

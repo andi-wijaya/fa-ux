@@ -284,15 +284,32 @@ session_start();
 
 </script>
 
-<div class="sidebar padding10">
-  <ul class="nav" style="width:150px;">
-    <?php if(is_array($components)) foreach($components as $property_key=>$property){ ?>
-      <li><a href="<?=base_url() . '/components/' . str_replace('.php', '', $property_key)?>"><?=ucwords($property_key)?></a></li>
-    <?php } ?>
-    <?php $files = glob(__DIR__ . '/components/*.php'); foreach($files as $file){ ?>
-    <li><a href="<?=base_url() . '/components/' . str_replace('.php', '', basename($file))?>"><?=ucwords(str_replace('_', ' ', basename(str_replace('.php', '', $file))))?></a></li>
-    <?php } ?>
-  </ul>
+<div class="sidebar width240">
+
+  <div class="account-widget">
+    <div>
+      <span class="profile-photo fa fa-user fa-2x"></span>
+      <h1>Andi Wijaya</h1>
+    </div>
+    <div><span class="fa fa-cogs padding15 selectable"></span></div>
+  </div>
+
+  <div class="separator"></div>
+
+  <div class="nav">
+    <h5>Components</h5>
+    <ul>
+      <?php if(is_array($components)) foreach($components as $property_key=>$property){ ?>
+        <li><a href="<?=base_url() . '/components/' . str_replace('.php', '', $property_key)?>"><span class="fa fa-cog width24"></span><?=ucwords($property_key)?></a></li>
+      <?php } ?>
+      <?php $files = glob(__DIR__ . '/components/*.php'); foreach($files as $file){ ?>
+        <li><a href="<?=base_url() . '/components/' . str_replace('.php', '', basename($file))?>"><span class="fa fa-cog width24"></span><?=ucwords(str_replace('_', ' ', basename(str_replace('.php', '', $file))))?></a></li>
+      <?php } ?>
+    </ul>
+  </div>
+
+  <div class="separator"></div>
+
   <div class="height20"></div>
   <ul class="nav width200">
     <?php $files = glob(__DIR__ . '/workspaces/*.php'); foreach($files as $file){ ?>
@@ -343,6 +360,8 @@ session_start();
     echo "Unable to load view.";
 
 ?>
+
+<div id="popup1" class="popup"></div>
 
 </body>
 </html>

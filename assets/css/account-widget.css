@@ -1,0 +1,32 @@
+@media screen{
+
+  .account-widget{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+  }
+
+  .account-widget>*:nth-child(1){
+    flex: 1 100%;
+    padding: 5px 5px 10px 5px;
+  }
+  .account-widget>*:nth-child(2){
+    flex: 1 auto;
+  }
+
+  .account-widget *{
+    color: #ccc;
+  }
+
+  .account-widget .profile-photo{
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, .1);
+  }
+
+  .account-widget h1{
+    font-size: 14px;
+    color: #ccc;
+    font-weight: 400;
+  }
+
+}

@@ -3,22 +3,32 @@
   .nav{
     margin: 0;
     padding: 0;
-    display: inline-block;
   }
   .nav li{
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 4px 24px;
+    white-space: nowrap;
   }
   .nav li:last-child{
 
   }
-  .nav li:hover{
-    background: rgba(0, 0, 0, .1);
-  }
   .nav li a{
-    padding: 6px;
     display: block;
+  }
+  .nav li:hover{
+    background: rgba(255, 255, 255, .1);
+  }
+  .nav li>*{
+    font-weight: 600;
+    color: #ccc;
+    vertical-align: middle;
+  }
+  .nav h5{
+    font-weight: 600;
+    padding: 6px 24px 8px 24px;
+    margin: 0;
+    color: #fff;
   }
 
 }

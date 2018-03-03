@@ -12,7 +12,7 @@
     <br /><br />
     <span id="textbox1"></span>
     <br />
-    <span id="textbox2"></span>
+    <span id="dropdown1"></span>
     <br /><br />
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ornare efficitur neque in suscipit. Maecenas imperdiet, nulla at congue elementum, turpis ligula sodales augue, eget efficitur lectus ex vel orci. Vestibulum lacinia ultrices nibh nec facilisis. Fusce vel arcu a justo auctor fringilla. Quisque cursus tristique erat nec dapibus. Nunc lacinia ipsum dictum, feugiat odio eget, pharetra libero. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Morbi ut eros erat.</p>
     <br />
@@ -41,7 +41,7 @@
   $(function(){
 
     $('#textbox1').textbox({ name:"name" });
-    $('#textbox2').textbox({ name:"password", mode:"password" });
+    $('#dropdown1').dropdown({ name:"password", items:[{ text:"Item-1", value:"item1" }, { text:"Item-2", value:"item2" }] });
     $('#button1').on('click', function(){ $('#modal1').modal_open(); });
     $('#button2').on('click', function(){ $('#modal1').modal_open({ width:"600px" }); });
     $('#button3').on('click', function(){ $('#modal1').modal_open({ width:"600px", height:window.innerHeight * .8, reset:1 }); });

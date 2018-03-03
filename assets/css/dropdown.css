@@ -35,23 +35,23 @@
   .dropdown.error{
     border-color: #E9573F;
   }
-  .dropdown .item{
+  .dropdown-popup .item{
     padding: 6px;
     text-align: left;
     border-top: solid 1px #eee;
   }
-  .dropdown .item:first-child{
+  .dropdown-popup .item:first-child{
     border-top-color: transparent;
   }
-  .dropdown .item>input{
+  .dropdown-popup .item>input{
     margin-right: 8px;
   }
-  .dropdown .item:hover{
+  .dropdown-popup .item:hover{
   }
-  .dropdown .popup .search-item{
+  .dropdown-popup .search-item{
     padding: 3px;
   }
-  .dropdown .popup .search-item input{
+  .dropdown-popup .search-item input{
     border: solid 1px #eee;
     border-radius: 4px;
     padding: 6px;
